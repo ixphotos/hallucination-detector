@@ -32,7 +32,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth(), async (u) => {
       setUser(u);
       if (u) {
-        const p = await getProfile(u.uid);
+        let p = await getProfile(u.uid);
+        // Auto-create profile if it was never saved (e.g. blocked by Firestore rules at registration)
+        if (!p) {
+          await createProfile(u.uid, u.displayName ?? u.email?.split('@')[0] ?? 'Teacher', u.email ?? '');
+          p = await getProfile(u.uid);
+        }
         setProfile(p);
       } else {
         setProfile(null);

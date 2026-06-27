@@ -20,6 +20,7 @@ export default function QuizPage({ params }: { params: Promise<{ questionId: str
   const question = allQuestions.find((q) => q.id === questionId);
   const [highlights, setHighlights] = useState<Highlight[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const startTime = useRef(Date.now());
 
   useEffect(() => {
@@ -39,23 +40,30 @@ export default function QuizPage({ params }: { params: Promise<{ questionId: str
   }
 
   async function handleSubmit() {
-    if (!user || !profile || !question) return;
+    if (!user || !question) return;
     setSubmitting(true);
-    const timeTaken = Math.round((Date.now() - startTime.current) / 1000);
-    const { score, tp, fp, fn } = scoreAttempt(highlights, question.hallucinations);
-    const attemptId = await saveAttempt({
-      teacherId: user.uid,
-      teacherName: profile.name,
-      questionId: question.id,
-      subject: question.subject,
-      highlights,
-      score,
-      tp,
-      fp,
-      fn,
-      timeTaken,
-    });
-    router.push(`/results/${attemptId}`);
+    setSubmitError('');
+    try {
+      const timeTaken = Math.round((Date.now() - startTime.current) / 1000);
+      const { score, tp, fp, fn } = scoreAttempt(highlights, question.hallucinations);
+      const attemptId = await saveAttempt({
+        teacherId: user.uid,
+        teacherName: profile?.name ?? user.email ?? 'Teacher',
+        questionId: question.id,
+        subject: question.subject,
+        highlights,
+        score,
+        tp,
+        fp,
+        fn,
+        timeTaken,
+      });
+      router.push(`/results/${attemptId}`);
+    } catch (err) {
+      console.error(err);
+      setSubmitError('Failed to save your attempt. Please check your connection and try again.');
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -80,6 +88,10 @@ export default function QuizPage({ params }: { params: Promise<{ questionId: str
             onChange={setHighlights}
           />
         </div>
+
+        {submitError && (
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-4">{submitError}</p>
+        )}
 
         <div className="flex items-center justify-between">
           <div className="text-sm text-gray-400">
