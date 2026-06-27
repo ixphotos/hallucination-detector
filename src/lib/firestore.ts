@@ -6,7 +6,6 @@ import {
   collection,
   query,
   where,
-  orderBy,
   getDocs,
   serverTimestamp,
 } from 'firebase/firestore';
@@ -57,25 +56,27 @@ export async function getAttempt(attemptId: string): Promise<Attempt | null> {
 export async function getTeacherAttempts(teacherId: string): Promise<Attempt[]> {
   const q = query(
     collection(db(), 'attempts'),
-    where('teacherId', '==', teacherId),
-    orderBy('completedAt', 'desc')
+    where('teacherId', '==', teacherId)
   );
   const snap = await getDocs(q);
-  return snap.docs.map((d) => ({
-    id: d.id,
-    ...d.data(),
-    completedAt: d.data().completedAt?.toDate() ?? new Date(),
-  })) as Attempt[];
+  return snap.docs
+    .map((d) => ({
+      id: d.id,
+      ...d.data(),
+      completedAt: d.data().completedAt?.toDate() ?? new Date(),
+    }) as Attempt)
+    .sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime());
 }
 
 export async function getAllAttempts(): Promise<Attempt[]> {
-  const q = query(collection(db(), 'attempts'), orderBy('completedAt', 'desc'));
-  const snap = await getDocs(q);
-  return snap.docs.map((d) => ({
-    id: d.id,
-    ...d.data(),
-    completedAt: d.data().completedAt?.toDate() ?? new Date(),
-  })) as Attempt[];
+  const snap = await getDocs(collection(db(), 'attempts'));
+  return snap.docs
+    .map((d) => ({
+      id: d.id,
+      ...d.data(),
+      completedAt: d.data().completedAt?.toDate() ?? new Date(),
+    }) as Attempt)
+    .sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime());
 }
 
 export async function getAllProfiles(): Promise<Profile[]> {

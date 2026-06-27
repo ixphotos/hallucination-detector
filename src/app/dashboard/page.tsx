@@ -29,7 +29,10 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!loading && !user) { router.replace('/'); return; }
     if (user) {
-      getTeacherAttempts(user.uid).then((a) => { setAttempts(a); setFetching(false); });
+      getTeacherAttempts(user.uid)
+        .then((a) => setAttempts(a))
+        .catch(() => {})
+        .finally(() => setFetching(false));
     }
   }, [user, loading, router]);
 
