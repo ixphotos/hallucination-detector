@@ -74,12 +74,10 @@ export default function QuizSelectionPage() {
         const others = questions.filter((q) => q.subject !== subject).sort(() => Math.random() - 0.5);
         picked = [...picked, ...others].slice(0, 3);
       }
-      const sessionId = await createQuizSession(
-        user.uid,
-        profile.name,
-        subject,
-        picked.map((q) => q.id)
-      );
+      const questionIds = picked.map((q) => q.id);
+      const sessionId = await createQuizSession(user.uid, profile.name, subject, questionIds);
+      // Cache session metadata so step pages skip a Firestore read
+      sessionStorage.setItem(`qs:${sessionId}`, JSON.stringify({ subject, questionIds }));
       router.push(`/quiz/session/${sessionId}/1`);
     } catch (err) {
       console.error(err);

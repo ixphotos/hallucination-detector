@@ -9,12 +9,32 @@ import {
   saveAttempt,
   updateQuizSession,
   completeQuizSession,
-  getAttemptsByIds,
 } from '@/lib/firestore';
 import { scoreAttempt } from '@/lib/scoring';
 import NavBar from '@/components/NavBar';
 import PassageHighlighter from '@/components/PassageHighlighter';
-import type { Question, Highlight, QuizSession } from '@/types';
+import type { Question, Highlight } from '@/types';
+
+// Module-level cache persists across step-to-step navigations without a Firestore read
+const questionCache = new Map<string, Question>();
+
+function getCachedSession(sessionId: string): { subject: string; questionIds: string[] } | null {
+  try {
+    const raw = sessionStorage.getItem(`qs:${sessionId}`);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+function getCachedScores(sessionId: string): number[] {
+  try {
+    return JSON.parse(sessionStorage.getItem(`qs-scores:${sessionId}`) || '[]');
+  } catch { return []; }
+}
+
+function appendCachedScore(sessionId: string, score: number) {
+  const prev = getCachedScores(sessionId);
+  sessionStorage.setItem(`qs-scores:${sessionId}`, JSON.stringify([...prev, score]));
+}
 
 export default function SessionStepPage({
   params,
@@ -26,7 +46,8 @@ export default function SessionStepPage({
   const { user, profile, loading } = useAuth();
   const router = useRouter();
 
-  const [session, setSession] = useState<QuizSession | null>(null);
+  const [subject, setSubject] = useState('');
+  const [questionIds, setQuestionIds] = useState<string[]>([]);
   const [question, setQuestion] = useState<Question | null>(null);
   const [highlights, setHighlights] = useState<Highlight[]>([]);
   const [submitting, setSubmitting] = useState(false);
@@ -41,31 +62,63 @@ export default function SessionStepPage({
   useEffect(() => {
     if (!user) return;
     async function load() {
-      const s = await getQuizSession(sessionId);
-      if (!s) { router.replace('/quiz'); return; }
-      setSession(s);
-      const qId = s.questionIds[stepNum - 1];
+      // 1. Get session metadata — sessionStorage first, Firestore fallback
+      const cached = getCachedSession(sessionId);
+      let ids: string[];
+      let sub: string;
+
+      if (cached) {
+        ids = cached.questionIds;
+        sub = cached.subject;
+      } else {
+        const s = await getQuizSession(sessionId);
+        if (!s) { router.replace('/quiz'); return; }
+        ids = s.questionIds;
+        sub = s.subject;
+        sessionStorage.setItem(`qs:${sessionId}`, JSON.stringify({ subject: sub, questionIds: ids }));
+      }
+
+      setQuestionIds(ids);
+      setSubject(sub);
+
+      // 2. Get current question — module cache first, Firestore fallback
+      const qId = ids[stepNum - 1];
       if (!qId) { router.replace('/quiz'); return; }
-      const q = await getQuestion(qId);
+
+      let q = questionCache.get(qId) ?? null;
+      if (!q) {
+        q = await getQuestion(qId);
+        if (q) questionCache.set(qId, q);
+      }
       setQuestion(q);
       setFetching(false);
       startTime.current = Date.now();
+
+      // 3. Prefetch next question in the background while user reads
+      if (stepNum < 3) {
+        const nextId = ids[stepNum];
+        if (nextId && !questionCache.has(nextId)) {
+          getQuestion(nextId).then((nq) => { if (nq) questionCache.set(nextId, nq); });
+        }
+      }
     }
     load();
   }, [user, sessionId, stepNum, router]);
 
   async function handleSubmit() {
-    if (!user || !question || !session) return;
+    if (!user || !question) return;
     setSubmitting(true);
     setSubmitError('');
     try {
       const timeTaken = Math.round((Date.now() - startTime.current) / 1000);
       const { score, tp, fp, fn } = scoreAttempt(highlights, question.hallucinations);
+
+      // Save attempt — must await to get the ID
       const attemptId = await saveAttempt({
         teacherId: user.uid,
         teacherName: profile?.name ?? user.email ?? 'Teacher',
         questionId: question.id,
-        subject: session.subject,
+        subject,
         highlights,
         score,
         tp,
@@ -73,20 +126,26 @@ export default function SessionStepPage({
         fn,
         timeTaken,
       });
-      await updateQuizSession(sessionId, attemptId);
+
+      // Store score locally for cumulative total
+      appendCachedScore(sessionId, score);
 
       if (stepNum < 3) {
-        setHighlights([]);
+        // Fire-and-forget: user doesn't need to wait for this write
+        updateQuizSession(sessionId, attemptId);
         router.push(`/quiz/session/${sessionId}/${stepNum + 1}`);
       } else {
-        // Final question — compute cumulative score and complete session
-        const updatedSession = await getQuizSession(sessionId);
-        const allAttemptIds = [...(updatedSession?.attemptIds ?? [])];
-        const allAttempts = await getAttemptsByIds(allAttemptIds);
-        const totalScore = allAttempts.length > 0
-          ? Math.round(allAttempts.reduce((s, a) => s + a.score, 0) / allAttempts.length)
+        // Final step: need attemptIds complete before results page reads them
+        await updateQuizSession(sessionId, attemptId);
+
+        // Compute total from cached scores — avoids re-reading 3 attempt docs
+        const allScores = getCachedScores(sessionId);
+        const totalScore = allScores.length > 0
+          ? Math.round(allScores.reduce((s, n) => s + n, 0) / allScores.length)
           : score;
-        await completeQuizSession(sessionId, totalScore);
+
+        // Fire-and-forget: results page uses totalScore fallback if this hasn't landed yet
+        completeQuizSession(sessionId, totalScore);
         router.push(`/quiz/session/${sessionId}/results`);
       }
     } catch (err) {
@@ -107,7 +166,7 @@ export default function SessionStepPage({
     );
   }
 
-  if (!question || !session) return null;
+  if (!question) return null;
 
   return (
     <>
@@ -129,7 +188,7 @@ export default function SessionStepPage({
           </div>
           <span className="text-sm text-gray-500">Question {stepNum} of 3</span>
           <span className="ml-auto text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-medium">
-            {session.subject}
+            {subject}
           </span>
         </div>
 
