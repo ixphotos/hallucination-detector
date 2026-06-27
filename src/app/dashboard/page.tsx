@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
-import { getTeacherAttempts } from '@/lib/firestore';
+import { getTeacherSessions } from '@/lib/firestore';
 import NavBar from '@/components/NavBar';
-import type { Attempt } from '@/types';
+import type { QuizSession } from '@/types';
 
 function ScoreBadge({ score }: { score: number }) {
   const colour =
@@ -23,14 +23,14 @@ function ScoreBadge({ score }: { score: number }) {
 export default function DashboardPage() {
   const { user, profile, loading } = useAuth();
   const router = useRouter();
-  const [attempts, setAttempts] = useState<Attempt[]>([]);
+  const [sessions, setSessions] = useState<QuizSession[]>([]);
   const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
     if (!loading && !user) { router.replace('/'); return; }
     if (user) {
-      getTeacherAttempts(user.uid)
-        .then((a) => setAttempts(a))
+      getTeacherSessions(user.uid)
+        .then((s) => setSessions(s))
         .catch(() => {})
         .finally(() => setFetching(false));
     }
@@ -47,16 +47,12 @@ export default function DashboardPage() {
     );
   }
 
-  const avgScore = attempts.length > 0
-    ? Math.round(attempts.reduce((s, a) => s + a.score, 0) / attempts.length)
+  const completedSessions = sessions.filter((s) => s.totalScore !== null);
+  const avgScore = completedSessions.length > 0
+    ? Math.round(completedSessions.reduce((s, a) => s + (a.totalScore ?? 0), 0) / completedSessions.length)
     : null;
 
-  const subjectScores: Record<string, { total: number; count: number }> = {};
-  attempts.forEach((a) => {
-    if (!subjectScores[a.subject]) subjectScores[a.subject] = { total: 0, count: 0 };
-    subjectScores[a.subject].total += a.score;
-    subjectScores[a.subject].count += 1;
-  });
+  const subjectSet = new Set(sessions.map((s) => s.subject));
 
   return (
     <>
@@ -69,8 +65,8 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <div className="text-sm text-gray-500 mb-1">Quizzes completed</div>
-            <div className="text-3xl font-bold text-gray-900">{attempts.length}</div>
+            <div className="text-sm text-gray-500 mb-1">Sessions completed</div>
+            <div className="text-3xl font-bold text-gray-900">{completedSessions.length}</div>
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-5">
             <div className="text-sm text-gray-500 mb-1">Average score</div>
@@ -78,12 +74,12 @@ export default function DashboardPage() {
           </div>
           <div className="bg-white rounded-xl border border-gray-200 p-5">
             <div className="text-sm text-gray-500 mb-1">Subjects attempted</div>
-            <div className="text-3xl font-bold text-gray-900">{Object.keys(subjectScores).length}</div>
+            <div className="text-3xl font-bold text-gray-900">{subjectSet.size}</div>
           </div>
         </div>
 
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900">Recent attempts</h2>
+          <h2 className="text-lg font-semibold text-gray-900">Recent sessions</h2>
           <Link
             href="/quiz"
             className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
@@ -91,18 +87,18 @@ export default function DashboardPage() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-            New quiz
+            New session
           </Link>
         </div>
 
-        {attempts.length === 0 ? (
+        {sessions.length === 0 ? (
           <div className="bg-white rounded-xl border border-gray-200 border-dashed p-12 text-center">
-            <p className="text-gray-400 mb-4">You haven&apos;t completed any quizzes yet.</p>
+            <p className="text-gray-400 mb-4">You haven&apos;t completed any sessions yet.</p>
             <Link
               href="/quiz"
               className="inline-flex px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
             >
-              Take your first quiz
+              Take your first session
             </Link>
           </div>
         ) : (
@@ -112,31 +108,41 @@ export default function DashboardPage() {
                 <tr className="border-b border-gray-100 text-left text-xs text-gray-500 uppercase tracking-wide">
                   <th className="px-4 py-3 font-medium">Subject</th>
                   <th className="px-4 py-3 font-medium">Score</th>
-                  <th className="px-4 py-3 font-medium hidden sm:table-cell">Caught</th>
-                  <th className="px-4 py-3 font-medium hidden sm:table-cell">Missed</th>
-                  <th className="px-4 py-3 font-medium hidden sm:table-cell">False positives</th>
+                  <th className="px-4 py-3 font-medium hidden sm:table-cell">Status</th>
                   <th className="px-4 py-3 font-medium hidden sm:table-cell">Date</th>
                   <th className="px-4 py-3"></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {attempts.map((a) => (
-                  <tr key={a.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3 font-medium text-gray-900">{a.subject}</td>
-                    <td className="px-4 py-3"><ScoreBadge score={a.score} /></td>
-                    <td className="px-4 py-3 hidden sm:table-cell text-green-600">{a.tp}</td>
-                    <td className="px-4 py-3 hidden sm:table-cell text-red-600">{a.fn}</td>
-                    <td className="px-4 py-3 hidden sm:table-cell text-orange-600">{a.fp}</td>
-                    <td className="px-4 py-3 hidden sm:table-cell text-gray-400">
-                      {a.completedAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    </td>
-                    <td className="px-4 py-3">
-                      <Link href={`/results/${a.id}`} className="text-indigo-600 hover:underline text-xs">
-                        Review
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
+                {sessions.map((s) => {
+                  const completed = s.totalScore !== null;
+                  const stepsDone = s.attemptIds.length;
+                  return (
+                    <tr key={s.id} className="hover:bg-gray-50">
+                      <td className="px-4 py-3 font-medium text-gray-900">{s.subject}</td>
+                      <td className="px-4 py-3">
+                        {completed ? <ScoreBadge score={s.totalScore!} /> : <span className="text-gray-400 text-xs">In progress</span>}
+                      </td>
+                      <td className="px-4 py-3 hidden sm:table-cell text-gray-500 text-xs">
+                        {completed ? '3 of 3 complete' : `${stepsDone} of 3 done`}
+                      </td>
+                      <td className="px-4 py-3 hidden sm:table-cell text-gray-400">
+                        {s.startedAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      </td>
+                      <td className="px-4 py-3">
+                        {completed ? (
+                          <Link href={`/quiz/session/${s.id}/results`} className="text-indigo-600 hover:underline text-xs">
+                            Review
+                          </Link>
+                        ) : (
+                          <Link href={`/quiz/session/${s.id}/${stepsDone + 1}`} className="text-indigo-600 hover:underline text-xs">
+                            Continue
+                          </Link>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

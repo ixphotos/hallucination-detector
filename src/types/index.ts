@@ -8,7 +8,7 @@ export interface Hallucination {
 export interface Question {
   id: string;
   subject: string;
-  level: 'GCSE' | 'A-Level' | 'Both';
+  level: 'GCSE' | 'A-Level' | 'Both' | 'General Knowledge';
   title: string;
   passage: string;
   hallucinations: Hallucination[];
@@ -33,6 +33,18 @@ export interface Attempt {
   fn: number;
   timeTaken: number;
   completedAt: Date;
+}
+
+export interface QuizSession {
+  id?: string;
+  teacherId: string;
+  teacherName: string;
+  subject: string;
+  questionIds: string[];
+  attemptIds: string[];
+  totalScore: number | null;
+  startedAt: Date;
+  completedAt?: Date;
 }
 
 export interface Profile {

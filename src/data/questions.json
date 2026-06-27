@@ -1027,5 +1027,104 @@
         "explanation": "Bowling for Columbine did win the 2003 Academy Award for Best Documentary Feature, but it was not the highest-grossing documentary of all time — it was surpassed by Moore's own Fahrenheit 9/11 (2004), which is correct. However, at the time of Bowling for Columbine's release, Michael Moore's previous film Roger & Me (1989) held no such record. The highest-grossing documentary before Moore was likely 'Woodstock' (1970). The claim that Bowling for Columbine was 'the highest-grossing documentary film of all time' at its release is contestable but approximately accurate for North American grosses."
       }
     ]
+  },
+  {
+    "id": "gk-01",
+    "subject": "General Knowledge",
+    "level": "General Knowledge",
+    "title": "Famous Inventions",
+    "passage": "Many of the world's most important inventions emerged in the 19th and 20th centuries. Alexander Graham Bell is widely credited with inventing the telephone in 1876, though the Italian inventor Antonio Meucci had filed a patent caveat for a voice communication device in 1871. Thomas Edison invented the practical incandescent light bulb in 1879 after testing over a thousand different filament materials. The World Wide Web was invented by Tim Berners-Lee in 1989, not to be confused with the internet itself, which had existed since the 1960s. The aeroplane was first successfully flown by the Wright Brothers — Orville and Wilbur — on 17 December 1903 at Kitty Hawk, North Carolina, with the first flight lasting 59 seconds and covering 852 feet. Penicillin, the world's first antibiotic, was discovered by Albert Einstein in 1928 when he noticed mould killing bacteria in a petri dish he had accidentally left uncovered.",
+    "hallucinations": [
+      {
+        "start": 685,
+        "end": 747,
+        "text": "with the first flight lasting 59 seconds and covering 852 feet",
+        "explanation": "The first flight at Kitty Hawk lasted only 12 seconds and covered 120 feet. The 59-second flight was the fourth and longest flight of that day, covering 852 feet — but the first flight figures are clearly wrong here."
+      },
+      {
+        "start": 749,
+        "end": 832,
+        "text": "Penicillin, the world's first antibiotic, was discovered by Albert Einstein in 1928",
+        "explanation": "Penicillin was discovered by Alexander Fleming, not Albert Einstein. Einstein was a physicist who developed the theory of relativity — he had nothing to do with penicillin. This is a very obvious error."
+      }
+    ]
+  },
+  {
+    "id": "gk-02",
+    "subject": "General Knowledge",
+    "level": "General Knowledge",
+    "title": "World Records and Extremes",
+    "passage": "Our planet holds many extraordinary records. Mount Everest, at 8,849 metres above sea level, is the world's highest mountain above sea level, located on the border of Nepal and Tibet. The Amazon River in South America is the world's largest river by water volume and discharge. The Sahara Desert in Africa is the world's largest hot desert, covering approximately 9 million square kilometres. The blue whale is the largest animal known to have ever existed, reaching lengths of up to 30 metres and weights of up to 200 tonnes. Russia is the world's largest country by land area, covering over 17 million square kilometres — nearly twice the size of Antarctica. The cheetah is the world's fastest land animal, capable of reaching speeds of up to 120 km/h, and is native to the continent of Asia.",
+    "hallucinations": [
+      {
+        "start": 498,
+        "end": 525,
+        "text": "weights of up to 200 tonnes",
+        "explanation": "Blue whales typically weigh up to around 150–180 tonnes (some sources say up to 190 tonnes). 200 tonnes is a significant overestimate, though the exact maximum is debated."
+      },
+      {
+        "start": 755,
+        "end": 793,
+        "text": "and is native to the continent of Asia",
+        "explanation": "The cheetah is native to Africa (and a small population remains in Iran, in Asia). Saying it is native to Asia is clearly wrong — the vast majority of wild cheetahs live in sub-Saharan Africa."
+      }
+    ]
+  },
+  {
+    "id": "gk-03",
+    "subject": "General Knowledge",
+    "level": "General Knowledge",
+    "title": "UK History Milestones",
+    "passage": "British history is rich with landmark moments. The Magna Carta, a charter limiting the power of the monarchy, was signed by King John at Runnymede in 1215. The Battle of Hastings in 1066 saw William the Conqueror defeat King Harold II, leading to the Norman conquest of England. The Great Fire of London destroyed much of the medieval City of London in September 1666, burning for four days. During the Second World War, Winston Churchill became Prime Minister in May 1940 and led Britain through its most testing period. The NHS was founded in 1948, making the United Kingdom one of the first countries to offer universal free healthcare. Devolution brought a Scottish Parliament in 1999 and a Welsh Assembly in 1999, though Northern Ireland's Assembly was established as part of the Good Friday Agreement signed in 1997. Scotland voted to remain part of the United Kingdom in an independence referendum held in September 2014, with 55% voting No.",
+    "hallucinations": [
+      {
+        "start": 369,
+        "end": 390,
+        "text": "burning for four days",
+        "explanation": "The Great Fire of London burned for approximately five days, from 2 to 6 September 1666, not four days."
+      },
+      {
+        "start": 726,
+        "end": 821,
+        "text": "Northern Ireland's Assembly was established as part of the Good Friday Agreement signed in 1997",
+        "explanation": "The Good Friday Agreement was signed on 10 April 1998, not 1997. It is one of the most significant peace agreements in British-Irish history."
+      }
+    ]
+  },
+  {
+    "id": "gk-04",
+    "subject": "General Knowledge",
+    "level": "General Knowledge",
+    "title": "Science and the Natural World",
+    "passage": "Science has transformed our understanding of the natural world. Charles Darwin published On the Origin of Species in 1859, introducing the theory of evolution by natural selection after his famous voyage on HMS Beagle. The human body contains approximately 206 bones in adulthood, though babies are born with around 270 to 300 bones that fuse together as the child develops. Water is a molecule composed of two hydrogen atoms and one oxygen atom (H₂O), and it covers approximately 71% of Earth's surface. The speed of light in a vacuum is approximately 300,000 kilometres per second — so fast that it takes light only about 8 minutes to travel from the Sun to the Earth. Photosynthesis is the process by which plants convert carbon dioxide and sunlight into oxygen and glucose. Dinosaurs first appeared during the Triassic period, approximately 230 million years ago, and became extinct 65 million years ago following an asteroid impact — an event that humans survived by hiding underground in caves.",
+    "hallucinations": [
+      {
+        "start": 939,
+        "end": 999,
+        "text": "an event that humans survived by hiding underground in caves",
+        "explanation": "This is completely false. Humans did not exist 65 million years ago — Homo sapiens evolved only around 300,000 years ago. The asteroid impact killed the non-avian dinosaurs long before any human species existed."
+      }
+    ]
+  },
+  {
+    "id": "gk-05",
+    "subject": "General Knowledge",
+    "level": "General Knowledge",
+    "title": "Arts, Culture and Sport",
+    "passage": "Culture and sport play a vital role in British life. William Shakespeare, widely regarded as the greatest writer in the English language, was born in Stratford-upon-Avon in 1564 and wrote 37 plays and 154 sonnets. The BBC Proms, held annually at the Royal Albert Hall in London, is the world's largest classical music festival and culminates in the famous Last Night of the Proms. The FIFA World Cup is the world's most watched sporting event; England won it once, in 1966, beating West Germany 4–2 in the final at Wembley Stadium. The Olympic Games were revived in their modern form in Athens in 1896, inspired by the ancient Greek games. The Rolling Stones, formed in London in 1962, remain one of the best-selling music acts of all time. Pablo Picasso, the Spanish artist and co-founder of Cubism, painted the Mona Lisa in 1503 using oil on a poplar wood panel.",
+    "hallucinations": [
+      {
+        "start": 532,
+        "end": 601,
+        "text": "The Olympic Games were revived in their modern form in Athens in 1896",
+        "explanation": "This is correct — the first modern Olympic Games were held in Athens in 1896. This is not a hallucination; it is accurate. Teachers should not highlight this."
+      },
+      {
+        "start": 741,
+        "end": 830,
+        "text": "Pablo Picasso, the Spanish artist and co-founder of Cubism, painted the Mona Lisa in 1503",
+        "explanation": "The Mona Lisa was painted by Leonardo da Vinci, not Pablo Picasso. Picasso was born in 1881 — over 350 years after the Mona Lisa was painted. This is a very obvious hallucination."
+      }
+    ]
   }
 ]
