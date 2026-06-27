@@ -1,6 +1,7 @@
 import { initializeApp, getApps, type FirebaseApp } from 'firebase/app';
-import { getAuth, type Auth } from 'firebase/auth';
-import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getAuth, connectAuthEmulator, type Auth } from 'firebase/auth';
+import { getFirestore, connectFirestoreEmulator, type Firestore } from 'firebase/firestore';
+import { getStorage, connectStorageEmulator, type FirebaseStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,25 +12,48 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-let app: FirebaseApp;
-let auth: Auth;
-let db: Firestore;
+const USE_EMULATOR = process.env.NEXT_PUBLIC_USE_EMULATOR === 'true';
+
+let _app: FirebaseApp;
+let _auth: Auth;
+let _db: Firestore;
+let _storage: FirebaseStorage;
 
 function getFirebaseApp(): FirebaseApp {
-  if (!app) {
-    app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+  if (!_app) {
+    _app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
   }
-  return app;
+  return _app;
 }
 
 function getFirebaseAuth(): Auth {
-  if (!auth) auth = getAuth(getFirebaseApp());
-  return auth;
+  if (!_auth) {
+    _auth = getAuth(getFirebaseApp());
+    if (USE_EMULATOR) {
+      connectAuthEmulator(_auth, 'http://127.0.0.1:9099', { disableWarnings: true });
+    }
+  }
+  return _auth;
 }
 
 function getFirebaseDb(): Firestore {
-  if (!db) db = getFirestore(getFirebaseApp());
-  return db;
+  if (!_db) {
+    _db = getFirestore(getFirebaseApp());
+    if (USE_EMULATOR) {
+      connectFirestoreEmulator(_db, '127.0.0.1', 8080);
+    }
+  }
+  return _db;
 }
 
-export { getFirebaseAuth as auth, getFirebaseDb as db };
+function getFirebaseStorage(): FirebaseStorage {
+  if (!_storage) {
+    _storage = getStorage(getFirebaseApp());
+    if (USE_EMULATOR) {
+      connectStorageEmulator(_storage, '127.0.0.1', 9199);
+    }
+  }
+  return _storage;
+}
+
+export { getFirebaseAuth as auth, getFirebaseDb as db, getFirebaseStorage as storage };
