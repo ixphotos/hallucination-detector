@@ -1,0 +1,1031 @@
+[
+  {
+    "id": "english-lang-01",
+    "subject": "English Language",
+    "level": "GCSE",
+    "title": "Language Techniques: Persuasive Writing",
+    "passage": "Persuasive writing uses a range of techniques to convince the reader. Ethos appeals to the writer's authority or credibility, while pathos targets the reader's emotions. Logos uses logical reasoning and evidence to build an argument. The 'rule of three' is a technique where three words or phrases are grouped together for impact, a device first invented by the ancient Greek philosopher Plato in 340 BC. Anaphora involves the repetition of words at the beginning of successive clauses, famously used by Martin Luther King Jr in his 1965 speech 'I Have a Dream'. Writers also use rhetorical questions to engage the reader directly, and hyperbole to exaggerate for effect.",
+    "hallucinations": [
+      {
+        "start": 233,
+        "end": 322,
+        "text": "a device first invented by the ancient Greek philosopher Plato in 340 BC",
+        "explanation": "The 'rule of three' was not invented by Plato and cannot be attributed to a single inventor — it is a rhetorical pattern used across many ancient cultures. No such specific origin claim is accurate."
+      },
+      {
+        "start": 394,
+        "end": 453,
+        "text": "his 1965 speech 'I Have a Dream'",
+        "explanation": "Martin Luther King Jr's famous 'I Have a Dream' speech was delivered on 28 August 1963 at the March on Washington, not in 1965."
+      }
+    ]
+  },
+  {
+    "id": "english-lang-02",
+    "subject": "English Language",
+    "level": "GCSE",
+    "title": "Reading Non-Fiction: Newspaper Articles",
+    "passage": "Newspaper articles follow specific structural conventions. A broadsheet newspaper typically presents more detailed analysis and longer articles, while a tabloid focuses on shorter, more sensational stories. The term 'broadsheet' originally referred to the large format paper size, which was introduced in Britain in 1712 as a way to reduce newspaper tax by printing on fewer, larger sheets. The headline grabs attention and summarises the story, while the standfirst — a brief introductory paragraph — provides context. The inverted pyramid structure places the most important information first, followed by supporting detail. Sub-headings help readers navigate longer pieces.",
+    "hallucinations": [
+      {
+        "start": 214,
+        "end": 305,
+        "text": "which was introduced in Britain in 1712 as a way to reduce newspaper tax by printing on fewer, larger sheets",
+        "explanation": "The historical origin is inverted here. The large broadsheet format was actually adopted to avoid the stamp duty (newspaper tax), not to reduce it by consolidation. The tax was per sheet, so large sheets allowed more content per taxed sheet — but the dates and framing given are a simplified distortion of the real history."
+      }
+    ]
+  },
+  {
+    "id": "english-lang-03",
+    "subject": "English Language",
+    "level": "GCSE",
+    "title": "Spoken Language: Dialect and Accent",
+    "passage": "Spoken language varies significantly across regions and social groups. A dialect refers to a variety of language characterised by its vocabulary and grammar, while an accent refers only to pronunciation. Received Pronunciation (RP), sometimes called 'the Queen's English', is spoken by approximately 3% of the UK population and is often associated with prestige. Sociolinguist William Labov conducted a famous study in 2001 on the relationship between social class and language variation in New York City department stores, finding that workers in higher-end stores were more likely to use prestige forms. Standard English is the variety taught in schools and used in formal writing.",
+    "hallucinations": [
+      {
+        "start": 369,
+        "end": 379,
+        "text": "in 2001",
+        "explanation": "William Labov's famous New York City department store study was conducted in 1962 and published in 1966, not in 2001."
+      }
+    ]
+  },
+  {
+    "id": "english-lit-01",
+    "subject": "English Literature",
+    "level": "GCSE",
+    "title": "Shakespeare: Macbeth",
+    "passage": "Macbeth, written by William Shakespeare around 1606, is a tragedy exploring themes of ambition, guilt, and the corrupting nature of power. The play was written to honour King James I of England, who had a keen interest in witchcraft and had written a book called Daemonologie in 1599. Lady Macbeth is often considered the more ruthlessly ambitious of the two central characters, famously calling on spirits to 'unsex me here' and fill her with cruelty. The three witches, or Weird Sisters, represent fate and the supernatural. Macbeth is one of Shakespeare's shortest tragedies, and was first performed at the Globe Theatre in London in 1611.",
+    "hallucinations": [
+      {
+        "start": 218,
+        "end": 223,
+        "text": "1599",
+        "explanation": "King James I's Daemonologie was published in 1597, not 1599."
+      },
+      {
+        "start": 553,
+        "end": 609,
+        "text": "first performed at the Globe Theatre in London in 1611",
+        "explanation": "Macbeth is believed to have been first performed around 1606. The Globe Theatre did exist during this period, but there is no reliable historical record of a 1611 first performance — and many scholars place the premiere closer to 1606."
+      }
+    ]
+  },
+  {
+    "id": "english-lit-02",
+    "subject": "English Literature",
+    "level": "GCSE",
+    "title": "Poetry: War Poetry",
+    "passage": "War poetry became particularly prominent during and after the First World War. Wilfred Owen wrote some of the most powerful anti-war poems of the twentieth century, including 'Dulce et Decorum Est', which uses vivid imagery of a gas attack to challenge the idea that it is glorious to die for one's country. Owen was killed in action on 4 November 1918, just one week before the Armistice. Siegfried Sassoon, Owen's close friend and mentor, survived the war and lived until 1967. Rupert Brooke, by contrast, wrote romantically about the war in his poem 'The Soldier', and died in 1915 from sepsis contracted during the Gallipoli campaign.",
+    "hallucinations": [
+      {
+        "start": 546,
+        "end": 599,
+        "text": "from sepsis contracted during the Gallipoli campaign",
+        "explanation": "Rupert Brooke died of septicaemia from an infected mosquito bite on 23 April 1915. He died on a French hospital ship near the Greek island of Skyros en route to Gallipoli — he never actually fought in the Gallipoli campaign itself."
+      }
+    ]
+  },
+  {
+    "id": "english-lit-03",
+    "subject": "English Literature",
+    "level": "GCSE",
+    "title": "The Novel: 19th Century Fiction",
+    "passage": "Nineteenth-century novels often grappled with social injustice and class inequality. Charles Dickens published Great Expectations in 1861, using the story of Pip's journey from poverty to wealth to critique the Victorian class system. Dickens originally wrote the novel with an unhappy ending in which Pip and Estella part permanently; he changed it to a more ambiguous ending after advice from fellow novelist Edward Bulwer-Lytton. Mary Shelley published Frankenstein in 1818 when she was just nineteen years old, making it one of the earliest works of science fiction. The novel was written following a ghost story competition at the Villa Diodati in Switzerland in the summer of 1816.",
+    "hallucinations": [
+      {
+        "start": 323,
+        "end": 359,
+        "text": "fellow novelist Edward Bulwer-Lytton",
+        "explanation": "This is accurate — Dickens did change the ending on the advice of Edward Bulwer-Lytton. However, the passage contains a subtler error: the original ending is not correctly described as simply 'unhappy'. More precisely, the original ending had Pip and Estella meet briefly but part with no expectation of reunion. The revised ending is ambiguous but suggests a future together. This is broadly correct, so the hallucination is the framing, not the name."
+      }
+    ]
+  },
+  {
+    "id": "maths-01",
+    "subject": "Mathematics",
+    "level": "GCSE",
+    "title": "Pythagoras' Theorem",
+    "passage": "Pythagoras' theorem states that in a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides, expressed as a² + b² = c². The theorem is named after the ancient Greek mathematician Pythagoras of Samos, who was born around 570 BC. Although the theorem bears his name, evidence of the relationship was known to the Babylonians over 1,000 years earlier, as demonstrated by the clay tablet Plimpton 322, which dates to approximately 1800 BC and contains Pythagorean triples. The theorem was formally proved by Pythagoras himself in 530 BC, a fact recorded in detail by his contemporary Aristotle.",
+    "hallucinations": [
+      {
+        "start": 490,
+        "end": 567,
+        "text": "a fact recorded in detail by his contemporary Aristotle",
+        "explanation": "Aristotle was born in 384 BC — roughly 200 years after Pythagoras — so he was not a contemporary of Pythagoras. Furthermore, no direct proof by Pythagoras himself survives; the attribution of the proof to Pythagoras is traditional but unverified."
+      }
+    ]
+  },
+  {
+    "id": "maths-02",
+    "subject": "Mathematics",
+    "level": "GCSE",
+    "title": "Statistics: Types of Data",
+    "passage": "In statistics, data can be classified in several ways. Quantitative data is numerical, whereas qualitative data is descriptive or categorical. Quantitative data is further divided into discrete data (which can only take certain values, such as the number of students in a class) and continuous data (which can take any value within a range, such as height or temperature). The term 'statistics' itself derives from the Latin word 'statisticum', meaning 'of the state', and was first used in English by the scientist Isaac Newton in his 1687 work Principia Mathematica to describe the analysis of state data. Primary data is collected first-hand by the researcher, while secondary data has been collected by someone else.",
+    "hallucinations": [
+      {
+        "start": 388,
+        "end": 494,
+        "text": "was first used in English by the scientist Isaac Newton in his 1687 work Principia Mathematica to describe the analysis of state data",
+        "explanation": "The word 'statistics' was not coined by Isaac Newton. The term entered English usage in the late 18th century, commonly attributed to the German political scientist Gottfried Achenwall around 1749, and was popularised in English by Sir John Sinclair in the 1790s. Newton's Principia Mathematica deals with physics and mathematics, not statistical methodology."
+      }
+    ]
+  },
+  {
+    "id": "maths-03",
+    "subject": "Mathematics",
+    "level": "GCSE",
+    "title": "Algebra: Quadratic Equations",
+    "passage": "A quadratic equation is one in which the highest power of the variable is 2, in the form ax² + bx + c = 0. Quadratic equations can be solved by factorising, completing the square, or using the quadratic formula: x = (−b ± √(b²−4ac)) / 2a. The discriminant, b²−4ac, determines the nature of the roots: if it is positive, there are two distinct real roots; if zero, there is one repeated root; if negative, there are no real roots. The quadratic formula was first published in its modern algebraic form by the Indian mathematician Brahmagupta in 628 AD, who also introduced the concept of zero into formal mathematics. When solving quadratic equations by factorising, we look for two numbers that multiply to give 'ac' and add to give 'b'.",
+    "hallucinations": [
+      {
+        "start": 396,
+        "end": 449,
+        "text": "who also introduced the concept of zero into formal mathematics",
+        "explanation": "While Brahmagupta did make significant contributions to the mathematical treatment of zero (including rules for arithmetic with zero), the concept of zero itself was not 'introduced' by him — zero as a placeholder was used by the Babylonians and Mayans earlier, and Indian mathematicians preceding Brahmagupta also worked with the concept."
+      }
+    ]
+  },
+  {
+    "id": "biology-01",
+    "subject": "Biology",
+    "level": "GCSE",
+    "title": "Cell Biology: Mitosis and Meiosis",
+    "passage": "Cell division in humans occurs through two main processes: mitosis and meiosis. Mitosis produces two genetically identical daughter cells and is used for growth, repair, and asexual reproduction. Meiosis produces four genetically unique haploid cells and is used to produce gametes — sperm and egg cells. During meiosis, homologous chromosomes exchange genetic material in a process called crossing over, which increases genetic variation. DNA replication occurs during the S phase of the cell cycle, which is part of interphase. Charles Darwin first described the process of mitosis in his 1859 work On the Origin of Species, providing a mechanism for the inheritance of traits.",
+    "hallucinations": [
+      {
+        "start": 497,
+        "end": 604,
+        "text": "Charles Darwin first described the process of mitosis in his 1859 work On the Origin of Species, providing a mechanism for the inheritance of traits",
+        "explanation": "Mitosis was not described by Darwin. The process of cell division was first described by German biologist Walther Flemming in 1882, who coined the term 'mitosis'. Darwin's On the Origin of Species deals with natural selection and evolution, not cell division."
+      }
+    ]
+  },
+  {
+    "id": "biology-02",
+    "subject": "Biology",
+    "level": "GCSE",
+    "title": "Genetics: DNA and Inheritance",
+    "passage": "DNA, or deoxyribonucleic acid, carries the genetic instructions for the development and functioning of all known living organisms. The double helix structure of DNA was discovered in 1953 by James Watson and Francis Crick, based significantly on X-ray diffraction data collected by Rosalind Franklin and Raymond Gosling. A gene is a sequence of DNA that codes for a specific protein. Gregor Mendel, an Austrian friar, conducted experiments on pea plants in the 1850s and 1860s, establishing the laws of inheritance. Mendel's work was largely ignored during his lifetime and only rediscovered in 1910 by the botanist Hugo de Vries. Alleles are alternative versions of a gene; a dominant allele is always expressed if present.",
+    "hallucinations": [
+      {
+        "start": 484,
+        "end": 543,
+        "text": "only rediscovered in 1910 by the botanist Hugo de Vries",
+        "explanation": "Mendel's work was rediscovered around 1900, not 1910. It was simultaneously rediscovered by three botanists — Hugo de Vries, Carl Correns, and Erich von Tschermak — all in 1900."
+      }
+    ]
+  },
+  {
+    "id": "biology-03",
+    "subject": "Biology",
+    "level": "GCSE",
+    "title": "Ecology: Food Webs and Energy Transfer",
+    "passage": "In ecosystems, energy flows from producers to consumers through food chains and food webs. Producers, such as plants and algae, convert sunlight into chemical energy through photosynthesis. Primary consumers eat producers; secondary consumers eat primary consumers. At each trophic level, approximately 10% of energy is transferred to the next level — the rest is lost as heat through respiration and in waste. This means that food chains rarely have more than five or six trophic levels. The biomass pyramid always has a wider base than top, as there is always less biomass at higher trophic levels. Decomposers, such as bacteria and fungi, break down dead organic matter and return nutrients to the soil.",
+    "hallucinations": [
+      {
+        "start": 559,
+        "end": 633,
+        "text": "The biomass pyramid always has a wider base than top, as there is always less biomass at higher trophic levels",
+        "explanation": "This is not always true. Inverted biomass pyramids can occur — for example, in aquatic ecosystems where phytoplankton (producers) have a very short lifespan and rapid turnover, so the total biomass of producers at any given moment can be less than that of the primary consumers (zooplankton) feeding on them."
+      }
+    ]
+  },
+  {
+    "id": "chemistry-01",
+    "subject": "Chemistry",
+    "level": "GCSE",
+    "title": "Atomic Structure and the Periodic Table",
+    "passage": "The modern understanding of atomic structure describes the atom as consisting of a central nucleus containing protons and neutrons, surrounded by electrons in shells. The periodic table organises elements by increasing atomic number. Dmitri Mendeleev published his first periodic table in 1869, arranging elements by atomic mass and leaving gaps for undiscovered elements. He predicted the properties of several undiscovered elements, including gallium and germanium, which were later found to match his predictions closely. Ernest Rutherford discovered the atomic nucleus in 1911 through his gold foil experiment, in which he fired alpha particles at a thin gold sheet and found that some were deflected back, suggesting a dense central core. The experiment was conducted at Cambridge University.",
+    "hallucinations": [
+      {
+        "start": 668,
+        "end": 712,
+        "text": "The experiment was conducted at Cambridge University",
+        "explanation": "Rutherford's gold foil experiment was conducted at the University of Manchester, not Cambridge University. Rutherford moved to Manchester in 1907, and the experiment was carried out there in 1909–1911 by Geiger and Marsden under Rutherford's direction."
+      }
+    ]
+  },
+  {
+    "id": "chemistry-02",
+    "subject": "Chemistry",
+    "level": "GCSE",
+    "title": "Chemical Bonding",
+    "passage": "Chemical bonds form when atoms interact to achieve a more stable electron configuration. Ionic bonding involves the transfer of electrons from a metal to a non-metal, creating oppositely charged ions that attract each other. Covalent bonding involves the sharing of electron pairs between non-metal atoms. Metallic bonding involves a lattice of positive metal ions surrounded by a sea of delocalised electrons, which explains the conductivity and malleability of metals. Hydrogen bonding is a particularly strong type of intermolecular force that occurs between molecules containing hydrogen bonded to nitrogen, oxygen, or fluorine. Water's unusually high boiling point is caused by hydrogen bonding — water boils at 100°C because it has the highest number of hydrogen bonds per molecule of any known liquid.",
+    "hallucinations": [
+      {
+        "start": 662,
+        "end": 766,
+        "text": "water boils at 100°C because it has the highest number of hydrogen bonds per molecule of any known liquid",
+        "explanation": "Water boils at 100°C (at standard pressure) due to hydrogen bonding, but the claim that water has 'the highest number of hydrogen bonds per molecule of any known liquid' is false. Water can form up to four hydrogen bonds per molecule, but other substances like hydrogen fluoride (HF) or ammonia (NH₃) can also form significant hydrogen bonds. The key reason for water's high boiling point is the network of hydrogen bonds, not a superlative count."
+      }
+    ]
+  },
+  {
+    "id": "chemistry-03",
+    "subject": "Chemistry",
+    "level": "GCSE",
+    "title": "Rates of Reaction",
+    "passage": "The rate of a chemical reaction is affected by several factors: temperature, concentration, surface area, the presence of a catalyst, and pressure (for gases). Increasing temperature speeds up a reaction because particles have more kinetic energy and collide more frequently and with greater energy. Collision theory states that reactions occur when particles collide with sufficient energy — this minimum energy is called the activation energy. A catalyst provides an alternative reaction pathway with a lower activation energy, so more particles have enough energy to react. Enzymes are biological catalysts made of protein. The chemist Svante Arrhenius formally described the relationship between temperature and reaction rate in the Arrhenius equation, published in 1884, for which he later received the Nobel Prize in Chemistry in 1903.",
+    "hallucinations": [
+      {
+        "start": 604,
+        "end": 621,
+        "text": "published in 1884",
+        "explanation": "Svante Arrhenius published the Arrhenius equation in 1889, not 1884. His landmark paper on reaction rates and temperature was published in the Zeitschrift für Physikalische Chemie in 1889."
+      }
+    ]
+  },
+  {
+    "id": "physics-01",
+    "subject": "Physics",
+    "level": "GCSE",
+    "title": "Forces and Newton's Laws",
+    "passage": "Newton's three laws of motion describe the relationship between a body and the forces acting on it. The first law states that an object remains at rest or moves in a straight line at constant velocity unless acted upon by a resultant force. The second law states that force equals mass times acceleration (F = ma). The third law states that for every action there is an equal and opposite reaction. Isaac Newton published these laws in his 1687 work Philosophiæ Naturalis Principia Mathematica. Newton developed his laws of motion while in quarantine at his family home in Woolsthorpe during the Great Fire of London in 1666.",
+    "hallucinations": [
+      {
+        "start": 451,
+        "end": 534,
+        "text": "while in quarantine at his family home in Woolsthorpe during the Great Fire of London in 1666",
+        "explanation": "Newton retreated to Woolsthorpe Manor in 1665–1666 during the Great Plague of London (bubonic plague), not the Great Fire of London. The Great Fire of London occurred in September 1666, after Newton had largely completed his foundational work. The isolation from plague — not fire — is the historically recorded context."
+      }
+    ]
+  },
+  {
+    "id": "physics-02",
+    "subject": "Physics",
+    "level": "GCSE",
+    "title": "Electricity: Circuits and Ohm's Law",
+    "passage": "Electric current is the flow of charge through a conductor. In a series circuit, components are connected in a single loop; the current is the same throughout but voltage is shared. In a parallel circuit, components are connected across the same two points; the voltage is the same across each component but current is shared. Ohm's Law states that the current through a conductor is directly proportional to the voltage across it, provided temperature remains constant: V = IR. This law was discovered by the German physicist Georg Ohm in 1827 and published in his book Die galvanische Kette. Ohm's Law only applies to ohmic conductors; non-ohmic conductors such as diodes do not follow this relationship. Resistors in series add directly: R_total = R₁ + R₂.",
+    "hallucinations": []
+  },
+  {
+    "id": "physics-03",
+    "subject": "Physics",
+    "level": "GCSE",
+    "title": "Waves: Properties and Electromagnetic Spectrum",
+    "passage": "Waves transfer energy without transferring matter. Transverse waves oscillate perpendicular to the direction of travel (e.g. light, water waves), while longitudinal waves oscillate parallel to the direction of travel (e.g. sound). The electromagnetic spectrum, in order of increasing frequency, is: radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays. All electromagnetic waves travel at the speed of light in a vacuum, approximately 3 × 10⁸ m/s. The wave equation is v = fλ, where v is wave speed, f is frequency, and λ is wavelength. Gamma rays were discovered by the French physicist Henri Becquerel in 1903 during his research into radioactivity at the Sorbonne in Paris.",
+    "hallucinations": [
+      {
+        "start": 586,
+        "end": 684,
+        "text": "Gamma rays were discovered by the French physicist Henri Becquerel in 1903 during his research into radioactivity at the Sorbonne in Paris",
+        "explanation": "Gamma rays were discovered by Paul Villard, a French chemist, in 1900 — not by Henri Becquerel. Becquerel discovered radioactivity itself in 1896. Villard identified gamma rays as a distinct type of radiation separate from alpha and beta rays while studying radium."
+      }
+    ]
+  },
+  {
+    "id": "history-01",
+    "subject": "History",
+    "level": "GCSE",
+    "title": "Causes of the First World War",
+    "passage": "The First World War broke out in August 1914 and involved most of the world's great powers. Historians often cite four main causes, summarised by the acronym MAIN: Militarism, Alliance systems, Imperialism, and Nationalism. The immediate trigger was the assassination of Archduke Franz Ferdinand of Austria-Hungary in Sarajevo on 28 June 1914. He was shot by Gavrilo Princip, a Bosnian Serb nationalist with ties to the Black Hand secret society. Germany's plan for a two-front war was set out in the Schlieffen Plan, which called for a rapid defeat of France through Belgium before turning to face Russia. The war was finally ended by the Treaty of Versailles, signed on 11 November 1918.",
+    "hallucinations": [
+      {
+        "start": 574,
+        "end": 644,
+        "text": "The war was finally ended by the Treaty of Versailles, signed on 11 November 1918",
+        "explanation": "The war ended with the Armistice on 11 November 1918, but the Treaty of Versailles was signed on 28 June 1919 — not on the same date as the armistice. The armistice ended the fighting; the treaty formally concluded the peace."
+      }
+    ]
+  },
+  {
+    "id": "history-02",
+    "subject": "History",
+    "level": "GCSE",
+    "title": "The Cold War: Origins and Key Events",
+    "passage": "The Cold War was a period of geopolitical tension between the United States and the Soviet Union that lasted roughly from 1947 to 1991. Following the Second World War, ideological differences between Western capitalism and Soviet communism led to an arms race and a series of proxy conflicts. The Truman Doctrine of 1947 committed the US to supporting nations threatened by Soviet expansion. The Berlin Wall was built in August 1961 to prevent East Germans from fleeing to the West, and was demolished on 10 November 1989. The Cuban Missile Crisis of October 1962 brought the world close to nuclear war after US spy planes discovered Soviet nuclear missiles being installed in Cuba, directed by Soviet Premier Nikita Khrushchev and approved personally by President John F. Kennedy.",
+    "hallucinations": [
+      {
+        "start": 613,
+        "end": 704,
+        "text": "directed by Soviet Premier Nikita Khrushchev and approved personally by President John F. Kennedy",
+        "explanation": "The framing here is misleading to the point of being a hallucination. The missiles were installed by the Soviet Union under Khrushchev — Kennedy did not approve them. Kennedy ordered their removal via a naval blockade. The passage reverses the roles in an absurd way."
+      }
+    ]
+  },
+  {
+    "id": "history-03",
+    "subject": "History",
+    "level": "GCSE",
+    "title": "The British Empire and Decolonisation",
+    "passage": "At its height in the early 20th century, the British Empire covered approximately a quarter of the world's land surface and governed around 400 million people. India, often referred to as the 'jewel in the crown' of the Empire, gained independence on 15 August 1947 following a prolonged independence movement led significantly by Mahatma Gandhi and his policy of non-violent civil disobedience. The partition of India and Pakistan led to one of the largest mass migrations in human history, with an estimated 10–20 million people displaced. Ghana became the first sub-Saharan African country to gain independence from Britain in 1957, under the leadership of Kwame Nkrumah. The handover of Hong Kong to China took place on 30 June 1997.",
+    "hallucinations": [
+      {
+        "start": 680,
+        "end": 730,
+        "text": "The handover of Hong Kong to China took place on 30 June 1997",
+        "explanation": "The handover of Hong Kong to China took place on 1 July 1997, not 30 June. The formal ceremony marking the transfer of sovereignty began at midnight, transitioning from 30 June into 1 July 1997."
+      }
+    ]
+  },
+  {
+    "id": "geography-01",
+    "subject": "Geography",
+    "level": "GCSE",
+    "title": "Tectonic Hazards: Earthquakes and Volcanoes",
+    "passage": "The Earth's crust is divided into tectonic plates that move due to convection currents in the mantle. At convergent boundaries, two plates move towards each other; the denser oceanic plate is subducted beneath the lighter continental plate. At divergent boundaries, plates move apart, allowing magma to rise and form new crust. At transform boundaries, plates slide past each other horizontally. The Pacific Ring of Fire is a region of intense seismic and volcanic activity that encircles the Pacific Ocean, accounting for approximately 90% of the world's earthquakes. The Richter scale, developed by Charles Richter in 1945, measures the magnitude of earthquakes on a logarithmic scale from 0 to 10.",
+    "hallucinations": [
+      {
+        "start": 573,
+        "end": 638,
+        "text": "developed by Charles Richter in 1945",
+        "explanation": "The Richter scale was developed by Charles Richter (in collaboration with Beno Gutenberg) in 1935, not 1945. It was introduced in a paper published in the Bulletin of the Seismological Society of America in 1935."
+      }
+    ]
+  },
+  {
+    "id": "geography-02",
+    "subject": "Geography",
+    "level": "GCSE",
+    "title": "Urban Issues: Urbanisation and Megacities",
+    "passage": "Urbanisation is the process by which an increasing proportion of a country's population lives in urban areas. It is driven by rural-to-urban migration as people seek employment, education, and improved living standards. A megacity is generally defined as an urban area with a population of over 10 million. As of 2023, there are over 35 megacities worldwide, with the largest being Tokyo, Japan, with a metropolitan population of approximately 37 million. Rapid urbanisation in low-income countries often leads to the growth of informal settlements, known as slums or shanty towns. Lagos, Nigeria, is one of the fastest-growing cities in the world and is projected to become the world's largest city by 2100.",
+    "hallucinations": []
+  },
+  {
+    "id": "geography-03",
+    "subject": "Geography",
+    "level": "GCSE",
+    "title": "Climate Change: Causes and Effects",
+    "passage": "Climate change refers to long-term shifts in global temperatures and weather patterns. While natural factors have always caused climate variability, since the mid-20th century human activities have been the dominant cause of observed climate change, primarily through the emission of greenhouse gases. Carbon dioxide (CO₂) is the most significant anthropogenic greenhouse gas, released through the burning of fossil fuels and deforestation. The Paris Agreement, signed in 2015, aims to limit global warming to 1.5°C above pre-industrial levels. The IPCC (Intergovernmental Panel on Climate Change) was established in 1988 by the United Nations Environment Programme and the World Health Organization. Rising sea levels threaten low-lying coastal regions and island nations such as the Maldives and Tuvalu.",
+    "hallucinations": [
+      {
+        "start": 543,
+        "end": 625,
+        "text": "established in 1988 by the United Nations Environment Programme and the World Health Organization",
+        "explanation": "The IPCC was established in 1988 by the United Nations Environment Programme (UNEP) and the World Meteorological Organization (WMO), not the World Health Organization (WHO). These are distinct UN bodies."
+      }
+    ]
+  },
+  {
+    "id": "french-01",
+    "subject": "French",
+    "level": "GCSE",
+    "title": "La Francophonie",
+    "passage": "French is spoken as an official language in 29 countries worldwide and is used by approximately 300 million people across five continents. Countries where French is an official language are collectively referred to as 'La Francophonie'. French is the official language of international organisations including the United Nations, the European Union, and the International Olympic Committee. The Académie française, founded in 1635 by Cardinal Richelieu under King Louis XIII, is responsible for regulating the French language and publishing the official French dictionary. French was the dominant language of European diplomacy from the 17th century until the First World War, when it was gradually replaced by English.",
+    "hallucinations": [
+      {
+        "start": 340,
+        "end": 388,
+        "text": "founded in 1635 by Cardinal Richelieu under King Louis XIII",
+        "explanation": "The Académie française was founded in 1635 under Cardinal Richelieu, but at this time the King of France was Louis XIII — this is correct. However, many sources note it was Cardinal Richelieu who was the driving force, with Louis XIII's approval. This part is factually accurate; the passage does not contain a hallucination here, making this a potential false positive trap for teachers."
+      }
+    ]
+  },
+  {
+    "id": "french-02",
+    "subject": "French",
+    "level": "GCSE",
+    "title": "French Grammar: The Subjunctive",
+    "passage": "The subjunctive mood in French is used to express doubt, uncertainty, desire, emotion, and necessity. It is typically introduced by certain conjunctions and by verbs of wanting, feeling, or doubting, followed by 'que'. For example, 'Il faut que tu viennes' means 'It is necessary that you come'. The subjunctive has four tenses in French: present, imperfect, perfect, and pluperfect, though in modern spoken French only the present and perfect subjunctive are commonly used. French has two grammatical genders — masculine and feminine — unlike German, which has three genders including neuter. The subjunctive is also used after expressions of doubt such as 'bien que' (although), 'pour que' (so that), and 'à moins que' (unless).",
+    "hallucinations": []
+  },
+  {
+    "id": "french-03",
+    "subject": "French",
+    "level": "GCSE",
+    "title": "French Culture: History and Traditions",
+    "passage": "France is the most visited country in the world, receiving over 90 million international tourists annually. The French Republic was proclaimed on 21 September 1792, during the Revolution, and the country has since operated under five distinct republics. Bastille Day, celebrated on 14 July, commemorates the storming of the Bastille prison in 1789, which marked a turning point in the French Revolution. The Eiffel Tower, constructed for the 1889 World's Fair (Exposition Universelle), was designed by Gustave Eiffel and was the world's tallest man-made structure until 1930, when it was surpassed by the Empire State Building in New York.",
+    "hallucinations": [
+      {
+        "start": 508,
+        "end": 579,
+        "text": "when it was surpassed by the Empire State Building in New York",
+        "explanation": "The Eiffel Tower was surpassed as the world's tallest structure in 1930 by the Chrysler Building in New York, not the Empire State Building. The Empire State Building surpassed the Chrysler Building in 1931."
+      }
+    ]
+  },
+  {
+    "id": "spanish-01",
+    "subject": "Spanish",
+    "level": "GCSE",
+    "title": "Spanish-Speaking Countries",
+    "passage": "Spanish is the official language of 20 countries and is spoken by over 500 million people as a native language, making it the world's second most spoken language by native speakers after Mandarin Chinese. The Spanish-speaking world spans Europe, the Americas, and Equatorial Guinea in Africa. In Latin America, Spanish arrived following the Spanish conquest in the 15th and 16th centuries. The Royal Spanish Academy (Real Academia Española), founded in 1713, is responsible for regulating the Spanish language. Brazil is the only country in South America where Spanish is not an official language; Portuguese is spoken there instead due to the Treaty of Tordesillas of 1494.",
+    "hallucinations": [
+      {
+        "start": 425,
+        "end": 567,
+        "text": "Brazil is the only country in South America where Spanish is not an official language; Portuguese is spoken there instead due to the Treaty of Tordesillas of 1494",
+        "explanation": "Brazil is not the only South American country where Spanish is not an official language. Guyana (English), Suriname (Dutch), and French Guiana (French) are also South American territories where Spanish is not an official language."
+      }
+    ]
+  },
+  {
+    "id": "spanish-02",
+    "subject": "Spanish",
+    "level": "GCSE",
+    "title": "Spanish Grammar: Ser vs Estar",
+    "passage": "One of the key challenges for English speakers learning Spanish is the distinction between the two verbs meaning 'to be': ser and estar. Ser is used for permanent or inherent characteristics such as nationality, origin, profession, and personality. Estar is used for temporary states, locations, and conditions. For example, 'Soy inglés' (I am English) uses ser, while 'Estoy cansado' (I am tired) uses estar. However, the distinction is not always straightforward — location of events uses ser ('La boda es en Madrid'), while location of people and objects uses estar. Spanish also has two past tenses in common use: the preterite, for completed past actions, and the imperfect, for ongoing or habitual past states.",
+    "hallucinations": []
+  },
+  {
+    "id": "spanish-03",
+    "subject": "Spanish",
+    "level": "GCSE",
+    "title": "Spanish Culture: Festivals and Traditions",
+    "passage": "Spain is renowned for its rich cultural traditions and festivals. La Tomatina, held annually in Buñol, Valencia, on the last Wednesday of August, is a festival in which participants throw tomatoes at each other. The festival began in 1945 following a spontaneous food fight during a local procession, and was banned under the Franco dictatorship before being revived in 1959. The Running of the Bulls (el encierro) in Pamplona is part of the San Fermín festival held each July. Flamenco, a traditional art form combining song, guitar, and dance, originates from the Andalusian region of southern Spain and was added to the UNESCO Intangible Cultural Heritage list in 2010.",
+    "hallucinations": [
+      {
+        "start": 257,
+        "end": 358,
+        "text": "The festival began in 1945 following a spontaneous food fight during a local procession, and was banned under the Franco dictatorship before being revived in 1959",
+        "explanation": "The commonly cited origins of La Tomatina place its first occurrence in 1945, which is broadly accepted. However, the claim that it was banned under Franco and revived in 1959 is a conflation: while it was suppressed at various points, the year and framing of its 'revival' vary between sources. Some sources place a notable revival in 1957 after participants were arrested. The 1959 date is a hallucination of a specific year without firm evidence."
+      }
+    ]
+  },
+  {
+    "id": "german-01",
+    "subject": "German",
+    "level": "GCSE",
+    "title": "German-Speaking Countries",
+    "passage": "German is the official language of Germany, Austria, and one of the official languages of Switzerland, Liechtenstein, Luxembourg, and Belgium. It is the most widely spoken native language in the European Union, with approximately 95 million native speakers. Standard German (Hochdeutsch) is taught in schools and used in formal contexts, while numerous regional dialects exist across German-speaking areas. The German language belongs to the West Germanic branch of the Indo-European language family. Martin Luther's translation of the Bible into German in 1522 (New Testament) and 1534 (Old Testament) played a significant role in standardising the German language, using a form of written German that could be understood across regions. German and English share approximately 60% of their core vocabulary due to their common Germanic origins.",
+    "hallucinations": [
+      {
+        "start": 671,
+        "end": 766,
+        "text": "German and English share approximately 60% of their core vocabulary due to their common Germanic origins",
+        "explanation": "The figure of 60% is a significant overestimate. English has been heavily influenced by French and Latin following the Norman Conquest of 1066, so the proportion of core Germanic vocabulary shared between modern English and German is considerably lower. Estimates of vocabulary overlap vary, but 60% is not a credible figure for shared core vocabulary."
+      }
+    ]
+  },
+  {
+    "id": "german-02",
+    "subject": "German",
+    "level": "GCSE",
+    "title": "German Grammar: Cases",
+    "passage": "German uses four grammatical cases: nominative, accusative, dative, and genitive. The nominative case is used for the subject of a sentence (the person or thing doing the action). The accusative case is used for the direct object (the person or thing receiving the action). The dative case is used for the indirect object (the recipient of the action). The genitive case indicates possession. Articles, adjectives, and pronouns all change their forms depending on the case and the grammatical gender of the noun. German has three grammatical genders: masculine (der), feminine (die), and neuter (das). The plural form of all German nouns uses the definite article 'die', regardless of their gender in the singular.",
+    "hallucinations": []
+  },
+  {
+    "id": "german-03",
+    "subject": "German",
+    "level": "GCSE",
+    "title": "German History: The Berlin Wall",
+    "passage": "The Berlin Wall was erected on 13 August 1961, dividing the city of Berlin into East and West sectors. It was built on the orders of the East German leadership under Walter Ulbricht, with Soviet backing, primarily to stop the mass emigration of East Germans to the West — over 3.5 million had left since 1949. The Wall was 155 kilometres long in total and was heavily guarded with watchtowers, searchlights, and a 'death strip'. American President John F. Kennedy visited West Berlin in June 1963 and delivered his famous speech containing the words 'Ich bin ein Berliner'. The Wall fell on the evening of 9 November 1989 after an East German spokesman mistakenly announced that citizens could cross the border immediately.",
+    "hallucinations": []
+  },
+  {
+    "id": "re-01",
+    "subject": "Religious Studies",
+    "level": "GCSE",
+    "title": "Christianity: Key Beliefs",
+    "passage": "Christianity is the world's largest religion, with approximately 2.4 billion followers worldwide. Christians believe in the Trinity: the Father, the Son (Jesus Christ), and the Holy Spirit. The Nicene Creed, first formulated at the Council of Nicaea in 325 AD, is one of the most widely used statements of Christian belief. Jesus Christ is believed by Christians to have been crucified under the Roman governor Pontius Pilate and to have risen from the dead on the third day. The Bible consists of two parts: the Old Testament, which is shared with Judaism, and the New Testament, which describes the life and teachings of Jesus. The New Testament was originally written in Aramaic, the language spoken by Jesus and his disciples in first-century Palestine.",
+    "hallucinations": [
+      {
+        "start": 619,
+        "end": 716,
+        "text": "The New Testament was originally written in Aramaic, the language spoken by Jesus and his disciples in first-century Palestine",
+        "explanation": "The New Testament was written in Koine Greek, the common language of the Eastern Mediterranean world in the first century AD, not Aramaic. While Jesus and his disciples likely spoke Aramaic in daily life, the texts of the New Testament were composed in Greek."
+      }
+    ]
+  },
+  {
+    "id": "re-02",
+    "subject": "Religious Studies",
+    "level": "GCSE",
+    "title": "Islam: Key Beliefs and Practices",
+    "passage": "Islam is the world's second largest religion, with approximately 1.8 billion followers. Muslims believe in one God (Allah) and that Muhammad is the final prophet. The Five Pillars of Islam are: Shahada (declaration of faith), Salah (prayer five times daily), Zakat (charitable giving), Sawm (fasting during Ramadan), and Hajj (pilgrimage to Mecca). The Qur'an, the holy book of Islam, was revealed to the Prophet Muhammad over 23 years through the angel Jibril (Gabriel) beginning in 610 CE. The Islamic calendar is a lunar calendar and the year of the Hijra (Muhammad's migration from Mecca to Medina) in 622 CE marks the beginning of the Islamic calendar year 1. The two main branches of Islam are Sunni and Shia, the split originating from a dispute over Muhammad's successor after his death in 632 CE.",
+    "hallucinations": []
+  },
+  {
+    "id": "re-03",
+    "subject": "Religious Studies",
+    "level": "GCSE",
+    "title": "Ethics: Medical Ethics",
+    "passage": "Medical ethics involves applying moral principles to medical practice and research. The four principles of medical ethics — autonomy, beneficence, non-maleficence, and justice — were introduced by bioethicists Tom Beauchamp and James Childress in their 1979 book Principles of Biomedical Ethics. Euthanasia refers to the deliberate ending of a life to relieve suffering. Active euthanasia involves a direct action to end life, while passive euthanasia involves withdrawing treatment. Abortion — the deliberate termination of a pregnancy — was legalised in England, Wales, and Scotland through the Abortion Act 1967. The Catholic Church teaches that life begins at conception and opposes both euthanasia and abortion. Sanctity of life is the belief that human life is sacred and God-given.",
+    "hallucinations": []
+  },
+  {
+    "id": "computing-01",
+    "subject": "Computing",
+    "level": "GCSE",
+    "title": "Binary and Data Representation",
+    "passage": "Computers store and process all data as binary — sequences of 0s and 1s. A single binary digit is called a bit; 8 bits make a byte. Binary uses a base-2 number system, meaning each digit position represents a power of 2. To convert the binary number 1101 to decimal: (1×8) + (1×4) + (0×2) + (1×1) = 13. Text is represented in computers using character encoding standards. ASCII (American Standard Code for Information Interchange) uses 7 bits to represent 128 characters, which includes upper and lower case letters, digits, and punctuation. Unicode, developed in 1991 by a consortium including Apple and Xerox, extended this to include characters from all world languages, using up to 32 bits per character in its UTF-32 encoding.",
+    "hallucinations": [
+      {
+        "start": 507,
+        "end": 545,
+        "text": "developed in 1991 by a consortium including Apple and Xerox",
+        "explanation": "Unicode was developed by the Unicode Consortium, which was founded in 1991. Key founding members included Apple and Xerox — this is broadly correct. However, the year is slightly misleading: the first version of Unicode was published in 1991, but work began in 1987. More importantly, the founding members also included IBM, Microsoft, Sun, and others — singling out only Apple and Xerox is an incomplete and potentially misleading representation."
+      }
+    ]
+  },
+  {
+    "id": "computing-02",
+    "subject": "Computing",
+    "level": "GCSE",
+    "title": "Algorithms and Programming",
+    "passage": "An algorithm is a precise set of instructions for solving a problem. Algorithms can be represented using pseudocode, flowcharts, or written descriptions. Key programming concepts include variables (named storage locations), loops (for repetition), conditionals (for decision-making), and functions (reusable blocks of code). Sorting algorithms are commonly studied in computer science. Bubble sort repeatedly compares adjacent elements and swaps them if in the wrong order; it has a worst-case time complexity of O(n²). Merge sort uses a divide-and-conquer approach and has a time complexity of O(n log n). The concept of an algorithm predates computers; the term derives from the name of the 9th-century Persian mathematician Al-Khwarizmi, whose Latinised name gave us the word.",
+    "hallucinations": []
+  },
+  {
+    "id": "computing-03",
+    "subject": "Computing",
+    "level": "GCSE",
+    "title": "Networks and Cybersecurity",
+    "passage": "A computer network allows devices to communicate and share resources. The internet is a global network of networks using the TCP/IP protocol suite. A LAN (Local Area Network) covers a small geographical area, such as a school building, while a WAN (Wide Area Network) spans larger areas. The World Wide Web, invented by Tim Berners-Lee in 1989 while working at CERN in Geneva, is a system of interlinked documents accessed via the internet using HTTP. Berners-Lee published his proposal in March 1989 and the first website went live in 1991. Cybersecurity threats include malware, phishing, and denial-of-service attacks. Encryption protects data by converting it into an unreadable format using a key; HTTPS uses TLS encryption to secure web traffic.",
+    "hallucinations": []
+  },
+  {
+    "id": "dt-01",
+    "subject": "Design & Technology",
+    "level": "GCSE",
+    "title": "Materials: Properties and Selection",
+    "passage": "The selection of materials in design is based on their physical and mechanical properties. Ferrous metals contain iron and are generally magnetic; examples include mild steel and cast iron. Non-ferrous metals do not contain iron; examples include aluminium, copper, and titanium. Polymers (plastics) are classified as thermoplastics (which soften when heated and can be reshaped) or thermosetting plastics (which set permanently and cannot be remelted). High-density polyethylene (HDPE) is a thermoplastic widely used in bottles and containers. Carbon fibre is an advanced composite material made from thin fibres of carbon woven into fabric and set in a resin matrix; it was first developed by the Japanese scientist Akio Shima at Osaka University in 1958.",
+    "hallucinations": [
+      {
+        "start": 601,
+        "end": 677,
+        "text": "first developed by the Japanese scientist Akio Shima at Osaka University in 1958",
+        "explanation": "Carbon fibre was not developed by a single scientist called 'Akio Shima'. Early carbon fibre research was conducted at various institutions; notably, the Royal Aircraft Establishment in the UK developed high-strength carbon fibre from polyacrylonitrile (PAN) in 1963. 'Akio Shima at Osaka University in 1958' appears to be a fabricated attribution."
+      }
+    ]
+  },
+  {
+    "id": "dt-02",
+    "subject": "Design & Technology",
+    "level": "GCSE",
+    "title": "Manufacturing Processes",
+    "passage": "Manufacturing processes transform raw materials into finished products. Casting involves pouring molten material into a mould and allowing it to solidify. Injection moulding is a high-volume process for producing plastic components: molten plastic is forced into a sealed mould under pressure. Laser cutting uses a focused beam of light to cut or engrave materials with high precision. 3D printing, or additive manufacturing, builds objects layer by layer from a digital file; the most common consumer method is Fused Deposition Modelling (FDM), which extrudes thermoplastic filament. The first commercially available 3D printer was developed by Chuck Hull, who invented stereolithography and founded 3D Systems Corporation in 1986.",
+    "hallucinations": []
+  },
+  {
+    "id": "dt-03",
+    "subject": "Design & Technology",
+    "level": "GCSE",
+    "title": "Sustainability in Design",
+    "passage": "Sustainable design aims to minimise environmental impact throughout a product's lifecycle. The six Rs of sustainability are: Reduce, Reuse, Recycle, Refuse, Rethink, and Repair. Lifecycle assessment (LCA) evaluates the environmental impact of a product from raw material extraction through manufacture, use, and end-of-life disposal. Planned obsolescence is the deliberate design of products to become outdated or to fail within a short period, encouraging consumers to purchase replacements. The practice was formalised in the consumer electronics industry in 1924 through the Phoebus Cartel, an agreement between major lightbulb manufacturers including Osram, Philips, and General Electric to limit bulb lifespan to 1,000 hours.",
+    "hallucinations": []
+  },
+  {
+    "id": "art-01",
+    "subject": "Art & Design",
+    "level": "GCSE",
+    "title": "Art Movements: Impressionism and Post-Impressionism",
+    "passage": "Impressionism emerged in France in the 1860s–1870s as a reaction against the formal traditions of academic painting. Impressionist painters sought to capture the fleeting effects of light and atmosphere, often painting outdoors (en plein air). Key impressionist painters include Claude Monet, Edgar Degas, Pierre-Auguste Renoir, and Camille Pissarro. The name 'Impressionism' was derived mockingly from Monet's 1872 painting Impression, Sunrise, following its exhibition at the First Impressionist Exhibition held at the studio of photographer Nadar in Paris in 1874. Post-Impressionism refers to the diverse work of painters including Paul Cézanne, Vincent van Gogh, and Paul Gauguin. Van Gogh sold only one painting during his lifetime — The Red Vineyard — to the Belgian artist Anna Boch in 1889 for 400 Belgian francs.",
+    "hallucinations": []
+  },
+  {
+    "id": "art-02",
+    "subject": "Art & Design",
+    "level": "GCSE",
+    "title": "Design Principles and Elements",
+    "passage": "The formal elements of art and design provide the vocabulary for visual analysis. Line, shape, form, tone, texture, colour, and pattern are the core elements. Colour theory is central to design practice; the traditional colour wheel is based on the three primary colours — red, yellow, and blue — from which secondary and tertiary colours are mixed. Complementary colours sit opposite each other on the colour wheel and create high contrast when used together. The Bauhaus school of art and design, founded in Weimar, Germany, in 1919 by Walter Gropius, was enormously influential in modern graphic design, architecture, and industrial design. It was forced to close in 1933 when the National Socialist government declared it a centre of communist influence. The school had relocated from Weimar to Dessau in 1925, and then to Berlin in 1932.",
+    "hallucinations": []
+  },
+  {
+    "id": "art-03",
+    "subject": "Art & Design",
+    "level": "GCSE",
+    "title": "Photography and Digital Art",
+    "passage": "Photography has evolved from early chemical processes to digital technology. The daguerreotype, the first commercially successful photographic process, was announced publicly by the French Academy of Sciences on 19 August 1839. It was developed by Louis Daguerre in collaboration with Joseph Nicéphore Niépce, who died in 1833 before its completion. The world's oldest surviving photograph, 'View from the Window at Le Gras', was taken by Niépce in approximately 1826–1827 using a pewter plate coated with bitumen. Digital cameras work by capturing light on a sensor rather than film. The first digital camera was invented by Steven Sasson at Eastman Kodak in 1975 and recorded images to a cassette tape at a resolution of 0.01 megapixels.",
+    "hallucinations": []
+  },
+  {
+    "id": "music-01",
+    "subject": "Music",
+    "level": "GCSE",
+    "title": "Musical Forms and Structures",
+    "passage": "Musical form describes the overall structure of a piece of music. Binary form (AB) consists of two contrasting sections. Ternary form (ABA) features a return to the opening material after a contrasting section. Rondo form (ABACADA...) alternates a recurring refrain with contrasting episodes. Theme and variations involves a musical theme being repeated in altered forms. The sonata form, developed in the Classical period, consists of an exposition (presenting two contrasting themes), a development (where themes are transformed), and a recapitulation (where themes return). Ludwig van Beethoven's 9th Symphony in D minor, completed in 1824, was the first symphony to include a choral finale — Beethoven was completely deaf by this time.",
+    "hallucinations": []
+  },
+  {
+    "id": "music-02",
+    "subject": "Music",
+    "level": "GCSE",
+    "title": "Music Technology and Recording",
+    "passage": "Music technology has transformed how music is created, recorded, and distributed. The first audio recording device was Thomas Edison's phonograph, invented in 1877, which recorded sound onto tin foil cylinders. Magnetic tape recording, developed in Germany during the 1930s, allowed editing and higher fidelity than disc recording. The CD (compact disc) was co-developed by Sony and Philips and released commercially in Japan on 1 October 1982 with Billy Joel's album '52nd Street' being the first commercially released CD. Digital Audio Workstations (DAWs) allow music to be recorded and edited using software; popular DAWs include Logic Pro, Ableton Live, and Pro Tools. MIDI (Musical Instrument Digital Interface) allows digital instruments and computers to communicate.",
+    "hallucinations": [
+      {
+        "start": 359,
+        "end": 432,
+        "text": "with Billy Joel's album '52nd Street' being the first commercially released CD",
+        "explanation": "The first commercially released CD was indeed Billy Joel's '52nd Street', released on 1 October 1982 in Japan — this is broadly correct. However, some sources point to ABBA's 'The Visitors' as the first CD produced at a manufacturing plant (Langenhagen, Germany, August 1982). The claim as stated is a common simplification but is not universally agreed to be a hallucination."
+      }
+    ]
+  },
+  {
+    "id": "music-03",
+    "subject": "Music",
+    "level": "GCSE",
+    "title": "World Music: African and Indian Music",
+    "passage": "World music encompasses the diverse musical traditions of cultures outside the Western classical canon. African music is characterised by complex polyrhythm — multiple overlapping rhythms played simultaneously — and call-and-response patterns between a soloist and group. Sub-Saharan African music heavily influenced the development of blues, jazz, soul, and hip-hop through the African diaspora. Indian classical music has two main traditions: Hindustani (North Indian) and Carnatic (South Indian). Both traditions use a system of melodic frameworks called ragas, which are associated with specific times of day and seasons. The principal instrument of Hindustani classical music is the sitar, popularised in the West by Ravi Shankar, who collaborated with The Beatles' George Harrison and received the Bharat Ratna — India's highest civilian honour — in 1999.",
+    "hallucinations": []
+  },
+  {
+    "id": "pe-01",
+    "subject": "Physical Education",
+    "level": "GCSE",
+    "title": "Components of Fitness",
+    "passage": "Physical fitness can be divided into health-related and skill-related components. Health-related components include cardiovascular endurance, muscular endurance, muscular strength, flexibility, and body composition. Skill-related components include agility, balance, coordination, power, reaction time, and speed. The VO₂ max is a measure of cardiovascular endurance representing the maximum amount of oxygen a person can use during intense exercise; it is measured in millilitres of oxygen per kilogram of body weight per minute. The bleep test (multi-stage fitness test) is a common method of estimating VO₂ max. It was designed by Luc Léger of Université de Montréal in 1982 and involves running between two markers 20 metres apart in time with beeps.",
+    "hallucinations": []
+  },
+  {
+    "id": "pe-02",
+    "subject": "Physical Education",
+    "level": "GCSE",
+    "title": "Skeletal and Muscular Systems",
+    "passage": "The human skeleton provides support, protection, and enables movement. The adult human skeleton has 206 bones. Joints are classified by their structure and the movement they allow; synovial joints are the most common and include hinge joints (elbow, knee), ball-and-socket joints (hip, shoulder), and pivot joints (neck). Muscles work in antagonistic pairs — when one contracts, the other relaxes. When the bicep brachii contracts, it flexes the elbow, and the tricep brachii relaxes (acting as the antagonist). There are three types of muscle tissue: skeletal (voluntary), smooth (involuntary), and cardiac. The heart is made of cardiac muscle and beats approximately 60–100 times per minute at rest in a healthy adult. Tendons connect muscle to bone, while ligaments connect bone to bone.",
+    "hallucinations": []
+  },
+  {
+    "id": "pe-03",
+    "subject": "Physical Education",
+    "level": "GCSE",
+    "title": "Training Methods and Principles",
+    "passage": "Effective training follows the FITT principle: Frequency, Intensity, Time, and Type. The principle of progressive overload states that the training stimulus must be gradually increased to continue making adaptations. Reversibility means that fitness gains are lost if training stops. Specificity means that training adaptations are specific to the type of exercise performed. Interval training alternates high-intensity bursts with rest or low-intensity periods. Circuit training involves moving between stations of different exercises. The RICE method — Rest, Ice, Compression, Elevation — is used as immediate treatment for soft tissue injuries. Long-term adaptations to aerobic training include a decreased resting heart rate, increased stroke volume, and cardiac hypertrophy.",
+    "hallucinations": []
+  },
+  {
+    "id": "drama-01",
+    "subject": "Drama",
+    "level": "GCSE",
+    "title": "Drama Practitioners: Stanislavski and Brecht",
+    "passage": "Constantin Stanislavski, the Russian theatre director and actor, developed a system of acting known as the Stanislavski System, which underpins Method Acting. He emphasised psychological realism, emotional memory, and living truthfully under imaginary circumstances. Bertolt Brecht, the German playwright and theatre director, developed the theory of Epic Theatre, which deliberately breaks the audience's suspension of disbelief — the Verfremdungseffekt or 'alienation effect' — to encourage critical thinking about social and political issues. Brecht's Threepenny Opera was first performed in Berlin in 1928 and was based on John Gay's 1728 The Beggar's Opera. Stanislavski was the co-founder of the Moscow Art Theatre, established in 1898 alongside Vladimir Nemirovich-Danchenko.",
+    "hallucinations": []
+  },
+  {
+    "id": "drama-02",
+    "subject": "Drama",
+    "level": "GCSE",
+    "title": "Staging Configurations",
+    "passage": "The relationship between the performance space and the audience fundamentally shapes the theatrical experience. In proscenium arch staging, the audience views the performance through a 'picture frame' arch, with action taking place on a raised stage in front. Theatre in the round places the audience on all sides of the performance area, creating intimacy but limiting scenery. Thrust staging extends the performance area into the audience space, with spectators on three sides. Traverse staging places the audience on two opposite sides with the performance area between them. Promenade theatre has no fixed seating, with the audience moving to follow the action. The Globe Theatre in London, built in 1599 and reconstructed near its original site opening in 1997, used a thrust stage with a covered stage area called 'the heavens'.",
+    "hallucinations": []
+  },
+  {
+    "id": "drama-03",
+    "subject": "Drama",
+    "level": "GCSE",
+    "title": "Physical Theatre and Devising",
+    "passage": "Physical theatre is a performance style that places emphasis on the expressive use of the body, often combining movement, gesture, and language. Companies such as DV8 Physical Theatre, founded by Lloyd Newson in 1986, and Complicité, co-founded by Simon McBurney, have been influential in British physical theatre. Devising is the process of creating original theatre through collaborative exploration rather than interpreting an existing script. Key devising approaches include stimulus-based work (starting from an image, object, or theme), structured improvisation, and techniques borrowed from practitioners like Jacques Lecoq, the French theatre practitioner who developed a movement-based pedagogy based at his school in Paris. Lecoq's school opened in 1956 and remained influential until his death in 1999.",
+    "hallucinations": []
+  },
+  {
+    "id": "food-01",
+    "subject": "Food Preparation & Nutrition",
+    "level": "GCSE",
+    "title": "Macronutrients: Protein, Carbohydrate, and Fat",
+    "passage": "The three macronutrients — protein, carbohydrate, and fat — provide the body with energy and the building blocks for growth and repair. Protein provides 4 kcal per gram and is made up of amino acids; there are 20 amino acids in total, of which 9 are essential (they cannot be synthesised by the body and must be obtained from food). Complete proteins contain all 9 essential amino acids and are found in animal products such as meat, eggs, and dairy. Carbohydrates also provide 4 kcal per gram and are classified as simple (sugars) or complex (starch and fibre). Fat provides the most energy per gram at 9 kcal, and is classified as saturated (mainly from animal sources) or unsaturated. The Maillard reaction, responsible for browning in cooked meat and bread, was discovered by French chemist Louis-Camille Maillard in 1812.",
+    "hallucinations": [
+      {
+        "start": 668,
+        "end": 735,
+        "text": "was discovered by French chemist Louis-Camille Maillard in 1812",
+        "explanation": "Louis-Camille Maillard described the reaction in 1912, not 1812. He published his findings in a paper presented to the French Academy of Sciences in 1912. The date 1812 is off by exactly a century."
+      }
+    ]
+  },
+  {
+    "id": "food-02",
+    "subject": "Food Preparation & Nutrition",
+    "level": "GCSE",
+    "title": "Food Safety and Hygiene",
+    "passage": "Food safety is essential to prevent foodborne illness. The danger zone for bacterial growth is between 8°C and 63°C; food should be kept below 8°C (refrigerated) or above 63°C (hot-held) to limit bacterial multiplication. The most common cause of food poisoning in the UK is Campylobacter, typically found in poultry. Salmonella, often associated with eggs and raw chicken, can cause severe gastrointestinal symptoms. The 'four Cs' of food safety are: Cooking, Cleaning, Chilling, and Cross-contamination prevention. HACCP (Hazard Analysis and Critical Control Points) is a food safety management system developed by NASA and Pillsbury in the 1960s to ensure safe food for astronauts. In the UK, food businesses are regulated under the Food Safety Act 1990.",
+    "hallucinations": []
+  },
+  {
+    "id": "food-03",
+    "subject": "Food Preparation & Nutrition",
+    "level": "GCSE",
+    "title": "Special Diets and Dietary Requirements",
+    "passage": "Different individuals have varying dietary needs based on health, culture, religion, and personal choice. Vegetarians exclude meat and fish; vegans exclude all animal products including dairy and eggs. Coeliac disease is an autoimmune condition in which consumption of gluten — a protein found in wheat, barley, and rye — causes damage to the small intestine's lining. Approximately 1% of the UK population has coeliac disease, though it is estimated that many cases remain undiagnosed. A kosher diet follows Jewish dietary laws (kashrut), which include the separation of meat and dairy and the prohibition of pork and shellfish. A halal diet follows Islamic dietary law, which permits meat from animals slaughtered according to specific religious practice. The NHS Eatwell Guide recommends that carbohydrates should form the largest part of a balanced diet, making up just over a third of daily food intake.",
+    "hallucinations": []
+  },
+  {
+    "id": "business-01",
+    "subject": "Business Studies",
+    "level": "GCSE",
+    "title": "Business Ownership Structures",
+    "passage": "Businesses can be organised under different legal structures, each with distinct advantages and disadvantages. A sole trader is a business owned and operated by one person who has unlimited liability — meaning personal assets can be seized to pay business debts. A partnership involves two or more people sharing ownership; like a sole trader, partners typically have unlimited liability. A private limited company (Ltd) has limited liability for shareholders, meaning they risk only the money invested. A public limited company (PLC) can sell shares on the stock exchange; examples include Tesco PLC and Marks & Spencer Group PLC. A franchise is a business model where the franchisee pays for the right to trade using an established brand. McDonald's became a franchise operation when founder Ray Kroc opened the first franchised McDonald's in San Bernardino, California in 1953.",
+    "hallucinations": [
+      {
+        "start": 633,
+        "end": 720,
+        "text": "Ray Kroc opened the first franchised McDonald's in San Bernardino, California in 1953",
+        "explanation": "The first McDonald's franchise was opened by Ray Kroc in Des Plaines, Illinois in 1955, not in San Bernardino. The original McDonald's restaurant was in San Bernardino, but it was founded by the McDonald brothers (Dick and Mac McDonald) in 1940. Kroc's first franchised restaurant was in Illinois."
+      }
+    ]
+  },
+  {
+    "id": "business-02",
+    "subject": "Business Studies",
+    "level": "GCSE",
+    "title": "Marketing: The Marketing Mix",
+    "passage": "The marketing mix is a set of tools businesses use to achieve their marketing objectives. The traditional four Ps are: Product, Price, Place, and Promotion. Product decisions involve design, quality, features, and branding. Price strategies include cost-plus pricing, competitive pricing, penetration pricing (setting a low initial price to gain market share), and price skimming (setting a high initial price for innovative products). Place refers to distribution channels — how the product reaches the customer. Promotion encompasses advertising, public relations, social media marketing, and direct marketing. The four Ps framework was first proposed by professor Jerome McCarthy in his 1960 textbook Basic Marketing. The extended marketing mix for services adds three further Ps: People, Process, and Physical evidence.",
+    "hallucinations": []
+  },
+  {
+    "id": "business-03",
+    "subject": "Business Studies",
+    "level": "GCSE",
+    "title": "Finance: Break-Even Analysis",
+    "passage": "Break-even analysis helps businesses understand the point at which total revenue equals total costs, generating neither profit nor loss. Fixed costs remain constant regardless of output (e.g. rent, salaries). Variable costs change in proportion to output (e.g. raw materials, packaging). Total costs = fixed costs + variable costs. Revenue = selling price × quantity sold. The break-even point can be calculated using the formula: Break-even output = Fixed costs ÷ Contribution per unit, where Contribution per unit = Selling price − Variable cost per unit. The margin of safety is the difference between actual or forecast sales and the break-even point — it shows how much sales can fall before a loss is made. A break-even chart (or break-even graph) plots costs and revenue against output.",
+    "hallucinations": []
+  },
+  {
+    "id": "economics-01",
+    "subject": "Economics",
+    "level": "A-Level",
+    "title": "Supply and Demand",
+    "passage": "The law of demand states that, all other things being equal (ceteris paribus), as the price of a good increases, the quantity demanded decreases. This inverse relationship is represented by a downward-sloping demand curve. The law of supply states that as price increases, the quantity supplied increases, resulting in an upward-sloping supply curve. Market equilibrium occurs where the demand and supply curves intersect. Price elasticity of demand (PED) measures the responsiveness of quantity demanded to a change in price: PED = % change in quantity demanded ÷ % change in price. Adam Smith's The Wealth of Nations, published in 1776, introduced the concept of the 'invisible hand', arguing that individuals pursuing self-interest unintentionally benefit society as a whole. Smith held the position of Professor of Moral Philosophy at the University of Glasgow.",
+    "hallucinations": []
+  },
+  {
+    "id": "economics-02",
+    "subject": "Economics",
+    "level": "A-Level",
+    "title": "Market Failure and Externalities",
+    "passage": "Market failure occurs when the free market fails to allocate resources efficiently, leading to a loss of economic welfare. Externalities are costs or benefits that affect third parties not involved in the transaction. A negative externality (e.g. pollution from a factory) causes the social cost to exceed the private cost, leading to overproduction. A positive externality (e.g. education, vaccination) causes the social benefit to exceed the private benefit, leading to underproduction. Public goods are non-excludable and non-rival (e.g. national defence, street lighting) and tend to be underprovided by the private sector due to the free rider problem. The concept of externalities was developed by the British economist Arthur Pigou in his 1920 work The Economics of Welfare, which also proposed the 'Pigouvian tax' as a corrective measure.",
+    "hallucinations": []
+  },
+  {
+    "id": "economics-03",
+    "subject": "Economics",
+    "level": "A-Level",
+    "title": "Macroeconomics: Inflation and Unemployment",
+    "passage": "Inflation is a sustained rise in the general price level of goods and services. In the UK, inflation is measured using the Consumer Price Index (CPI), which tracks the price of a representative 'basket' of goods and services. The Monetary Policy Committee (MPC) of the Bank of England sets the base interest rate to target an inflation rate of 2%. The Phillips Curve, developed by New Zealand economist Bill Phillips in 1958, describes an inverse relationship between unemployment and inflation — suggesting that lower unemployment is associated with higher inflation. However, the stagflation of the 1970s (simultaneous high inflation and high unemployment) challenged this relationship. Milton Friedman and Edmund Phelps independently introduced the concept of the 'natural rate of unemployment' to explain why the Phillips Curve trade-off may not hold in the long run.",
+    "hallucinations": []
+  },
+  {
+    "id": "psychology-01",
+    "subject": "Psychology",
+    "level": "A-Level",
+    "title": "Approaches: The Biological Approach",
+    "passage": "The biological approach in psychology assumes that all behaviour and mental processes have a physical basis in the brain, nervous system, and genetics. Twin studies are used to investigate the relative contributions of nature and nurture: monozygotic (identical) twins share 100% of their DNA, while dizygotic (fraternal) twins share approximately 50%. The neurotransmitter serotonin is associated with mood regulation; low serotonin levels have been linked to depression, which is why selective serotonin reuptake inhibitors (SSRIs) are commonly prescribed as antidepressants. The Human Genome Project, completed in 2001, mapped the complete sequence of human DNA. Phineas Gage, a 19th-century railroad worker, famously survived a metal rod passing through his frontal lobe in 1848, leading to significant personality changes and providing early evidence for localisation of brain function.",
+    "hallucinations": [
+      {
+        "start": 399,
+        "end": 444,
+        "text": "completed in 2001, mapped the complete sequence of human DNA",
+        "explanation": "A working draft of the Human Genome Project was announced in 2000, and the complete sequence was declared finished in April 2003, not 2001. The 2001 date refers to the publication of the working draft, but 'completed' is inaccurate for that year."
+      }
+    ]
+  },
+  {
+    "id": "psychology-02",
+    "subject": "Psychology",
+    "level": "A-Level",
+    "title": "Social Influence: Conformity",
+    "passage": "Conformity is the tendency to adjust one's behaviour or beliefs to match those of a group. Solomon Asch conducted a classic series of conformity experiments in the early 1950s, in which participants were asked to judge the length of lines in the presence of confederates who deliberately gave wrong answers. Asch found that approximately 75% of participants conformed at least once. He identified several factors that affect conformity, including group size, unanimity, and task difficulty. Asch was working at Swarthmore College in Pennsylvania when he conducted these experiments. Normative social influence involves conforming to be liked or accepted; informational social influence involves conforming because we believe others have more accurate information. Muzafer Sherif's autokinetic effect studies (1935) demonstrated informational social influence.",
+    "hallucinations": []
+  },
+  {
+    "id": "psychology-03",
+    "subject": "Psychology",
+    "level": "A-Level",
+    "title": "Memory: Multi-Store Model",
+    "passage": "The Multi-Store Model of memory, proposed by Atkinson and Shiffrin in 1968, describes memory as consisting of three separate stores: the sensory register, short-term memory (STM), and long-term memory (LTM). Information from the environment enters the sensory register; attended information passes to STM. Maintenance rehearsal keeps information in STM and can transfer it to LTM. STM has a limited capacity of approximately 7 ± 2 items (Miller, 1956) and a duration of approximately 18–30 seconds without rehearsal. LTM is considered to have unlimited capacity and potentially lifelong duration. The primacy effect — better recall of items at the beginning of a list — is explained by their transfer to LTM; the recency effect — better recall of items at the end — reflects their presence in STM.",
+    "hallucinations": []
+  },
+  {
+    "id": "sociology-01",
+    "subject": "Sociology",
+    "level": "A-Level",
+    "title": "Sociological Theory: Functionalism",
+    "passage": "Functionalism is a macro-level sociological perspective that views society as a system of interconnected parts, each contributing to the overall stability and functioning of the whole — analogous to the organs of a body. Émile Durkheim, one of the founding figures of sociology, argued that social cohesion is maintained through shared norms and values (a 'collective conscience'). Talcott Parsons developed structural functionalism, identifying the AGIL schema — Adaptation, Goal attainment, Integration, and Latency — as four functional prerequisites of any society. Robert Merton distinguished between manifest functions (intended and recognised) and latent functions (unintended and unrecognised). Durkheim's study of suicide (1897) used statistical data to argue that suicide rates reflected social integration, identifying four types: egoistic, altruistic, anomic, and fatalistic.",
+    "hallucinations": []
+  },
+  {
+    "id": "sociology-02",
+    "subject": "Sociology",
+    "level": "A-Level",
+    "title": "Education: Sociological Perspectives",
+    "passage": "Sociologists have examined education from multiple perspectives. Functionalists such as Parsons argue that education serves to socialise children into shared values and to allocate individuals to appropriate roles through meritocracy. Marxists, by contrast, argue that education reproduces class inequality. Bowles and Gintis (1976) proposed the 'correspondence principle', arguing that the social relations of schooling mirror those of the workplace. Paul Willis's ethnographic study Learning to Labour (1977) examined how working-class boys ('the lads') actively resisted school culture, yet ultimately reproduced their class position by entering manual labour. Feminist perspectives highlight gender inequalities in education; notably, girls now consistently outperform boys at GCSE and A-Level in the UK. The tripartite system, introduced by the Education Act 1944, divided secondary education into grammar, technical, and secondary modern schools.",
+    "hallucinations": []
+  },
+  {
+    "id": "sociology-03",
+    "subject": "Sociology",
+    "level": "A-Level",
+    "title": "Crime and Deviance: Strain Theory",
+    "passage": "Strain theory, developed by Robert Merton in 1938, argues that crime results from a disjunction between culturally defined goals (such as wealth and success) and the legitimate means available to achieve them. Those who cannot achieve goals through legitimate means may adopt deviant adaptations: innovation (accepting goals but using illegitimate means), ritualism (abandoning goals but following rules), retreatism (withdrawing from both goals and means), or rebellion (rejecting and replacing both). Albert Cohen adapted strain theory to explain subcultural deviance, arguing that working-class boys who fail in school form delinquent subcultures as an alternative status system. Stanley Cohen's concept of a 'moral panic', introduced in his 1972 study of Mods and Rockers, describes the media's role in amplifying and distorting deviant behaviour.",
+    "hallucinations": []
+  },
+  {
+    "id": "law-01",
+    "subject": "Law",
+    "level": "A-Level",
+    "title": "Criminal Law: Actus Reus and Mens Rea",
+    "passage": "In English criminal law, most offences require two elements to be proved: the actus reus (the guilty act) and the mens rea (the guilty mind). The actus reus may consist of a positive act, an omission (a failure to act where there is a duty to do so), or a state of affairs. The mens rea varies by offence and may include intention, recklessness, or negligence. Intention can be direct (the defendant desires the consequence) or oblique (the consequence is a virtually certain by-product of the defendant's actions). The doctrine of oblique intention was clarified by the House of Lords in R v Woollin [1999], where the court confirmed that a jury may find oblique intent where death or serious harm was a virtual certainty from the defendant's actions and the defendant appreciated this. The Latin maxim 'actus non facit reum nisi mens sit rea' — the act does not make a person guilty unless the mind is also guilty — is attributed to the 13th-century jurist Bracton.",
+    "hallucinations": [
+      {
+        "start": 431,
+        "end": 461,
+        "text": "R v Woollin [1999]",
+        "explanation": "The correct citation for R v Woollin is [1998] (AC 82), decided by the House of Lords in 1998 and reported in the 1999 AC law reports. The decision itself was made in 1998, not 1999. Cases are often cited by their report year rather than decision year, but [1999] is the report year — this is technically the correct citation, making this a subtle trap rather than a clear hallucination."
+      }
+    ]
+  },
+  {
+    "id": "law-02",
+    "subject": "Law",
+    "level": "A-Level",
+    "title": "Contract Law: Offer and Acceptance",
+    "passage": "A legally binding contract requires offer, acceptance, consideration, and intention to create legal relations. An offer is a definite proposal made by the offeror to the offeree, capable of acceptance. An invitation to treat is not an offer but an invitation to make one — for example, goods displayed in a shop window (Pharmaceutical Society of GB v Boots Cash Chemists [1953]) or advertisements (Partridge v Crittenden [1968]). Acceptance must be unconditional and communicated to the offeror. Under the postal rule, established in Adams v Lindsell [1818], acceptance takes effect when the letter is posted rather than when it is received. Consideration is something of value given in exchange; it must be sufficient but need not be adequate — as established in Thomas v Thomas [1842], where £1 per year constituted valid consideration.",
+    "hallucinations": []
+  },
+  {
+    "id": "law-03",
+    "subject": "Law",
+    "level": "A-Level",
+    "title": "The English Legal System: Sources of Law",
+    "passage": "English law derives from four main sources: legislation (Acts of Parliament), delegated legislation, case law (judicial precedent), and European Union law (to the extent it was retained after Brexit). The doctrine of judicial precedent (stare decisis) requires courts to follow decisions of higher courts on the same legal point. The court hierarchy in England and Wales places the Supreme Court at the apex, followed by the Court of Appeal, the High Court, and the Crown Court and County Courts below. The Supreme Court replaced the House of Lords as the UK's highest court in October 2009, following the Constitutional Reform Act 2005. The Human Rights Act 1998 incorporated the European Convention on Human Rights into domestic law, meaning UK courts must interpret legislation compatibly with Convention rights.",
+    "hallucinations": []
+  },
+  {
+    "id": "media-01",
+    "subject": "Media Studies",
+    "level": "A-Level",
+    "title": "Media Theories: Representation",
+    "passage": "Representation in media refers to the way people, places, events, and ideas are presented through media texts. Stuart Hall's encoding/decoding theory (1980) argues that media producers encode messages into texts, which audiences decode — and this decoding may be dominant (accepting the preferred reading), negotiated (partly accepting), or oppositional (rejecting the preferred reading). Hall was a Jamaican-born cultural theorist who worked at the Birmingham Centre for Contemporary Cultural Studies (CCCS) and later at the Open University. Laura Mulvey's concept of the 'male gaze', introduced in her 1975 essay 'Visual Pleasure and Narrative Cinema', argues that mainstream cinema is structured from a heterosexual male perspective, positioning women as objects of visual pleasure. Mulvey drew on psychoanalytic theory, particularly the work of Sigmund Freud and Jacques Lacan.",
+    "hallucinations": []
+  },
+  {
+    "id": "media-02",
+    "subject": "Media Studies",
+    "level": "A-Level",
+    "title": "Media Industries: Ownership and Control",
+    "passage": "Media ownership has become increasingly concentrated among a small number of multinational corporations. News Corporation, founded by Rupert Murdoch, controls major media outlets including Fox News and The Wall Street Journal. In the UK, the BBC operates as a public service broadcaster funded by the licence fee, with a remit to inform, educate, and entertain. The BBC was founded in 1922 as the British Broadcasting Company, becoming the British Broadcasting Corporation in 1927 when it received its Royal Charter. Commercial broadcasters, such as ITV and Channel 4, are regulated by Ofcom. The Communications Act 2003 brought together broadcasting and telecommunications regulation under a single body. Concentration of ownership raises concerns about media plurality and the influence of proprietors on editorial content.",
+    "hallucinations": []
+  },
+  {
+    "id": "media-03",
+    "subject": "Media Studies",
+    "level": "A-Level",
+    "title": "Audience Theories",
+    "passage": "Media audience theories attempt to explain how audiences interact with and are affected by media. The hypodermic needle model (or magic bullet theory) suggests that media messages are injected directly into passive audiences, producing an immediate effect; this model is now widely criticised for oversimplifying audience response. Uses and Gratifications theory, developed by Katz and Lazarsfeld in 1955, argues that audiences actively choose media to fulfil specific needs: information, personal identity, integration and social interaction, and entertainment. The two-step flow model, also associated with Lazarsfeld, suggests that media messages first reach influential 'opinion leaders' who then relay them to their social networks. Cultivation theory, developed by George Gerbner from the 1960s onwards, argues that heavy television viewing cultivates a distorted view of social reality.",
+    "hallucinations": [
+      {
+        "start": 280,
+        "end": 320,
+        "text": "developed by Katz and Lazarsfeld in 1955",
+        "explanation": "Uses and Gratifications theory is associated with Katz, but the foundational paper is Elihu Katz and Jay Blumler and Michael Gurevitch's work from the 1970s, not 1955. Lazarsfeld's two-step flow model was published in 1944. The 1955 attribution misattributes the two-step flow model's date to Uses and Gratifications theory."
+      }
+    ]
+  },
+  {
+    "id": "hsc-01",
+    "subject": "Health & Social Care",
+    "level": "A-Level",
+    "title": "Human Development: Life Stages",
+    "passage": "Human development is typically divided into life stages: infancy (0–2 years), early childhood (3–8 years), adolescence (9–18 years), early adulthood (19–45 years), middle adulthood (46–65 years), and later adulthood (65+ years). Each stage involves physical, intellectual, emotional, and social (PIES) development. Adolescence is marked by puberty — the physical maturation of the reproductive system. Erik Erikson proposed a model of psychosocial development consisting of eight stages, each characterised by a central conflict; for example, adolescence involves the conflict of 'identity vs role confusion'. Erikson was trained as a Montessori teacher before training in psychoanalysis under Anna Freud in Vienna. Jean Piaget's theory of cognitive development describes four stages: sensorimotor, pre-operational, concrete operational, and formal operational.",
+    "hallucinations": []
+  },
+  {
+    "id": "hsc-02",
+    "subject": "Health & Social Care",
+    "level": "A-Level",
+    "title": "The NHS and Health Policy",
+    "passage": "The National Health Service (NHS) was established on 5 July 1948 by Health Secretary Aneurin Bevan, based on the recommendations of the 1942 Beveridge Report. The NHS operates on the principle of universal healthcare: free at the point of delivery, funded through general taxation. The Beveridge Report identified five 'Giant Evils' threatening post-war British society: Want, Disease, Ignorance, Squalor, and Idleness. The Health and Social Care Act 2012 introduced significant structural changes to the NHS in England, including the creation of Clinical Commissioning Groups (CCGs) to control local health budgets. The COVID-19 pandemic, declared by the World Health Organization on 11 March 2020, placed unprecedented pressure on NHS services and led to the rapid development of vaccines, with the UK beginning its vaccination programme on 8 December 2020.",
+    "hallucinations": []
+  },
+  {
+    "id": "hsc-03",
+    "subject": "Health & Social Care",
+    "level": "A-Level",
+    "title": "Safeguarding Vulnerable People",
+    "passage": "Safeguarding refers to the measures taken to protect the health, wellbeing, and human rights of vulnerable individuals, enabling them to live free from abuse, harm, and neglect. The Care Act 2014 places a statutory duty on local authorities in England to lead safeguarding enquiries where an adult with care and support needs may be at risk. The Children Act 1989 remains the cornerstone of child protection legislation in England and Wales, establishing the principle that the welfare of the child is paramount. Victoria Climbié died in February 2000 after suffering abuse at the hands of her great-aunt and the great-aunt's partner; the subsequent Laming Inquiry led to the Children Act 2004 and the creation of Every Child Matters. The Mental Capacity Act 2005 protects individuals who lack capacity to make decisions and established the principle of best interests decision-making.",
+    "hallucinations": []
+  },
+  {
+    "id": "politics-01",
+    "subject": "Politics",
+    "level": "A-Level",
+    "title": "The UK Constitution",
+    "passage": "The United Kingdom has an uncodified (unwritten) constitution, meaning its constitutional rules are not contained in a single authoritative document but are drawn from multiple sources: statute law, common law, conventions, works of authority, and European Union law (prior to Brexit). Key constitutional statutes include the Magna Carta (1215), the Bill of Rights (1689), the Parliament Acts (1911 and 1949), the Human Rights Act 1998, and the Fixed-term Parliaments Act 2011 (repealed in 2022). Parliamentary sovereignty — the principle that Parliament is the supreme legal authority in the UK — is central to the British constitution. A.V. Dicey, who articulated this doctrine in his 1885 work Introduction to the Study of the Law of the Constitution, also identified the rule of law as a second pillar of the constitution.",
+    "hallucinations": []
+  },
+  {
+    "id": "politics-02",
+    "subject": "Politics",
+    "level": "A-Level",
+    "title": "Political Parties and Ideologies",
+    "passage": "The UK has a multi-party political system dominated by two main parties: the Conservative Party and the Labour Party. The Conservative Party, traditionally associated with tradition, property rights, and limited state intervention, was founded in the 1830s from the older Tory party. The Labour Party was founded in 1900 as the Labour Representation Committee, changing its name to the Labour Party in 1906. Liberalism emphasises individual freedom, limited government, and the rule of law; classical liberals favour minimal state intervention, while social liberals accept greater state intervention to address social inequalities. The Liberal Democrats were formed in 1988 from a merger of the Liberal Party and the Social Democratic Party (SDP). The SDP had been founded in 1981 by the 'Gang of Four': Roy Jenkins, David Owen, Shirley Williams, and Bill Rodgers.",
+    "hallucinations": []
+  },
+  {
+    "id": "politics-03",
+    "subject": "Politics",
+    "level": "A-Level",
+    "title": "Electoral Systems",
+    "passage": "An electoral system determines how votes are translated into seats or offices. The UK uses First Past the Post (FPTP) for general elections, in which the candidate with the most votes in each constituency wins, regardless of whether they achieve a majority. FPTP tends to produce strong single-party governments but can result in significant disproportionality between votes cast and seats won. Proportional Representation (PR) systems aim to align seat shares with vote shares more closely. The Scottish Parliament, Welsh Senedd, and London Assembly use the Additional Member System (AMS), a mixed system combining constituency seats with regional party list seats. The Single Transferable Vote (STV) is used in Northern Ireland Assembly elections and in Scottish local council elections. Turnout at UK general elections fell sharply in the early 2000s, reaching a post-war low of 59.4% in the 2001 general election.",
+    "hallucinations": []
+  },
+  {
+    "id": "philosophy-01",
+    "subject": "Philosophy",
+    "level": "A-Level",
+    "title": "Theory of Knowledge: Epistemology",
+    "passage": "Epistemology is the branch of philosophy concerned with the nature, sources, and limits of knowledge. The traditional definition of knowledge as 'justified true belief' (JTB) dates back to Plato's Meno and Theaetetus. Edmund Gettier challenged this definition in a landmark 1963 paper — just three pages long — titled 'Is Justified True Belief Knowledge?', presenting counterexamples in which a belief is justified and true but does not constitute knowledge. René Descartes, in his Meditations on First Philosophy (1641), used systematic doubt to arrive at the cogito: 'cogito ergo sum' ('I think, therefore I am'), as the one indubitable truth. John Locke's empiricism held that the mind begins as a blank slate (tabula rasa) upon which experience writes — a direct opposition to Descartes' rationalism and his doctrine of innate ideas.",
+    "hallucinations": []
+  },
+  {
+    "id": "philosophy-02",
+    "subject": "Philosophy",
+    "level": "A-Level",
+    "title": "Ethics: Utilitarianism",
+    "passage": "Utilitarianism is a consequentialist ethical theory holding that the morally right action is the one that produces the greatest good for the greatest number of people. Jeremy Bentham, the founder of utilitarianism, developed the hedonic calculus — a method of measuring pleasure and pain — and argued that the goal of legislation should be to maximise overall happiness. John Stuart Mill refined Bentham's utilitarian theory, distinguishing between higher pleasures (intellectual, moral) and lower pleasures (bodily), and arguing that it is 'better to be Socrates dissatisfied than a fool satisfied'. Mill published Utilitarianism in 1863. Peter Singer is a prominent contemporary utilitarian whose work on animal liberation and effective altruism has been highly influential. Bentham famously requested that his body be preserved as an 'auto-icon' and it is displayed at University College London.",
+    "hallucinations": []
+  },
+  {
+    "id": "philosophy-03",
+    "subject": "Philosophy",
+    "level": "A-Level",
+    "title": "Philosophy of Mind: Dualism and Physicalism",
+    "passage": "Philosophy of mind examines the nature of mental phenomena and their relationship to the physical world. Substance dualism, associated most closely with René Descartes, holds that mind and body are distinct substances: the mind is an immaterial, thinking substance (res cogitans) and the body is a material, extended substance (res extensa). The problem of interaction — how immaterial mind and material body can causally affect each other — is a major challenge for dualism. Physicalism (or materialism) holds that mental states are identical to, or realised in, physical brain states. Gilbert Ryle, in The Concept of Mind (1949), criticised Cartesian dualism as positing a 'ghost in the machine'. Functionalism, developed by Hilary Putnam in the 1960s, argues that mental states are defined by their functional role — their causal relationships with inputs, outputs, and other mental states — rather than their physical substrate.",
+    "hallucinations": []
+  },
+  {
+    "id": "further-maths-01",
+    "subject": "Further Mathematics",
+    "level": "A-Level",
+    "title": "Complex Numbers",
+    "passage": "Complex numbers extend the real number system by introducing the imaginary unit i, defined as √(−1), so that i² = −1. A complex number is written in the form z = a + bi, where a is the real part and b is the imaginary part. The modulus of z is |z| = √(a² + b²), representing the distance from the origin in the Argand diagram. The argument of z is the angle θ = arctan(b/a) measured from the positive real axis. Euler's formula, e^(iθ) = cos θ + i sin θ, connects complex exponentials to trigonometric functions. A special case gives Euler's identity: e^(iπ) + 1 = 0, often described as the most beautiful equation in mathematics. Complex numbers were first introduced by the Italian mathematician Gerolamo Cardano in his 1545 work Ars Magna, in the context of solving cubic equations.",
+    "hallucinations": []
+  },
+  {
+    "id": "further-maths-02",
+    "subject": "Further Mathematics",
+    "level": "A-Level",
+    "title": "Matrices and Transformations",
+    "passage": "A matrix is a rectangular array of numbers arranged in rows and columns. Matrix multiplication is not commutative — in general, AB ≠ BA. The identity matrix I has the property that AI = IA = A. The determinant of a 2×2 matrix [[a,b],[c,d]] is ad − bc. If the determinant is zero, the matrix is singular and has no inverse. The inverse of a non-singular 2×2 matrix is (1/det) × [[d,−b],[−c,a]]. Matrices can represent geometric transformations; for example, a rotation by angle θ anticlockwise about the origin is represented by [[cos θ, −sin θ], [sin θ, cos θ]]. The theory of matrices was developed primarily by the British mathematician Arthur Cayley, who published the Cayley–Hamilton theorem in 1858, which states that every square matrix satisfies its own characteristic equation.",
+    "hallucinations": []
+  },
+  {
+    "id": "further-maths-03",
+    "subject": "Further Mathematics",
+    "level": "A-Level",
+    "title": "Proof by Induction",
+    "passage": "Mathematical induction is a proof technique used to establish that a statement is true for all positive integers n. The method has two steps: the base case (proving the statement holds for n = 1) and the inductive step (proving that if the statement holds for n = k, it also holds for n = k + 1). The principle of mathematical induction follows from the well-ordering principle. A classic application is the proof that the sum of the first n natural numbers is n(n+1)/2: the base case n = 1 gives 1 = 1(2)/2 ✓; assuming the sum to k is k(k+1)/2, adding (k+1) gives (k(k+1)/2) + (k+1) = (k+1)(k+2)/2, which is the formula for n = k+1. Strong induction (or complete induction) allows the assumption that the statement holds for all values up to k, not just for k itself. The formal foundation of mathematical induction was given by the Italian mathematician Giuseppe Peano in his 1899 axioms for natural numbers.",
+    "hallucinations": [
+      {
+        "start": 648,
+        "end": 692,
+        "text": "Giuseppe Peano in his 1899 axioms for natural numbers",
+        "explanation": "Peano's axioms for natural numbers were published in 1889, not 1899. The landmark work 'Arithmetices principia, nova methodo exposita' was published in 1889."
+      }
+    ]
+  },
+  {
+    "id": "env-science-01",
+    "subject": "Environmental Science",
+    "level": "A-Level",
+    "title": "Ecosystems and Biodiversity",
+    "passage": "Biodiversity refers to the variety of life on Earth at three levels: genetic diversity, species diversity, and ecosystem diversity. The current period of species extinction is often described as the sixth mass extinction event, driven primarily by human activities including habitat destruction, pollution, invasive species, overexploitation, and climate change. The IUCN Red List classifies species according to their extinction risk, with categories including Least Concern, Near Threatened, Vulnerable, Endangered, Critically Endangered, and Extinct in the Wild. Keystone species have a disproportionately large effect on their ecosystem relative to their biomass; the concept was introduced by the ecologist Robert Paine in 1969 following his research on sea stars in the Pacific Northwest. Convention on Biological Diversity (CBD), established at the 1992 Rio Earth Summit, has been ratified by 196 nations.",
+    "hallucinations": []
+  },
+  {
+    "id": "env-science-02",
+    "subject": "Environmental Science",
+    "level": "A-Level",
+    "title": "Pollution: Types and Effects",
+    "passage": "Pollution is the introduction of contaminants into the environment that cause harm to living organisms or ecosystems. Air pollution includes primary pollutants (emitted directly, such as carbon monoxide and nitrogen oxides from vehicle exhaust) and secondary pollutants (formed by reactions in the atmosphere, such as ground-level ozone and photochemical smog). Acid rain forms when sulfur dioxide and nitrogen oxides react with water vapour in the atmosphere to produce sulfuric and nitric acids. The Great Smog of London in December 1952, caused by a combination of cold weather, windless conditions, and coal burning, killed an estimated 4,000 people immediately and contributed to up to 12,000 further deaths. It directly led to the Clean Air Act 1956. Eutrophication occurs when excess nutrients — typically nitrates and phosphates from agricultural runoff — cause algal blooms that deplete oxygen in water bodies.",
+    "hallucinations": [
+      {
+        "start": 436,
+        "end": 487,
+        "text": "killed an estimated 4,000 people immediately",
+        "explanation": "Initial estimates of immediate deaths from the Great Smog of 1952 were around 4,000. However, subsequent research — including a 2004 study in the journal Environmental Health Perspectives — revised the total deaths attributed to the smog to approximately 12,000, with some estimates as high as 14,000. The passage then says '12,000 further deaths', suggesting a total of 16,000+ which misrepresents the widely accepted revised figure of around 12,000 total."
+      }
+    ]
+  },
+  {
+    "id": "env-science-03",
+    "subject": "Environmental Science",
+    "level": "A-Level",
+    "title": "Renewable Energy",
+    "passage": "Renewable energy is derived from naturally replenishing sources that will not run out on human timescales. Solar photovoltaic (PV) panels convert sunlight directly into electricity using the photoelectric effect, first explained by Albert Einstein in 1905 — for which he received the Nobel Prize in Physics in 1921. Wind turbines convert kinetic energy of wind into electrical energy via a generator. Hydroelectric power generates electricity from the gravitational potential energy of water stored in a reservoir. The UK generated over 40% of its electricity from renewable sources in 2022. Tidal power harnesses the energy of ocean tides; the world's first large-scale tidal power station, La Rance in Brittany, France, opened in 1966 and has an installed capacity of 240 MW.",
+    "hallucinations": []
+  },
+  {
+    "id": "film-01",
+    "subject": "Film Studies",
+    "level": "A-Level",
+    "title": "Film Form: Narrative and Genre",
+    "passage": "Film narrative describes how stories are structured and told through the medium of film. Tzvetan Todorov's narrative theory proposes a three-part structure: equilibrium (normality), disruption, and restoration of a new equilibrium. Vladimir Propp's analysis of folk tales identified 31 narrative functions and 8 character types (hero, villain, dispatcher, helper, princess, father, false hero, and donor). Genre refers to the classification of films by shared conventions of narrative, iconography, and style. Rick Altman argues that genre is not fixed but involves a negotiation between industry, audience, and critics. The Auteur theory, developed by the critics of the French journal Cahiers du Cinéma in the 1950s, argues that the film director is the primary creative force in filmmaking, equivalent to an author. François Truffaut's 1954 essay 'A Certain Tendency of the French Cinema' is often cited as a foundational auteur text.",
+    "hallucinations": []
+  },
+  {
+    "id": "film-02",
+    "subject": "Film Studies",
+    "level": "A-Level",
+    "title": "Film History: The Hollywood Studio System",
+    "passage": "The Hollywood studio system dominated American filmmaking from the 1920s to the 1950s. Major studios including MGM, Paramount, Warner Bros., 20th Century Fox, and RKO controlled the entire filmmaking process from production through distribution to exhibition — a practice known as vertical integration. The system relied on long-term contracts with stars and directors, often restricting their creative freedom. The introduction of synchronised sound with The Jazz Singer in 1927, produced by Warner Bros., fundamentally transformed the industry. The studio system declined following the 1948 United States v. Paramount Pictures antitrust ruling, which forced studios to divest their cinema chains. The New Hollywood era of the late 1960s–1970s saw directors such as Francis Ford Coppola, Martin Scorsese, and Steven Spielberg given unprecedented creative control.",
+    "hallucinations": []
+  },
+  {
+    "id": "film-03",
+    "subject": "Film Studies",
+    "level": "A-Level",
+    "title": "Documentary Film",
+    "passage": "Documentary film presents factual content with the aim of documenting reality, making arguments, or exploring social issues. John Grierson, a Scottish filmmaker often considered the father of documentary film, coined the term 'documentary' in 1926 when reviewing Robert Flaherty's film Moana. Bill Nichols identifies six modes of documentary: poetic, expository, observational, participatory, reflexive, and performative. Cinéma vérité, a French documentary style developed in the late 1950s and 1960s, used lightweight cameras and synchronised sound to capture unstaged reality. Michael Moore's Bowling for Columbine (2002) won the Academy Award for Best Documentary Feature and was the highest-grossing documentary film of all time until it was surpassed by Fahrenheit 9/11 (2004), also directed by Moore.",
+    "hallucinations": [
+      {
+        "start": 467,
+        "end": 577,
+        "text": "Michael Moore's Bowling for Columbine (2002) won the Academy Award for Best Documentary Feature and was the highest-grossing documentary film of all time until it was surpassed by Fahrenheit 9/11 (2004)",
+        "explanation": "Bowling for Columbine did win the 2003 Academy Award for Best Documentary Feature, but it was not the highest-grossing documentary of all time — it was surpassed by Moore's own Fahrenheit 9/11 (2004), which is correct. However, at the time of Bowling for Columbine's release, Michael Moore's previous film Roger & Me (1989) held no such record. The highest-grossing documentary before Moore was likely 'Woodstock' (1970). The claim that Bowling for Columbine was 'the highest-grossing documentary film of all time' at its release is contestable but approximately accurate for North American grosses."
+      }
+    ]
+  }
+]
