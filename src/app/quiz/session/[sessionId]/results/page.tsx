@@ -15,7 +15,8 @@ function overlapRatio(a: { start: number; end: number }, b: { start: number; end
   const os = Math.max(a.start, b.start);
   const oe = Math.min(a.end, b.end);
   if (oe <= os) return 0;
-  return (oe - os) / (b.end - b.start);
+  const minLen = Math.min(a.end - a.start, b.end - b.start);
+  return (oe - os) / minLen;
 }
 
 function ScoreRing({ score, size = 'lg' }: { score: number; size?: 'sm' | 'lg' }) {
