@@ -63,3 +63,72 @@ export interface ScoreResult {
   matchedHallucinations: number[];
   falsePositiveHighlights: number[];
 }
+
+// ── Image module ─────────────────────────────────────────────────────────────
+
+export interface ImageFlaw {
+  id: string;
+  label: string;
+  x: number;       // normalised 0–1
+  y: number;
+  radius: number;  // normalised hit-test radius
+}
+
+export interface ImageQuestion {
+  id: string;
+  mode: 'flaw-finder' | 'spot-the-fake';
+  subject: string;
+  level: 'GCSE' | 'A-Level';
+  topic: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  explanation: string;
+  hint?: string;
+  active: boolean;
+  licensingEnabled: boolean;
+  copyright: {
+    owner: string;
+    source: string;
+    status: 'cleared' | 'pending' | 'restricted';
+    notes?: string;
+  };
+  // Flaw Finder
+  imagePath?: string;
+  imageAspectRatio?: number;
+  flaws?: ImageFlaw[];
+  // Spot the Fake
+  realImagePath?: string;
+  fakeImagePath?: string;
+}
+
+export interface ImageSession {
+  id?: string;
+  userId: string;
+  mode: 'flaw-finder' | 'spot-the-fake' | 'mixed';
+  questionIds: string[];
+  attemptIds: string[];
+  totalScore: number | null;
+  startedAt: Date;
+  completedAt?: Date;
+  subjectFilter?: string;
+}
+
+export interface ClickMark {
+  x: number;
+  y: number;
+  hitFlawId?: string;
+}
+
+export interface ImageAttempt {
+  id?: string;
+  sessionId: string;
+  userId: string;
+  questionId: string;
+  mode: 'flaw-finder' | 'spot-the-fake';
+  clicks?: ClickMark[];
+  flawsHit?: string[];
+  flawsMissed?: string[];
+  chosenImage?: 'real' | 'fake';
+  correct?: boolean;
+  pointsEarned: number;
+  timeSpentSeconds: number;
+}

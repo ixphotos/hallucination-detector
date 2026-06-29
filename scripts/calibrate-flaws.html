@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flaw Calibration Tool</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #111; color: #eee; padding: 20px; }
+    h1 { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; color: #fff; }
+
+    #controls {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    label { font-size: 0.85rem; color: #aaa; }
+    input[type="file"] { font-size: 0.85rem; color: #ddd; }
+    input[type="range"] { width: 120px; accent-color: #3b82f6; }
+    #radius-display { font-size: 0.85rem; color: #fff; min-width: 40px; }
+    button {
+      padding: 6px 14px; border-radius: 6px; border: none; cursor: pointer;
+      font-size: 0.85rem; font-weight: 500;
+    }
+    #btn-undo { background: #374151; color: #fff; }
+    #btn-undo:hover { background: #4b5563; }
+    #btn-clear { background: #7f1d1d; color: #fff; }
+    #btn-clear:hover { background: #991b1b; }
+    #btn-copy { background: #1d4ed8; color: #fff; }
+    #btn-copy:hover { background: #2563eb; }
+
+    #image-wrap {
+      position: relative; display: inline-block;
+      cursor: crosshair; user-select: none;
+    }
+    #image-wrap img { display: block; max-width: 100%; height: auto; }
+
+    .pin {
+      position: absolute; border-radius: 50%;
+      border: 3px solid #fff;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      background: rgba(239, 68, 68, 0.4);
+      transition: none;
+    }
+    .pin-dot {
+      position: absolute; width: 10px; height: 10px; border-radius: 50%;
+      background: #ef4444; border: 2px solid #fff;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .pin-label {
+      position: absolute; background: #ef4444; color: #fff;
+      font-size: 11px; font-weight: 600; padding: 1px 5px; border-radius: 4px;
+      white-space: nowrap; pointer-events: none;
+      transform: translate(-50%, calc(var(--r) + 4px));
+    }
+
+    #coords-display {
+      font-size: 0.8rem; color: #6b7280; margin-top: 8px; font-family: monospace;
+    }
+
+    #output-section { margin-top: 20px; }
+    #output-section h2 { font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: #d1d5db; }
+    #output {
+      background: #1f2937; border: 1px solid #374151; border-radius: 8px;
+      padding: 14px; font-family: monospace; font-size: 0.8rem;
+      color: #86efac; white-space: pre; line-height: 1.6;
+      max-height: 320px; overflow-y: auto;
+    }
+    #copy-notice {
+      font-size: 0.8rem; color: #34d399; margin-top: 6px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    #copy-notice.show { opacity: 1; }
+
+    #no-image {
+      width: 600px; height: 400px; border: 2px dashed #374151; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #6b7280; font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Flaw Calibration Tool</h1>
+
+<div id="controls">
+  <label>Image: <input type="file" id="file-input" accept="image/*"></label>
+  <label>Hit radius:
+    <input type="range" id="radius-slider" min="2" max="15" value="6" step="0.5">
+  </label>
+  <span id="radius-display">0.060</span>
+  <button id="btn-undo">↩ Undo</button>
+  <button id="btn-clear">Clear all</button>
+  <button id="btn-copy">Copy JSON</button>
+</div>
+
+<div id="image-wrap">
+  <div id="no-image">← Load an image to begin</div>
+</div>
+<div id="coords-display">hover over image to see coordinates</div>
+
+<div id="output-section">
+  <h2>Flaw JSON — paste into Firestore or your test question:</h2>
+  <div id="output">// Click on the image to place flaws</div>
+  <div id="copy-notice">Copied to clipboard!</div>
+</div>
+
+<script>
+  const fileInput   = document.getElementById('file-input');
+  const radiusSlider = document.getElementById('radius-slider');
+  const radiusDisplay = document.getElementById('radius-display');
+  const imageWrap   = document.getElementById('image-wrap');
+  const noImage     = document.getElementById('no-image');
+  const coordsDisplay = document.getElementById('coords-display');
+  const output      = document.getElementById('output');
+  const copyNotice  = document.getElementById('copy-notice');
+
+  let img = null;
+  let flaws = [];
+  let flawCounter = 1;
+
+  function getRadius() {
+    return parseFloat(radiusSlider.value) / 100;
+  }
+
+  radiusSlider.addEventListener('input', () => {
+    radiusDisplay.textContent = getRadius().toFixed(3);
+    renderPins();
+    renderOutput();
+  });
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+
+    if (img) img.remove();
+    noImage.style.display = 'none';
+
+    img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Calibration image';
+    img.style.maxWidth = '900px';
+    imageWrap.appendChild(img);
+
+    flaws = [];
+    flawCounter = 1;
+    renderPins();
+    renderOutput();
+  });
+
+  imageWrap.addEventListener('click', (e) => {
+    if (!img || e.target === img === false && e.target.tagName !== 'IMG') {
+      if (!img) return;
+    }
+    if (!img) return;
+
+    const rect = img.getBoundingClientRect();
+    const x = parseFloat(((e.clientX - rect.left) / rect.width).toFixed(4));
+    const y = parseFloat(((e.clientY - rect.top) / rect.height).toFixed(4));
+
+    // Ignore clicks outside image bounds
+    if (x < 0 || x > 1 || y < 0 || y > 1) return;
+
+    const id = `flaw-${flawCounter++}`;
+    const label = prompt(`Label for this flaw (flaw ${flawCounter - 1}):`, `Flaw ${flawCounter - 1}`);
+    if (label === null) { flawCounter--; return; } // cancelled
+
+    flaws.push({ id, label: label || `Flaw ${flawCounter - 1}`, x, y, radius: getRadius() });
+    renderPins();
+    renderOutput();
+  });
+
+  imageWrap.addEventListener('mousemove', (e) => {
+    if (!img) return;
+    const rect = img.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width).toFixed(4);
+    const y = ((e.clientY - rect.top) / rect.height).toFixed(4);
+    coordsDisplay.textContent = `x: ${x}  y: ${y}  (radius: ${getRadius().toFixed(3)})`;
+  });
+
+  imageWrap.addEventListener('mouseleave', () => {
+    coordsDisplay.textContent = 'hover over image to see coordinates';
+  });
+
+  document.getElementById('btn-undo').addEventListener('click', () => {
+    flaws.pop();
+    flawCounter = Math.max(1, flawCounter - 1);
+    renderPins();
+    renderOutput();
+  });
+
+  document.getElementById('btn-clear').addEventListener('click', () => {
+    flaws = [];
+    flawCounter = 1;
+    renderPins();
+    renderOutput();
+  });
+
+  document.getElementById('btn-copy').addEventListener('click', () => {
+    navigator.clipboard.writeText(buildJson()).then(() => {
+      copyNotice.classList.add('show');
+      setTimeout(() => copyNotice.classList.remove('show'), 2000);
+    });
+  });
+
+  function renderPins() {
+    document.querySelectorAll('.pin, .pin-dot, .pin-label').forEach(el => el.remove());
+    if (!img) return;
+
+    const rect = img.getBoundingClientRect();
+    const wrapRect = imageWrap.getBoundingClientRect();
+
+    flaws.forEach((flaw) => {
+      const cx = flaw.x * rect.width + (rect.left - wrapRect.left);
+      const cy = flaw.y * rect.height + (rect.top - wrapRect.top);
+      const rPx = flaw.radius * rect.width;
+
+      // Circle ring
+      const ring = document.createElement('div');
+      ring.className = 'pin';
+      ring.style.left = `${cx}px`;
+      ring.style.top  = `${cy}px`;
+      ring.style.width  = `${rPx * 2}px`;
+      ring.style.height = `${rPx * 2}px`;
+      imageWrap.appendChild(ring);
+
+      // Centre dot
+      const dot = document.createElement('div');
+      dot.className = 'pin-dot';
+      dot.style.left = `${cx}px`;
+      dot.style.top  = `${cy}px`;
+      imageWrap.appendChild(dot);
+
+      // Label
+      const lbl = document.createElement('div');
+      lbl.className = 'pin-label';
+      lbl.style.left = `${cx}px`;
+      lbl.style.top  = `${cy}px`;
+      lbl.style.setProperty('--r', `${rPx}px`);
+      lbl.textContent = flaw.label;
+      imageWrap.appendChild(lbl);
+    });
+  }
+
+  function buildJson() {
+    return JSON.stringify(flaws, null, 2);
+  }
+
+  function renderOutput() {
+    if (flaws.length === 0) {
+      output.textContent = '// Click on the image to place flaws';
+      return;
+    }
+    output.textContent = buildJson();
+  }
+
+  // Re-render pins on window resize (coordinates are normalised so they track correctly)
+  window.addEventListener('resize', renderPins);
+</script>
+</body>
+</html>

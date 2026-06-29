@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { getTeacherSessions } from '@/lib/firestore';
+import { getTeacherImageSessions } from '@/lib/image-firestore';
 import NavBar from '@/components/NavBar';
-import type { QuizSession } from '@/types';
+import type { QuizSession, ImageSession } from '@/types';
 
 function ScoreBadge({ score }: { score: number }) {
   const colour =
@@ -24,13 +25,17 @@ export default function DashboardPage() {
   const { user, profile, loading } = useAuth();
   const router = useRouter();
   const [sessions, setSessions] = useState<QuizSession[]>([]);
+  const [imageSessions, setImageSessions] = useState<ImageSession[]>([]);
   const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
     if (!loading && !user) { router.replace('/'); return; }
     if (user) {
-      getTeacherSessions(user.uid)
-        .then((s) => setSessions(s))
+      Promise.all([
+        getTeacherSessions(user.uid),
+        getTeacherImageSessions(user.uid),
+      ])
+        .then(([s, is]) => { setSessions(s); setImageSessions(is); })
         .catch(() => {})
         .finally(() => setFetching(false));
     }
@@ -78,8 +83,22 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Quick-start cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <Link href="/quiz" className="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-indigo-400 hover:shadow-sm transition-all">
+            <div className="text-lg font-semibold text-gray-900 group-hover:text-indigo-700 mb-1">Text Quiz</div>
+            <div className="text-sm text-gray-500">Highlight hallucinations in AI-generated passages</div>
+            <div className="mt-3 text-xs text-indigo-600 font-medium">Start a session →</div>
+          </Link>
+          <Link href="/images" className="group block bg-white border border-gray-200 rounded-xl p-5 hover:border-indigo-400 hover:shadow-sm transition-all">
+            <div className="text-lg font-semibold text-gray-900 group-hover:text-indigo-700 mb-1">Image Quiz</div>
+            <div className="text-sm text-gray-500">Spot AI hallucinations in generated images</div>
+            <div className="mt-3 text-xs text-indigo-600 font-medium">Start a session →</div>
+          </Link>
+        </div>
+
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900">Recent sessions</h2>
+          <h2 className="text-lg font-semibold text-gray-900">Recent text sessions</h2>
           <Link
             href="/quiz"
             className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
@@ -146,6 +165,56 @@ export default function DashboardPage() {
               </tbody>
             </table>
           </div>
+        )}
+
+        {/* Image sessions */}
+        {imageSessions.length > 0 && (
+          <>
+            <div className="flex items-center justify-between mt-8 mb-4">
+              <h2 className="text-lg font-semibold text-gray-900">Recent image sessions</h2>
+              <Link href="/images" className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                New image session
+              </Link>
+            </div>
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-100 text-left text-xs text-gray-500 uppercase tracking-wide">
+                    <th className="px-4 py-3 font-medium">Mode</th>
+                    <th className="px-4 py-3 font-medium">Score</th>
+                    <th className="px-4 py-3 font-medium hidden sm:table-cell">Date</th>
+                    <th className="px-4 py-3"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
+                  {imageSessions.map((s) => {
+                    const completed = s.totalScore !== null;
+                    return (
+                      <tr key={s.id} className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900 capitalize">{s.mode.replace('-', ' ')}</td>
+                        <td className="px-4 py-3">
+                          {completed ? <ScoreBadge score={s.totalScore!} /> : <span className="text-gray-400 text-xs">In progress</span>}
+                        </td>
+                        <td className="px-4 py-3 hidden sm:table-cell text-gray-400">
+                          {s.startedAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                        </td>
+                        <td className="px-4 py-3">
+                          {completed ? (
+                            <Link href={`/images/session/${s.id}/results`} className="text-indigo-600 hover:underline text-xs">Review</Link>
+                          ) : (
+                            <Link href={`/images/session/${s.id}/${s.attemptIds.length + 1}`} className="text-indigo-600 hover:underline text-xs">Continue</Link>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </main>
     </>
