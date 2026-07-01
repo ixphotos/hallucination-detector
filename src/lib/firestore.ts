@@ -3,9 +3,7 @@ import {
   getDoc,
   setDoc,
   addDoc,
-  updateDoc,
   deleteDoc,
-  arrayUnion,
   collection,
   query,
   where,
@@ -13,7 +11,13 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from './firebase';
-import type { Profile, Attempt, QuizSession, Question } from '@/types';
+import type { Profile, Attempt, QuizSession, Question, Hallucination } from '@/types';
+
+// Quiz-taking reads and writes (sanitised questions, attempts, session
+// creation/updates) go through the API routes in src/app/api — scores are
+// computed server-side and the answer key never reaches the client during a
+// quiz. This module covers the reads and admin operations that Firestore
+// security rules allow directly.
 
 // ── Profiles ────────────────────────────────────────────────────────────────
 
@@ -39,26 +43,11 @@ export async function getProfile(userId: string): Promise<Profile | null> {
   };
 }
 
-export async function getAllProfiles(): Promise<Profile[]> {
-  const snap = await getDocs(collection(db(), 'profiles'));
-  return snap.docs.map((d) => ({
-    id: d.id,
-    ...d.data(),
-    createdAt: d.data().createdAt?.toDate() ?? new Date(),
-  })) as Profile[];
-}
-
-// ── Questions ────────────────────────────────────────────────────────────────
+// ── Questions (admin only — see firestore.rules) ────────────────────────────
 
 export async function getAllQuestions(): Promise<Question[]> {
   const snap = await getDocs(collection(db(), 'questions'));
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() })) as Question[];
-}
-
-export async function getQuestionsBySubject(subject: string): Promise<Question[]> {
-  const q = query(collection(db(), 'questions'), where('subject', '==', subject));
-  const snap = await getDocs(q);
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() })) as Question[];
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Question);
 }
 
 export async function getQuestion(questionId: string): Promise<Question | null> {
@@ -67,23 +56,34 @@ export async function getQuestion(questionId: string): Promise<Question | null> 
   return { id: snap.id, ...snap.data() } as Question;
 }
 
-export async function saveQuestion(question: Question): Promise<void> {
-  // Recompute offsets in case passage changed
-  const hallucinations = question.hallucinations.map((h) => {
-    const idx = question.passage.indexOf(h.text);
-    if (idx !== -1) return { ...h, start: idx, end: idx + h.text.length };
-    return h;
+/**
+ * Recompute hallucination offsets from the passage. Throws if a
+ * hallucination's text does not appear in the passage, or appears more than
+ * once (ambiguous — offsets could point at the wrong occurrence).
+ */
+function withRecomputedOffsets(passage: string, hallucinations: Hallucination[]): Hallucination[] {
+  return hallucinations.map((h) => {
+    const first = passage.indexOf(h.text);
+    if (first === -1) {
+      throw new Error(`Hallucination text not found in passage: "${h.text.slice(0, 60)}"`);
+    }
+    if (passage.indexOf(h.text, first + 1) !== -1) {
+      throw new Error(
+        `Hallucination text appears more than once in the passage — extend it so it is unique: "${h.text.slice(0, 60)}"`
+      );
+    }
+    return { ...h, start: first, end: first + h.text.length };
   });
+}
+
+export async function saveQuestion(question: Question): Promise<void> {
+  const hallucinations = withRecomputedOffsets(question.passage, question.hallucinations);
   const { id, ...data } = { ...question, hallucinations };
   await setDoc(doc(db(), 'questions', id), data);
 }
 
 export async function createQuestion(question: Omit<Question, 'id'>): Promise<string> {
-  const hallucinations = question.hallucinations.map((h) => {
-    const idx = question.passage.indexOf(h.text);
-    if (idx !== -1) return { ...h, start: idx, end: idx + h.text.length };
-    return h;
-  });
+  const hallucinations = withRecomputedOffsets(question.passage, question.hallucinations);
   const ref = await addDoc(collection(db(), 'questions'), { ...question, hallucinations });
   return ref.id;
 }
@@ -92,123 +92,34 @@ export async function deleteQuestion(questionId: string): Promise<void> {
   await deleteDoc(doc(db(), 'questions', questionId));
 }
 
-// ── Attempts ─────────────────────────────────────────────────────────────────
-
-export async function saveAttempt(attempt: Omit<Attempt, 'id' | 'completedAt'>): Promise<string> {
-  const ref = await addDoc(collection(db(), 'attempts'), {
-    ...attempt,
-    completedAt: serverTimestamp(),
-  });
-  return ref.id;
-}
-
-export async function getAttempt(attemptId: string): Promise<Attempt | null> {
-  const snap = await getDoc(doc(db(), 'attempts', attemptId));
-  if (!snap.exists()) return null;
-  const data = snap.data();
-  return {
-    id: snap.id,
-    ...data,
-    completedAt: data.completedAt?.toDate() ?? new Date(),
-  } as Attempt;
-}
-
-export async function getAttemptsByIds(ids: string[]): Promise<Attempt[]> {
-  if (ids.length === 0) return [];
-  const results = await Promise.all(ids.map((id) => getAttempt(id)));
-  return results.filter(Boolean) as Attempt[];
-}
-
-// ── Quiz Sessions ─────────────────────────────────────────────────────────────
-
-export async function createQuizSession(
-  teacherId: string,
-  teacherName: string,
-  subject: string,
-  questionIds: string[]
-): Promise<string> {
-  const ref = await addDoc(collection(db(), 'quizSessions'), {
-    teacherId,
-    teacherName,
-    subject,
-    questionIds,
-    attemptIds: [],
-    totalScore: null,
-    startedAt: serverTimestamp(),
-  });
-  return ref.id;
-}
-
-export async function updateQuizSession(sessionId: string, attemptId: string): Promise<void> {
-  await updateDoc(doc(db(), 'quizSessions', sessionId), {
-    attemptIds: arrayUnion(attemptId),
-  });
-}
-
-export async function completeQuizSession(sessionId: string, totalScore: number): Promise<void> {
-  await updateDoc(doc(db(), 'quizSessions', sessionId), {
-    totalScore,
-    completedAt: serverTimestamp(),
-  });
-}
-
-export async function getQuizSession(sessionId: string): Promise<QuizSession | null> {
-  const snap = await getDoc(doc(db(), 'quizSessions', sessionId));
-  if (!snap.exists()) return null;
-  const data = snap.data();
-  return {
-    id: snap.id,
-    ...data,
-    startedAt: data.startedAt?.toDate() ?? new Date(),
-    completedAt: data.completedAt?.toDate(),
-  } as QuizSession;
-}
+// ── Sessions & attempts (owner/admin reads) ─────────────────────────────────
 
 export async function getTeacherSessions(teacherId: string): Promise<QuizSession[]> {
   const q = query(collection(db(), 'quizSessions'), where('teacherId', '==', teacherId));
   const snap = await getDocs(q);
   return snap.docs
-    .map((d) => ({
-      id: d.id,
-      ...d.data(),
-      startedAt: d.data().startedAt?.toDate() ?? new Date(),
-      completedAt: d.data().completedAt?.toDate(),
-    }) as QuizSession)
+    .map(
+      (d) =>
+        ({
+          id: d.id,
+          ...d.data(),
+          startedAt: d.data().startedAt?.toDate() ?? new Date(),
+          completedAt: d.data().completedAt?.toDate(),
+        }) as QuizSession
+    )
     .sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime());
 }
 
-export async function getAllSessions(): Promise<QuizSession[]> {
-  const snap = await getDocs(collection(db(), 'quizSessions'));
-  return snap.docs
-    .map((d) => ({
-      id: d.id,
-      ...d.data(),
-      startedAt: d.data().startedAt?.toDate() ?? new Date(),
-      completedAt: d.data().completedAt?.toDate(),
-    }) as QuizSession)
-    .sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime());
-}
-
-// Legacy: kept for admin page stats
 export async function getAllAttempts(): Promise<Attempt[]> {
   const snap = await getDocs(collection(db(), 'attempts'));
   return snap.docs
-    .map((d) => ({
-      id: d.id,
-      ...d.data(),
-      completedAt: d.data().completedAt?.toDate() ?? new Date(),
-    }) as Attempt)
-    .sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime());
-}
-
-export async function getTeacherAttempts(teacherId: string): Promise<Attempt[]> {
-  const q = query(collection(db(), 'attempts'), where('teacherId', '==', teacherId));
-  const snap = await getDocs(q);
-  return snap.docs
-    .map((d) => ({
-      id: d.id,
-      ...d.data(),
-      completedAt: d.data().completedAt?.toDate() ?? new Date(),
-    }) as Attempt)
+    .map(
+      (d) =>
+        ({
+          id: d.id,
+          ...d.data(),
+          completedAt: d.data().completedAt?.toDate() ?? new Date(),
+        }) as Attempt
+    )
     .sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime());
 }

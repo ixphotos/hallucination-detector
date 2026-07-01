@@ -1,17 +1,35 @@
 /**
- * Seed questions from src/data/questions.json into Firestore.
- * Usage: node scripts/seed-questions.mjs your@email.com yourpassword
+ * Seed questions from data/questions.json into Firestore.
+ * Usage: node scripts/seed-questions.mjs your@email.com
+ * The password is prompted (or read from FIREBASE_SEED_PASSWORD) so it never
+ * lands in shell history. The account must be an admin (see firestore.rules).
  */
 
 import { readFileSync } from 'fs';
+import { createInterface } from 'node:readline';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
-const [,, email, password] = process.argv;
-if (!email || !password) {
-  console.error('Usage: node scripts/seed-questions.mjs <email> <password>');
+const [, , email] = process.argv;
+if (!email) {
+  console.error('Usage: node scripts/seed-questions.mjs <email>');
   process.exit(1);
+}
+
+async function promptPassword() {
+  if (process.env.FIREBASE_SEED_PASSWORD) return process.env.FIREBASE_SEED_PASSWORD;
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  // Mute echo while the password is typed.
+  const write = rl._writeToOutput?.bind(rl);
+  rl._writeToOutput = (s) => { if (!rl.muted && write) write(s); };
+  const answer = await new Promise((resolve) => {
+    rl.question('Password: ', resolve);
+    rl.muted = true;
+  });
+  rl.close();
+  process.stdout.write('\n');
+  return answer;
 }
 
 // Read env vars from .env.local
@@ -34,11 +52,12 @@ const app = initializeApp({
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+const password = await promptPassword();
 console.log('Signing in...');
 await signInWithEmailAndPassword(auth, email, password);
 console.log('Signed in. Seeding questions...');
 
-const questions = JSON.parse(readFileSync('./src/data/questions.json', 'utf8'));
+const questions = JSON.parse(readFileSync('./data/questions.json', 'utf8'));
 console.log(`Found ${questions.length} questions.`);
 
 let count = 0;

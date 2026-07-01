@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 
-const questions = JSON.parse(readFileSync('./src/data/questions.json', 'utf8'));
+const questions = JSON.parse(readFileSync('./data/questions.json', 'utf8'));
 
 let fixed = 0;
 let broken = 0;
@@ -24,5 +24,5 @@ for (const q of questions) {
   }
 }
 
-writeFileSync('./src/data/questions.json', JSON.stringify(questions, null, 2));
+writeFileSync('./data/questions.json', JSON.stringify(questions, null, 2));
 console.log(`\nDone. Fixed: ${fixed}, Could not fix: ${broken}`);
