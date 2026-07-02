@@ -90,7 +90,8 @@ export default function SessionStepPage({
         }
       } catch (err) {
         console.error(err);
-        setLoadError('Failed to load the question. Please check your connection and refresh.');
+        const detail = err instanceof Error && err.message ? ` (${err.message})` : '';
+        setLoadError(`Failed to load the question${detail}. Please check your connection and refresh.`);
         setFetching(false);
       }
     }
@@ -123,7 +124,8 @@ export default function SessionStepPage({
       }
     } catch (err) {
       console.error(err);
-      setSubmitError('Failed to save your answer. Please check your connection and try again.');
+      const detail = err instanceof Error && err.message ? ` (${err.message})` : '';
+      setSubmitError(`Failed to save your answer${detail}. Please check your connection and try again.`);
       setSubmitting(false);
     }
   }

@@ -1,11 +1,22 @@
 import { adminDb } from '@/lib/server/firebase-admin';
-import { authenticate, isAdmin, jsonError } from '@/lib/server/api-helpers';
+import { authenticate, handleRouteError, isAdmin, jsonError } from '@/lib/server/api-helpers';
 import type { Highlight, Question, SessionResultsPayload } from '@/types';
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ sessionId: string }> }
+  context: { params: Promise<{ sessionId: string }> }
 ) {
+  try {
+    return await getResultsResponse(request, context);
+  } catch (err) {
+    return handleRouteError(err, 'Failed to load results');
+  }
+}
+
+async function getResultsResponse(
+  request: Request,
+  { params }: { params: Promise<{ sessionId: string }> }
+): Promise<Response> {
   const user = await authenticate(request);
   if (!user) return jsonError('Unauthorized', 401);
 

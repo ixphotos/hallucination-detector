@@ -1,5 +1,5 @@
 import { adminDb } from '@/lib/server/firebase-admin';
-import { authenticate, jsonError } from '@/lib/server/api-helpers';
+import { authenticate, handleRouteError, jsonError } from '@/lib/server/api-helpers';
 import type { QuizQuestion } from '@/types';
 
 /**
@@ -9,8 +9,19 @@ import type { QuizQuestion } from '@/types';
  */
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ questionId: string }> }
+  context: { params: Promise<{ questionId: string }> }
 ) {
+  try {
+    return await getQuestionResponse(request, context);
+  } catch (err) {
+    return handleRouteError(err, 'Failed to load question');
+  }
+}
+
+async function getQuestionResponse(
+  request: Request,
+  { params }: { params: Promise<{ questionId: string }> }
+): Promise<Response> {
   const user = await authenticate(request);
   if (!user) return jsonError('Unauthorized', 401);
 

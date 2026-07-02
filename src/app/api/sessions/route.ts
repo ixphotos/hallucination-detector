@@ -1,6 +1,6 @@
 import { FieldValue } from 'firebase-admin/firestore';
 import { adminDb } from '@/lib/server/firebase-admin';
-import { authenticate, jsonError } from '@/lib/server/api-helpers';
+import { authenticate, handleRouteError, jsonError } from '@/lib/server/api-helpers';
 import type { SessionMeta } from '@/types';
 
 const SESSION_TARGET_LENGTH = 3;
@@ -15,6 +15,14 @@ function shuffle<T>(items: T[]): T[] {
 }
 
 export async function POST(request: Request) {
+  try {
+    return await createSessionResponse(request);
+  } catch (err) {
+    return handleRouteError(err, 'Failed to create session');
+  }
+}
+
+async function createSessionResponse(request: Request): Promise<Response> {
   const user = await authenticate(request);
   if (!user) return jsonError('Unauthorized', 401);
 

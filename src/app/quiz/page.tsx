@@ -64,7 +64,8 @@ export default function QuizSelectionPage() {
       })
       .catch((err) => {
         console.error(err);
-        setError('Failed to load subjects. Please refresh the page to try again.');
+        const detail = err instanceof Error && err.message ? ` (${err.message})` : '';
+        setError(`Failed to load subjects${detail}. Please refresh the page to try again.`);
       })
       .finally(() => setLoadingSubjects(false));
   }, [user]);
@@ -83,7 +84,8 @@ export default function QuizSelectionPage() {
       router.push(`/quiz/session/${session.id}/1`);
     } catch (err) {
       console.error(err);
-      setError('Failed to start the session. Please try again.');
+      const detail = err instanceof Error && err.message ? ` (${err.message})` : '';
+      setError(`Failed to start the session${detail}. Please try again.`);
       setStarting(null);
     }
   }
