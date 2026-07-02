@@ -3,9 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
-import { getAllQuestions, createQuizSession } from '@/lib/firestore';
+import { getSubjectCounts, createSession } from '@/lib/api-client';
 import NavBar from '@/components/NavBar';
-import type { Question } from '@/types';
 
 const GCSE_SUBJECTS = [
   'English Language', 'English Literature', 'Mathematics', 'Biology', 'Chemistry',
@@ -45,12 +44,13 @@ function SubjectCard({
 }
 
 export default function QuizSelectionPage() {
-  const { user, profile, loading } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [counts, setCounts] = useState<Map<string, number>>(new Map());
   const [filter, setFilter] = useState('');
   const [starting, setStarting] = useState<string | null>(null);
-  const [loadingQuestions, setLoadingQuestions] = useState(true);
+  const [loadingSubjects, setLoadingSubjects] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (!loading && !user) { router.replace('/'); return; }
@@ -58,41 +58,43 @@ export default function QuizSelectionPage() {
 
   useEffect(() => {
     if (!user) return;
-    getAllQuestions().then((qs) => { setQuestions(qs); setLoadingQuestions(false); });
+    getSubjectCounts()
+      .then((subjectCounts) => {
+        setCounts(new Map(subjectCounts.map((s) => [s.subject, s.count])));
+      })
+      .catch((err) => {
+        console.error(err);
+        setError('Failed to load subjects. Please refresh the page to try again.');
+      })
+      .finally(() => setLoadingSubjects(false));
   }, [user]);
 
   async function startSession(subject: string) {
-    if (!user || !profile || starting) return;
+    if (!user || starting) return;
     setStarting(subject);
+    setError('');
     try {
-      const pool = questions.filter((q) => q.subject === subject);
-      // Shuffle and pick up to 3
-      const shuffled = [...pool].sort(() => Math.random() - 0.5);
-      let picked = shuffled.slice(0, 3);
-      // Pad with other subjects if fewer than 3
-      if (picked.length < 3) {
-        const others = questions.filter((q) => q.subject !== subject).sort(() => Math.random() - 0.5);
-        picked = [...picked, ...others].slice(0, 3);
-      }
-      const questionIds = picked.map((q) => q.id);
-      const sessionId = await createQuizSession(user.uid, profile.name, subject, questionIds);
-      // Cache session metadata so step pages skip a Firestore read
-      sessionStorage.setItem(`qs:${sessionId}`, JSON.stringify({ subject, questionIds }));
-      router.push(`/quiz/session/${sessionId}/1`);
+      const session = await createSession(subject);
+      // Cache session metadata so step pages skip a fetch
+      sessionStorage.setItem(
+        `qs:${session.id}`,
+        JSON.stringify({ subject: session.subject, questionIds: session.questionIds })
+      );
+      router.push(`/quiz/session/${session.id}/1`);
     } catch (err) {
       console.error(err);
+      setError('Failed to start the session. Please try again.');
       setStarting(null);
     }
   }
 
-  const available = new Set(questions.map((q) => q.subject));
-  const countFor = (s: string) => questions.filter((q) => q.subject === s).length;
+  const countFor = (s: string) => counts.get(s) ?? 0;
 
   const gcse = GCSE_SUBJECTS.filter((s) => s.toLowerCase().includes(filter.toLowerCase()));
   const alevel = ALEVEL_SUBJECTS.filter((s) => s.toLowerCase().includes(filter.toLowerCase()));
   const gk = GK_SUBJECTS.filter((s) => s.toLowerCase().includes(filter.toLowerCase()));
 
-  if (loading || loadingQuestions) {
+  if (loading || loadingSubjects) {
     return (
       <>
         <NavBar />
@@ -107,8 +109,14 @@ export default function QuizSelectionPage() {
       <main className="max-w-5xl mx-auto px-4 py-8 w-full">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Choose a subject</h1>
-          <p className="text-gray-500 mt-1">You will be given 3 passages in a row. Read carefully — some details are AI hallucinations.</p>
+          <p className="text-gray-500 mt-1">You will be given up to 3 passages in a row. Read carefully — some details are AI hallucinations.</p>
         </div>
+
+        {error && (
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-6">
+            {error}
+          </p>
+        )}
 
         <div className="mb-6">
           <input
@@ -175,7 +183,7 @@ export default function QuizSelectionPage() {
           <div className="fixed inset-0 bg-white/80 flex items-center justify-center">
             <div className="text-center">
               <div className="text-indigo-600 font-medium mb-1">Starting session…</div>
-              <div className="text-sm text-gray-400">Selecting 3 passages for {starting}</div>
+              <div className="text-sm text-gray-400">Selecting passages for {starting}</div>
             </div>
           </div>
         )}

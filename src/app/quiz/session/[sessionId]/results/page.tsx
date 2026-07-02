@@ -4,19 +4,11 @@ import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
-import { getQuizSession, getAttemptsByIds, getQuestion } from '@/lib/firestore';
+import { getSessionResults } from '@/lib/api-client';
+import { matchedHallucinationIndices } from '@/lib/scoring';
 import NavBar from '@/components/NavBar';
 import PassageHighlighter from '@/components/PassageHighlighter';
-import type { QuizSession, Attempt, Question } from '@/types';
-
-const OVERLAP = 0.5;
-
-function overlapRatio(a: { start: number; end: number }, b: { start: number; end: number }) {
-  const os = Math.max(a.start, b.start);
-  const oe = Math.min(a.end, b.end);
-  if (oe <= os) return 0;
-  return (oe - os) / (b.end - b.start);
-}
+import type { SessionResultsPayload } from '@/types';
 
 function ScoreRing({ score, size = 'lg' }: { score: number; size?: 'sm' | 'lg' }) {
   const colour = score >= 80 ? '#16a34a' : score >= 50 ? '#d97706' : '#dc2626';
@@ -46,11 +38,10 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
   const { user, loading } = useAuth();
   const router = useRouter();
 
-  const [session, setSession] = useState<QuizSession | null>(null);
-  const [attempts, setAttempts] = useState<Attempt[]>([]);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [results, setResults] = useState<SessionResultsPayload | null>(null);
   const [expanded, setExpanded] = useState<number | null>(null);
   const [fetching, setFetching] = useState(true);
+  const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
     if (!loading && !user) { router.replace('/'); return; }
@@ -58,20 +49,14 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
 
   useEffect(() => {
     if (!user) return;
-    async function load() {
-      const s = await getQuizSession(sessionId);
-      if (!s) { router.replace('/dashboard'); return; }
-      setSession(s);
-      const [attemptsData, questionsData] = await Promise.all([
-        getAttemptsByIds(s.attemptIds),
-        Promise.all(s.questionIds.map((id) => getQuestion(id))),
-      ]);
-      setAttempts(attemptsData);
-      setQuestions(questionsData.filter(Boolean) as Question[]);
-      setFetching(false);
-    }
-    load();
-  }, [user, sessionId, router]);
+    getSessionResults(sessionId)
+      .then(setResults)
+      .catch((err) => {
+        console.error(err);
+        setLoadError(err instanceof Error ? err.message : 'Failed to load results.');
+      })
+      .finally(() => setFetching(false));
+  }, [user, sessionId]);
 
   if (loading || fetching) {
     return (
@@ -82,9 +67,33 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
     );
   }
 
-  if (!session) return null;
+  if (loadError || !results) {
+    return (
+      <>
+        <NavBar />
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+            {loadError || 'Results not found.'}
+          </p>
+          <Link href="/dashboard" className="text-sm text-indigo-600 hover:underline">
+            Back to dashboard
+          </Link>
+        </div>
+      </>
+    );
+  }
 
-  const totalScore = session.totalScore ?? Math.round(attempts.reduce((s, a) => s + a.score, 0) / Math.max(attempts.length, 1));
+  const { session, attempts, questions } = results;
+  // Order questions as they appeared in the session and pair each with its
+  // attempt by questionId — attempt write order is not guaranteed.
+  const orderedQuestions = session.questionIds
+    .map((id) => questions.find((q) => q.id === id))
+    .filter((q) => q !== undefined);
+  const attemptFor = (questionId: string) => attempts.find((a) => a.questionId === questionId);
+
+  const totalScore =
+    session.totalScore ??
+    Math.round(attempts.reduce((s, a) => s + a.score, 0) / Math.max(attempts.length, 1));
 
   return (
     <>
@@ -92,7 +101,7 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
       <main className="max-w-3xl mx-auto px-4 py-8 w-full">
         <div className="mb-2 flex items-center gap-2">
           <span className="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded text-xs font-medium">{session.subject}</span>
-          <span className="text-xs text-gray-400">3-question session</span>
+          <span className="text-xs text-gray-400">{session.questionIds.length}-question session</span>
         </div>
         <h1 className="text-2xl font-bold text-gray-900 mb-6">Session Complete</h1>
 
@@ -113,17 +122,18 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
         {/* Per-question breakdown */}
         <h2 className="text-base font-semibold text-gray-900 mb-3">Question breakdown</h2>
         <div className="space-y-3 mb-6">
-          {questions.map((q, i) => {
-            const attempt = attempts[i];
+          {orderedQuestions.map((q, i) => {
+            const attempt = attemptFor(q.id);
             if (!attempt) return null;
             const isExpanded = expanded === i;
             const correctRanges = q.hallucinations.map((h) => ({ start: h.start, end: h.end }));
+            const matched = new Set(matchedHallucinationIndices(attempt.highlights, q.hallucinations));
             const missedRanges = q.hallucinations
-              .filter((h) => !attempt.highlights.some((hl) => overlapRatio(hl, h) >= OVERLAP))
+              .filter((_, hi) => !matched.has(hi))
               .map((h) => ({ start: h.start, end: h.end }));
 
             return (
-              <div key={i} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <div key={q.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
                 <button
                   onClick={() => setExpanded(isExpanded ? null : i)}
                   className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-gray-50"
@@ -164,7 +174,7 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
                       <div className="mt-4 space-y-2">
                         {q.hallucinations.map((h, hi) => (
                           <div key={hi} className="bg-gray-50 rounded-lg p-3">
-                            <p className="text-xs font-medium text-gray-600 italic mb-1">"{h.text}"</p>
+                            <p className="text-xs font-medium text-gray-600 italic mb-1">&ldquo;{h.text}&rdquo;</p>
                             <p className="text-xs text-gray-500">{h.explanation}</p>
                           </div>
                         ))}

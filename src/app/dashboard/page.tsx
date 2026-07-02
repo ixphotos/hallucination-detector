@@ -25,13 +25,17 @@ export default function DashboardPage() {
   const router = useRouter();
   const [sessions, setSessions] = useState<QuizSession[]>([]);
   const [fetching, setFetching] = useState(true);
+  const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
     if (!loading && !user) { router.replace('/'); return; }
     if (user) {
       getTeacherSessions(user.uid)
         .then((s) => setSessions(s))
-        .catch(() => {})
+        .catch((err) => {
+          console.error(err);
+          setLoadError('Failed to load your sessions. Please refresh the page to try again.');
+        })
         .finally(() => setFetching(false));
     }
   }, [user, loading, router]);
@@ -62,6 +66,12 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-bold text-gray-900">Welcome back, {profile?.name?.split(' ')[0]}</h1>
           <p className="text-gray-500 mt-1">Track your hallucination detection accuracy over time.</p>
         </div>
+
+        {loadError && (
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-6">
+            {loadError}
+          </p>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl border border-gray-200 p-5">
@@ -116,6 +126,7 @@ export default function DashboardPage() {
               <tbody className="divide-y divide-gray-50">
                 {sessions.map((s) => {
                   const completed = s.totalScore !== null;
+                  const totalSteps = s.questionIds.length;
                   const stepsDone = s.attemptIds.length;
                   return (
                     <tr key={s.id} className="hover:bg-gray-50">
@@ -124,7 +135,7 @@ export default function DashboardPage() {
                         {completed ? <ScoreBadge score={s.totalScore!} /> : <span className="text-gray-400 text-xs">In progress</span>}
                       </td>
                       <td className="px-4 py-3 hidden sm:table-cell text-gray-500 text-xs">
-                        {completed ? '3 of 3 complete' : `${stepsDone} of 3 done`}
+                        {completed ? `${totalSteps} of ${totalSteps} complete` : `${stepsDone} of ${totalSteps} done`}
                       </td>
                       <td className="px-4 py-3 hidden sm:table-cell text-gray-400">
                         {s.startedAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}

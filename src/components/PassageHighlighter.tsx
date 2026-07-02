@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useCallback } from 'react';
+import { falsePositiveHighlightIndices, type Range as CharRange } from '@/lib/scoring';
 import type { Highlight } from '@/types';
 
 interface Props {
@@ -8,76 +9,77 @@ interface Props {
   highlights: Highlight[];
   onChange: (highlights: Highlight[]) => void;
   readonly?: boolean;
-  correctRanges?: { start: number; end: number }[];
-  missedRanges?: { start: number; end: number }[];
+  correctRanges?: CharRange[];
+  missedRanges?: CharRange[];
 }
+
+type SpanType = 'normal' | 'highlight' | 'correct' | 'missed' | 'false-positive';
 
 interface Span {
   start: number;
   end: number;
-  type: 'normal' | 'highlight' | 'correct' | 'missed' | 'false-positive';
+  type: SpanType;
 }
 
-function buildSpans(
-  passage: string,
-  highlights: Highlight[],
-  readonly: boolean,
-  correctRanges?: { start: number; end: number }[],
-  missedRanges?: { start: number; end: number }[]
-): Span[] {
-  const events: { pos: number; kind: 'start' | 'end'; type: Span['type'] }[] = [];
+interface TypedRange extends CharRange {
+  type: Exclude<SpanType, 'normal'>;
+}
 
-  if (readonly && correctRanges && missedRanges) {
-    const OVERLAP = 0.5;
-    highlights.forEach((h) => {
-      const isTP = (correctRanges ?? []).some((r) => {
-        const overlapStart = Math.max(h.start, r.start);
-        const overlapEnd = Math.min(h.end, r.end);
-        if (overlapEnd <= overlapStart) return false;
-        return (overlapEnd - overlapStart) / (r.end - r.start) >= OVERLAP;
-      });
-      events.push({ pos: h.start, kind: 'start', type: isTP ? 'correct' : 'false-positive' });
-      events.push({ pos: h.end, kind: 'end', type: isTP ? 'correct' : 'false-positive' });
-    });
-    missedRanges.forEach((r) => {
-      events.push({ pos: r.start, kind: 'start', type: 'missed' });
-      events.push({ pos: r.end, kind: 'end', type: 'missed' });
-    });
-  } else {
-    highlights.forEach((h) => {
-      events.push({ pos: h.start, kind: 'start', type: 'highlight' });
-      events.push({ pos: h.end, kind: 'end', type: 'highlight' });
-    });
+// When ranges overlap, the highest-priority type wins the segment.
+const TYPE_PRIORITY: Record<Exclude<SpanType, 'normal'>, number> = {
+  missed: 4,
+  'false-positive': 3,
+  correct: 2,
+  highlight: 1,
+};
+
+function buildSpans(passageLength: number, ranges: TypedRange[]): Span[] {
+  const clamped = ranges
+    .map((r) => ({
+      ...r,
+      start: Math.max(0, Math.min(r.start, passageLength)),
+      end: Math.max(0, Math.min(r.end, passageLength)),
+    }))
+    .filter((r) => r.start < r.end);
+
+  const boundaries = new Set<number>([0, passageLength]);
+  for (const r of clamped) {
+    boundaries.add(r.start);
+    boundaries.add(r.end);
   }
-
-  events.sort((a, b) => a.pos - b.pos || (a.kind === 'end' ? -1 : 1));
+  const points = [...boundaries].sort((a, b) => a - b);
 
   const spans: Span[] = [];
-  let pos = 0;
-  let activeType: Span['type'] | null = null;
-
-  for (const ev of events) {
-    if (ev.pos > pos) {
-      spans.push({ start: pos, end: ev.pos, type: activeType ?? 'normal' });
+  for (let i = 0; i < points.length - 1; i++) {
+    const start = points[i];
+    const end = points[i + 1];
+    let type: SpanType = 'normal';
+    let priority = 0;
+    for (const r of clamped) {
+      if (r.start <= start && r.end >= end && TYPE_PRIORITY[r.type] > priority) {
+        type = r.type;
+        priority = TYPE_PRIORITY[r.type];
+      }
     }
-    pos = ev.pos;
-    if (ev.kind === 'start') activeType = ev.type;
-    else activeType = null;
+    spans.push({ start, end, type });
   }
-
-  if (pos < passage.length) {
-    spans.push({ start: pos, end: passage.length, type: 'normal' });
-  }
-
-  return spans.filter((s) => s.start < s.end);
+  return spans;
 }
 
-const spanClass: Record<Span['type'], string> = {
+const spanClass: Record<SpanType, string> = {
   normal: '',
   highlight: 'bg-yellow-200 rounded cursor-pointer hover:bg-yellow-300 transition-colors',
   correct: 'bg-green-200 rounded',
   missed: 'bg-red-200 rounded underline decoration-red-400',
   'false-positive': 'bg-orange-200 rounded',
+};
+
+const spanTitle: Record<SpanType, string | undefined> = {
+  normal: undefined,
+  highlight: 'Click to remove this highlight',
+  correct: 'Correctly identified hallucination',
+  missed: 'Missed hallucination',
+  'false-positive': 'Not a hallucination (false positive)',
 };
 
 export default function PassageHighlighter({
@@ -90,18 +92,21 @@ export default function PassageHighlighter({
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Character offset of a DOM boundary point, measured as the text between
+  // the start of the container and that point. Works for element boundary
+  // points too (e.g. triple-click selections), which are child indices
+  // rather than character offsets.
   const getCharOffset = useCallback((node: Node, offset: number): number => {
     const container = containerRef.current;
     if (!container) return 0;
-    let charCount = 0;
-    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
-    let current = walker.nextNode();
-    while (current) {
-      if (current === node) return charCount + offset;
-      charCount += (current.textContent ?? '').length;
-      current = walker.nextNode();
+    const range = document.createRange();
+    range.selectNodeContents(container);
+    try {
+      range.setEnd(node, offset);
+    } catch {
+      return 0;
     }
-    return charCount + offset;
+    return range.toString().length;
   }, []);
 
   const handleMouseUp = useCallback(() => {
@@ -113,41 +118,53 @@ export default function PassageHighlighter({
     const container = containerRef.current;
     if (!container || !container.contains(range.commonAncestorContainer)) return;
 
-    const start = getCharOffset(range.startContainer, range.startOffset);
-    const end = getCharOffset(range.endContainer, range.endOffset);
+    const start = Math.min(getCharOffset(range.startContainer, range.startOffset), passage.length);
+    const end = Math.min(getCharOffset(range.endContainer, range.endOffset), passage.length);
 
     if (start >= end) { sel.removeAllRanges(); return; }
 
-    const text = passage.slice(start, end);
-    const newHighlight: Highlight = { start, end, text };
+    const newHighlight: Highlight = { start, end, text: passage.slice(start, end) };
 
     // Merge/deduplicate overlapping highlights
-    const merged = [...highlights];
-    const overlaps = merged.filter(
+    const overlaps = highlights.filter(
       (h) => h.start < newHighlight.end && h.end > newHighlight.start
     );
     if (overlaps.length > 0) {
       const mergedStart = Math.min(...overlaps.map((h) => h.start), newHighlight.start);
       const mergedEnd = Math.max(...overlaps.map((h) => h.end), newHighlight.end);
-      const filtered = merged.filter((h) => !overlaps.includes(h));
+      const filtered = highlights.filter((h) => !overlaps.includes(h));
       filtered.push({ start: mergedStart, end: mergedEnd, text: passage.slice(mergedStart, mergedEnd) });
       onChange(filtered.sort((a, b) => a.start - b.start));
     } else {
-      merged.push(newHighlight);
-      onChange(merged.sort((a, b) => a.start - b.start));
+      onChange([...highlights, newHighlight].sort((a, b) => a.start - b.start));
     }
 
     sel.removeAllRanges();
   }, [readonly, highlights, onChange, passage, getCharOffset]);
 
-  function removeHighlight(index: number) {
+  function removeHighlightAt(pos: number) {
     if (readonly) return;
-    onChange(highlights.filter((_, i) => i !== index));
+    onChange(highlights.filter((h) => !(pos >= h.start && pos < h.end)));
   }
 
-  const spans = buildSpans(passage, highlights, readonly, correctRanges, missedRanges);
+  let ranges: TypedRange[];
+  if (readonly && correctRanges && missedRanges) {
+    // Classify each highlight with the same rule the scorer uses, so the
+    // review display always agrees with the score.
+    const fpIndices = new Set(falsePositiveHighlightIndices(highlights, correctRanges));
+    ranges = [
+      ...highlights.map((h, i): TypedRange => ({
+        start: h.start,
+        end: h.end,
+        type: fpIndices.has(i) ? 'false-positive' : 'correct',
+      })),
+      ...missedRanges.map((r): TypedRange => ({ ...r, type: 'missed' })),
+    ];
+  } else {
+    ranges = highlights.map((h): TypedRange => ({ start: h.start, end: h.end, type: 'highlight' }));
+  }
 
-  let highlightIdx = 0;
+  const spans = buildSpans(passage.length, ranges);
 
   return (
     <div
@@ -160,21 +177,12 @@ export default function PassageHighlighter({
         if (span.type === 'normal') {
           return <span key={i}>{text}</span>;
         }
-        const hi = span.type === 'highlight' ? highlightIdx++ : -1;
         return (
           <span
             key={i}
             className={spanClass[span.type]}
-            title={
-              span.type === 'highlight'
-                ? 'Click to remove this highlight'
-                : span.type === 'correct'
-                ? 'Correctly identified hallucination'
-                : span.type === 'missed'
-                ? 'Missed hallucination'
-                : 'Not a hallucination (false positive)'
-            }
-            onClick={() => { if (span.type === 'highlight') removeHighlight(hi); }}
+            title={spanTitle[span.type]}
+            onClick={() => { if (span.type === 'highlight') removeHighlightAt(span.start); }}
           >
             {text}
           </span>
