@@ -2,6 +2,31 @@ import { initializeApp, getApps, type FirebaseApp } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
 import { getFirestore, type Firestore } from 'firebase/firestore';
 
+// A previous `firebase emulators:start` session plants a `__FIREBASE_DEFAULTS__`
+// cookie (and/or global) on localhost. The Firebase SDK reads it and silently
+// auto-connects Auth/Firestore to the emulator (e.g. 127.0.0.1:9099) with no
+// connectAuthEmulator() call in our code — so once the emulator is stopped,
+// login fails with auth/network-request-failed. This app does not use the
+// emulator suite, so clear any stale emulator defaults on the client before the
+// SDK initialises (opt back in with NEXT_PUBLIC_USE_FIREBASE_EMULATORS=true).
+if (
+  typeof window !== 'undefined' &&
+  process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS !== 'true'
+) {
+  try {
+    const g = globalThis as { __FIREBASE_DEFAULTS__?: { emulatorHosts?: unknown } };
+    if (g.__FIREBASE_DEFAULTS__?.emulatorHosts) {
+      delete g.__FIREBASE_DEFAULTS__;
+    }
+    if (document.cookie.includes('__FIREBASE_DEFAULTS__')) {
+      document.cookie =
+        '__FIREBASE_DEFAULTS__=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
+  } catch {
+    // best-effort; safe to ignore
+  }
+}
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
