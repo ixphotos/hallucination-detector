@@ -449,8 +449,15 @@
     "subject": "German",
     "level": "GCSE",
     "title": "German History: The Berlin Wall",
-    "passage": "The Berlin Wall was erected on 13 August 1961, dividing the city of Berlin into East and West sectors. It was built on the orders of the East German leadership, with Soviet backing, primarily to stop the mass emigration of East Germans to the West — over 3.5 million had left since 1949. The Wall was 155 kilometres long in total and was heavily guarded with watchtowers, searchlights, and a 'death strip'. American President John F. Kennedy visited West Berlin in June 1963 and delivered his famous speech containing the words 'Ich bin ein Berliner'. The Wall fell on the evening of 9 November 1989 after an East German spokesman mistakenly announced that citizens could cross the border immediately.",
-    "hallucinations": []
+    "passage": "The Berlin Wall was erected on 13 August 1961, dividing the city of Berlin into East and West sectors. It was built on the orders of the East German leadership, with Soviet backing, primarily to stop the mass emigration of East Germans to the West — over 3.5 million had left since 1949. The Wall was 155 kilometres long in total and was heavily guarded with watchtowers, searchlights, and a 'death strip'. American President Dwight D. Eisenhower visited West Berlin in June 1963 and delivered his famous speech containing the words 'Ich bin ein Berliner'. The Wall fell on the evening of 9 November 1989 after an East German spokesman mistakenly announced that citizens could cross the border immediately.",
+    "hallucinations": [
+      {
+        "start": 407,
+        "end": 479,
+        "text": "American President Dwight D. Eisenhower visited West Berlin in June 1963",
+        "explanation": "It was President John F. Kennedy who visited West Berlin in June 1963 and delivered the 'Ich bin ein Berliner' speech, not Eisenhower. Eisenhower was Kennedy's predecessor as US president, serving from 1953 to 1961 — he had already left office by June 1963. Kennedy gave the speech to demonstrate American solidarity with West Berliners two years after the Wall was built."
+      }
+    ]
   },
   {
     "id": "re-01",
@@ -480,8 +487,15 @@
     "subject": "Religious Studies",
     "level": "GCSE",
     "title": "Ethics: Medical Ethics",
-    "passage": "Medical ethics involves applying moral principles to medical practice and research. The four principles of medical ethics — autonomy, beneficence, non-maleficence, and justice — were introduced by bioethicists Tom Beauchamp and James Childress in their 1979 book Principles of Biomedical Ethics. Euthanasia refers to the deliberate ending of a life to relieve suffering. Active euthanasia involves a direct action to end life, while passive euthanasia involves withdrawing treatment. Abortion — the deliberate termination of a pregnancy — was legalised in England, Wales, and Scotland through the Abortion Act 1967. The Catholic Church teaches that life begins at conception and opposes both euthanasia and abortion. Sanctity of life is the belief that human life is sacred and God-given.",
-    "hallucinations": []
+    "passage": "Medical ethics involves applying moral principles to medical practice and research. The four principles of medical ethics — autonomy, beneficence, maleficence, and justice — were introduced by bioethicists Tom Beauchamp and James Childress in their 1979 book Principles of Biomedical Ethics. Euthanasia refers to the deliberate ending of a life to relieve suffering. Active euthanasia involves a direct action to end life, while passive euthanasia involves withdrawing treatment. Abortion — the deliberate termination of a pregnancy — was legalised in England, Wales, and Scotland through the Abortion Act 1967. The Catholic Church teaches that life begins at conception and opposes both euthanasia and abortion. Sanctity of life is the belief that human life is sacred and God-given.",
+    "hallucinations": [
+      {
+        "start": 124,
+        "end": 171,
+        "text": "autonomy, beneficence, maleficence, and justice",
+        "explanation": "The four principles are autonomy, beneficence, non-maleficence, and justice — not 'maleficence'. 'Non-maleficence' means 'do no harm' and is one of the oldest principles in medical ethics, derived from the Hippocratic tradition. 'Maleficence' would mean causing harm, which is the opposite. Dropping the 'non-' completely inverts the principle and turns a core ethical commitment into its negation."
+      }
+    ]
   },
   {
     "id": "computing-01",
@@ -503,8 +517,15 @@
     "subject": "Computing",
     "level": "GCSE",
     "title": "Algorithms and Programming",
-    "passage": "An algorithm is a precise set of instructions for solving a problem. Algorithms can be represented using pseudocode, flowcharts, or written descriptions. Key programming concepts include variables (named storage locations), loops (for repetition), conditionals (for decision-making), and functions (reusable blocks of code). Sorting algorithms are commonly studied in computer science. Bubble sort repeatedly compares adjacent elements and swaps them if in the wrong order; it has a worst-case time complexity of O(n²). Merge sort uses a divide-and-conquer approach and has a time complexity of O(n log n). The concept of an algorithm predates computers; the term derives from the name of the 9th-century Persian mathematician Al-Khwarizmi, whose Latinised name gave us the word.",
-    "hallucinations": []
+    "passage": "An algorithm is a precise set of instructions for solving a problem. Algorithms can be represented using pseudocode, flowcharts, or written descriptions. Key programming concepts include variables (named storage locations), loops (for repetition), conditionals (for decision-making), and functions (reusable blocks of code). Sorting algorithms are commonly studied in computer science. Bubble sort repeatedly compares adjacent elements and swaps them if in the wrong order; it has a worst-case time complexity of O(n log n). Merge sort uses a divide-and-conquer approach and has a time complexity of O(n²). The concept of an algorithm predates computers; the term derives from the name of the 9th-century Persian mathematician Al-Khwarizmi, whose Latinised name gave us the word.",
+    "hallucinations": [
+      {
+        "start": 386,
+        "end": 605,
+        "text": "Bubble sort repeatedly compares adjacent elements and swaps them if in the wrong order; it has a worst-case time complexity of O(n log n). Merge sort uses a divide-and-conquer approach and has a time complexity of O(n²)",
+        "explanation": "The complexities have been swapped. Bubble sort has a worst-case time complexity of O(n²) — it is inefficient for large datasets because every element may need to be compared with every other. Merge sort has a time complexity of O(n log n), which is significantly faster for large lists. O(n log n) is the hallmark of efficient, divide-and-conquer sorting algorithms; O(n²) is the penalty for naive approaches like bubble sort."
+      }
+    ]
   },
   {
     "id": "computing-03",
@@ -558,24 +579,45 @@
     "subject": "Art & Design",
     "level": "GCSE",
     "title": "Design Principles and Elements",
-    "passage": "The formal elements of art and design provide the vocabulary for visual analysis. Line, shape, form, tone, texture, colour, and pattern are the core elements. Colour theory is central to design practice; the traditional colour wheel is based on the three primary colours — red, yellow, and blue — from which secondary and tertiary colours are mixed. Complementary colours sit opposite each other on the colour wheel and create high contrast when used together. The Bauhaus school of art and design, founded in Weimar, Germany, in 1919 by Walter Gropius, was enormously influential in modern graphic design, architecture, and industrial design. It was forced to close in 1933 when the National Socialist government declared it a centre of communist influence.",
-    "hallucinations": []
+    "passage": "The formal elements of art and design provide the vocabulary for visual analysis. Line, shape, form, tone, texture, colour, and pattern are the core elements. Colour theory is central to design practice; the traditional colour wheel is based on the three primary colours — red, yellow, and blue — from which secondary and tertiary colours are mixed. Complementary colours sit opposite each other on the colour wheel and create high contrast when used together. The Bauhaus school of art and design, founded in Berlin, Germany, in 1919 by Walter Gropius, was enormously influential in modern graphic design, architecture, and industrial design. It was forced to close in 1933 when the National Socialist government declared it a centre of communist influence.",
+    "hallucinations": [
+      {
+        "start": 499,
+        "end": 552,
+        "text": "founded in Berlin, Germany, in 1919 by Walter Gropius",
+        "explanation": "The Bauhaus was founded in Weimar, not Berlin. The school later moved to Dessau (1925) and finally to Berlin (1932), where it was forced to close in 1933. The founding in Weimar is fundamental to its history — 'Bauhaus' (meaning 'building house') was established there under Gropius's vision of uniting fine art and craft."
+      }
+    ]
   },
   {
     "id": "art-03",
     "subject": "Art & Design",
     "level": "GCSE",
     "title": "Photography and Digital Art",
-    "passage": "Photography has evolved from early chemical processes to digital technology. The daguerreotype, the first commercially successful photographic process, was announced publicly by the French Academy of Sciences on 19 August 1839. It was developed by Louis Daguerre in collaboration with Joseph Nicéphore Niépce, who died in 1833 before its completion. The world's oldest surviving photograph, 'View from the Window at Le Gras', was taken by Niépce in approximately 1826–1827 using a pewter plate coated with bitumen. Digital cameras work by capturing light on a sensor rather than film. The first digital camera was invented by Steven Sasson at Eastman Kodak in 1975 and recorded images to a cassette tape at a resolution of 0.01 megapixels.",
-    "hallucinations": []
+    "passage": "Photography has evolved from early chemical processes to digital technology. The daguerreotype, the first commercially successful photographic process, was announced publicly by the French Academy of Sciences on 19 August 1839. It was developed by Louis Daguerre in collaboration with Joseph Nicéphore Niépce, who died in 1833 before its completion. The world's oldest surviving photograph, 'View from the Window at Le Gras', was taken by Louis Daguerre in approximately 1826–1827 using a pewter plate coated with bitumen. Digital cameras work by capturing light on a sensor rather than film. The first digital camera was invented by Steven Sasson at Eastman Kodak in 1975 and recorded images to a cassette tape at a resolution of 0.01 megapixels.",
+    "hallucinations": [
+      {
+        "start": 430,
+        "end": 480,
+        "text": "taken by Louis Daguerre in approximately 1826–1827",
+        "explanation": "The world's oldest surviving photograph was taken by Joseph Nicéphore Niépce, not Louis Daguerre. Niépce created 'View from the Window at Le Gras' using his heliography process. Daguerre developed the daguerreotype process (announced 1839), which produced far clearer images, but Niépce's earlier heliograph is the oldest surviving photograph. The two were collaborators, but this particular image is unambiguously Niépce's."
+      }
+    ]
   },
   {
     "id": "music-01",
     "subject": "Music",
     "level": "GCSE",
     "title": "Musical Forms and Structures",
-    "passage": "Musical form describes the overall structure of a piece of music. Binary form (AB) consists of two contrasting sections. Ternary form (ABA) features a return to the opening material after a contrasting section. Rondo form (ABACADA...) alternates a recurring refrain with contrasting episodes. Theme and variations involves a musical theme being repeated in altered forms. The sonata form, developed in the Classical period, consists of an exposition (presenting two contrasting themes), a development (where themes are transformed), and a recapitulation (where themes return). Ludwig van Beethoven's 9th Symphony in D minor, completed in 1824, was the first symphony to include a choral finale — Beethoven was completely deaf by this time.",
-    "hallucinations": []
+    "passage": "Musical form describes the overall structure of a piece of music. Binary form (AB) consists of two contrasting sections. Ternary form (ABA) features a return to the opening material after a contrasting section. Rondo form (ABACADA...) alternates a recurring refrain with contrasting episodes. Theme and variations involves a musical theme being repeated in altered forms. The sonata form, developed in the Classical period, consists of an exposition (presenting two contrasting themes), a development (where themes are transformed), and a recapitulation (where themes return). Ludwig van Beethoven's 9th Symphony in D minor, completed in 1824, was the first symphony to include a choral finale — Beethoven was completely blind by this time.",
+    "hallucinations": [
+      {
+        "start": 696,
+        "end": 739,
+        "text": "Beethoven was completely blind by this time",
+        "explanation": "Beethoven was completely deaf by the time he completed the 9th Symphony (1824) — not blind. His progressive hearing loss began in his late twenties and was complete by around 1818. He conducted the premiere of the 9th Symphony in 1824 but could not hear the audience's applause. There is no historical evidence that Beethoven had significant vision problems; his disability was hearing loss."
+      }
+    ]
   },
   {
     "id": "music-02",
@@ -597,24 +639,45 @@
     "subject": "Music",
     "level": "GCSE",
     "title": "World Music: African and Indian Music",
-    "passage": "World music encompasses the diverse musical traditions of cultures outside the Western classical canon. African music is characterised by complex polyrhythm — multiple overlapping rhythms played simultaneously — and call-and-response patterns between a soloist and group. Sub-Saharan African music heavily influenced the development of blues, jazz, soul, and hip-hop through the African diaspora. Indian classical music has two main traditions: Hindustani (North Indian) and Carnatic (South Indian). Both traditions use a system of melodic frameworks called ragas, which are associated with specific times of day and seasons. The principal instrument of Hindustani classical music is the sitar, popularised in the West by Ravi Shankar.",
-    "hallucinations": []
+    "passage": "World music encompasses the diverse musical traditions of cultures outside the Western classical canon. African music is characterised by complex polyrhythm — multiple overlapping rhythms played simultaneously — and call-and-response patterns between a soloist and group. Sub-Saharan African music heavily influenced the development of blues, jazz, soul, and hip-hop through the African diaspora. Indian classical music has two main traditions: Hindustani (South Indian) and Carnatic (North Indian). Both traditions use a system of melodic frameworks called ragas, which are associated with specific times of day and seasons. The principal instrument of Hindustani classical music is the sitar, popularised in the West by Ravi Shankar.",
+    "hallucinations": [
+      {
+        "start": 445,
+        "end": 498,
+        "text": "Hindustani (South Indian) and Carnatic (North Indian)",
+        "explanation": "The regional labels have been swapped. The Hindustani tradition is North Indian — centred in the north of the subcontinent, Pakistan, and Bangladesh, shaped partly by Persian and Mughal influences. The Carnatic tradition is South Indian — rooted in Tamil Nadu, Karnataka, Andhra Pradesh, and Kerala. Swapping the two misplaces each tradition by the entire length of the subcontinent."
+      }
+    ]
   },
   {
     "id": "pe-01",
     "subject": "Physical Education",
     "level": "GCSE",
     "title": "Components of Fitness",
-    "passage": "Physical fitness can be divided into health-related and skill-related components. Health-related components include cardiovascular endurance, muscular endurance, muscular strength, flexibility, and body composition. Skill-related components include agility, balance, coordination, power, reaction time, and speed. The VO₂ max is a measure of cardiovascular endurance representing the maximum amount of oxygen a person can use during intense exercise; it is measured in millilitres of oxygen per kilogram of body weight per minute. The bleep test (multi-stage fitness test) is a common method of estimating VO₂ max. It involves running between two markers 20 metres apart in time with beeps that get progressively faster.",
-    "hallucinations": []
+    "passage": "Physical fitness can be divided into health-related and skill-related components. Health-related components include cardiovascular endurance, muscular endurance, muscular strength, flexibility, and body composition. Skill-related components include agility, balance, coordination, power, reaction time, and speed. The VO₂ max is a measure of cardiovascular endurance representing the maximum amount of oxygen a person can use during intense exercise; it is measured in litres of oxygen per kilogram of body weight per minute. The bleep test (multi-stage fitness test) is a common method of estimating VO₂ max. It involves running between two markers 20 metres apart in time with beeps that get progressively faster.",
+    "hallucinations": [
+      {
+        "start": 457,
+        "end": 524,
+        "text": "measured in litres of oxygen per kilogram of body weight per minute",
+        "explanation": "VO₂ max is measured in millilitres (mL) per kilogram of body weight per minute — not litres. Using litres would give values such as 0.035–0.085 L/kg/min, whereas the conventional measure in mL/kg/min gives more meaningful values of around 35–85 mL/kg/min for trained athletes. The unit matters because it determines how values are reported and compared across research and fitness testing."
+      }
+    ]
   },
   {
     "id": "pe-02",
     "subject": "Physical Education",
     "level": "GCSE",
     "title": "Skeletal and Muscular Systems",
-    "passage": "The human skeleton provides support, protection, and enables movement. The adult human skeleton has 206 bones. Joints are classified by their structure and the movement they allow; synovial joints are the most common and include hinge joints (elbow, knee), ball-and-socket joints (hip, shoulder), and pivot joints (neck). Muscles work in antagonistic pairs — when one contracts, the other relaxes. When the bicep brachii contracts, it flexes the elbow, and the tricep brachii relaxes (acting as the antagonist). There are three types of muscle tissue: skeletal (voluntary), smooth (involuntary), and cardiac. Tendons connect muscle to bone, while ligaments connect bone to bone.",
-    "hallucinations": []
+    "passage": "The human skeleton provides support, protection, and enables movement. The adult human skeleton has 206 bones. Joints are classified by their structure and the movement they allow; synovial joints are the most common and include hinge joints (elbow, knee), ball-and-socket joints (hip, shoulder), and pivot joints (neck). Muscles work in antagonistic pairs — when one contracts, the other relaxes. When the bicep brachii contracts, it flexes the elbow, and the tricep brachii relaxes (acting as the antagonist). There are three types of muscle tissue: skeletal (voluntary), smooth (involuntary), and cardiac. Tendons connect bone to bone, while ligaments connect muscle to bone.",
+    "hallucinations": [
+      {
+        "start": 609,
+        "end": 677,
+        "text": "Tendons connect bone to bone, while ligaments connect muscle to bone",
+        "explanation": "These have been swapped. Tendons connect muscle to bone — they are tough fibrous cords that transmit the force of muscle contraction to move joints. Ligaments connect bone to bone — they hold the skeleton together at joints and provide stability. A useful mnemonic: 'Tendons connect muscles; Ligaments link bones.' Confusing the two is one of the most common errors in anatomy."
+      }
+    ]
   },
   {
     "id": "pe-03",
@@ -637,16 +700,30 @@
     "subject": "Drama",
     "level": "GCSE",
     "title": "Staging Configurations",
-    "passage": "The relationship between the performance space and the audience fundamentally shapes the theatrical experience. In proscenium arch staging, the audience views the performance through a 'picture frame' arch, with action taking place on a raised stage in front. Theatre in the round places the audience on all sides of the performance area, creating intimacy but limiting scenery. Thrust staging extends the performance area into the audience space, with spectators on three sides. Traverse staging places the audience on two opposite sides with the performance area between them. Promenade theatre has no fixed seating, with the audience moving to follow the action. The Globe Theatre in London, built in 1599 and reconstructed near its original site opening in 1997, used a thrust stage with a covered stage area called 'the heavens'.",
-    "hallucinations": []
+    "passage": "The relationship between the performance space and the audience fundamentally shapes the theatrical experience. In proscenium arch staging, the audience views the performance through a 'picture frame' arch, with action taking place on a raised stage in front. Theatre in the round places the audience on all sides of the performance area, creating intimacy and enabling more elaborate scenery than other staging types. Thrust staging extends the performance area into the audience space, with spectators on three sides. Traverse staging places the audience on two opposite sides with the performance area between them. Promenade theatre has no fixed seating, with the audience moving to follow the action. The Globe Theatre in London, built in 1599 and reconstructed near its original site opening in 1997, used a thrust stage with a covered stage area called 'the heavens'.",
+    "hallucinations": [
+      {
+        "start": 339,
+        "end": 417,
+        "text": "creating intimacy and enabling more elaborate scenery than other staging types",
+        "explanation": "Theatre in the round creates intimacy by surrounding the action on all sides, but it severely limits scenery — not enhances it. Because the audience views from every direction, traditional scenic backdrops, large set pieces, and most conventional staging tricks become impractical. The passage contradicts the reality: restricted scenery is precisely one of the key trade-offs that comes with choosing theatre in the round."
+      }
+    ]
   },
   {
     "id": "drama-03",
     "subject": "Drama",
     "level": "GCSE",
     "title": "Physical Theatre and Devising",
-    "passage": "Physical theatre is a performance style that places emphasis on the expressive use of the body, often combining movement, gesture, and language. Companies such as DV8 Physical Theatre, founded by Lloyd Newson in 1986, and Complicité, co-founded by Simon McBurney, have been influential in British physical theatre. Devising is the process of creating original theatre through collaborative exploration rather than interpreting an existing script. Key devising approaches include stimulus-based work (starting from an image, object, or theme), structured improvisation, and techniques borrowed from practitioners like Jacques Lecoq, the French theatre practitioner who developed a movement-based pedagogy based at his school in Paris.",
-    "hallucinations": []
+    "passage": "Physical theatre is a performance style that places emphasis on the expressive use of the body, often combining movement, gesture, and language. Companies such as DV8 Physical Theatre, founded by Simon McBurney in 1986, and Complicité, co-founded by Lloyd Newson, have been influential in British physical theatre. Devising is the process of creating original theatre through collaborative exploration rather than interpreting an existing script. Key devising approaches include stimulus-based work (starting from an image, object, or theme), structured improvisation, and techniques borrowed from practitioners like Jacques Lecoq, the French theatre practitioner who developed a movement-based pedagogy based at his school in Paris.",
+    "hallucinations": [
+      {
+        "start": 163,
+        "end": 262,
+        "text": "DV8 Physical Theatre, founded by Simon McBurney in 1986, and Complicité, co-founded by Lloyd Newson",
+        "explanation": "The founders have been swapped. DV8 Physical Theatre was founded by Lloyd Newson in 1986, and Complicité was co-founded by Simon McBurney. Both are major figures in British physical theatre, which makes this a plausible but clear error — each is associated with the wrong company."
+      }
+    ]
   },
   {
     "id": "food-01",
@@ -668,8 +745,15 @@
     "subject": "Food Preparation & Nutrition",
     "level": "GCSE",
     "title": "Food Safety and Hygiene",
-    "passage": "Food safety is essential to prevent foodborne illness. The danger zone for bacterial growth is between 8°C and 63°C; food should be kept below 8°C (refrigerated) or above 63°C (hot-held) to limit bacterial multiplication. The most common cause of food poisoning in the UK is Campylobacter, typically found in poultry. Salmonella, often associated with eggs and raw chicken, can cause severe gastrointestinal symptoms. The 'four Cs' of food safety are: Cooking, Cleaning, Chilling, and Cross-contamination prevention. HACCP (Hazard Analysis and Critical Control Points) is a food safety management system developed by NASA and Pillsbury in the 1960s to ensure safe food for astronauts. In the UK, food businesses are regulated under the Food Safety Act 1990.",
-    "hallucinations": []
+    "passage": "Food safety is essential to prevent foodborne illness. The danger zone for bacterial growth is between 8°C and 63°C; food should be kept below 8°C (refrigerated) or above 63°C (hot-held) to limit bacterial multiplication. The most common cause of food poisoning in the UK is Salmonella, typically found in poultry. Campylobacter, often associated with eggs and raw chicken, can cause severe gastrointestinal symptoms. The 'four Cs' of food safety are: Cooking, Cleaning, Chilling, and Cross-contamination prevention. HACCP (Hazard Analysis and Critical Control Points) is a food safety management system developed by NASA and Pillsbury in the 1960s to ensure safe food for astronauts. In the UK, food businesses are regulated under the Food Safety Act 1990.",
+    "hallucinations": [
+      {
+        "start": 222,
+        "end": 313,
+        "text": "The most common cause of food poisoning in the UK is Salmonella, typically found in poultry",
+        "explanation": "Campylobacter, not Salmonella, is the most common cause of food poisoning in the UK. Both bacteria are associated with poultry and cause gastrointestinal illness, making this a plausible swap — but the Public Health England data consistently shows Campylobacter as the leading cause by case numbers. Salmonella is the second most common, and is more associated with eggs than poultry alone."
+      }
+    ]
   },
   {
     "id": "food-03",
@@ -699,8 +783,15 @@
     "subject": "Business Studies",
     "level": "GCSE",
     "title": "Marketing: The Marketing Mix",
-    "passage": "The marketing mix is a set of tools businesses use to achieve their marketing objectives. The traditional four Ps are: Product, Price, Place, and Promotion. Product decisions involve design, quality, features, and branding. Price strategies include cost-plus pricing, competitive pricing, penetration pricing (setting a low initial price to gain market share), and price skimming (setting a high initial price for innovative products). Place refers to distribution channels — how the product reaches the customer. Promotion encompasses advertising, public relations, social media marketing, and direct marketing. The four Ps framework was first proposed by professor Jerome McCarthy in his 1960 textbook Basic Marketing. The extended marketing mix for services adds three further Ps: People, Process, and Physical evidence.",
-    "hallucinations": []
+    "passage": "The marketing mix is a set of tools businesses use to achieve their marketing objectives. The traditional four Ps are: Product, Price, Place, and Promotion. Product decisions involve design, quality, features, and branding. Price strategies include cost-plus pricing, competitive pricing, penetration pricing (setting a high initial price to maximise revenue from early adopters), and price skimming (setting a low initial price to gain market share quickly). Place refers to distribution channels — how the product reaches the customer. Promotion encompasses advertising, public relations, social media marketing, and direct marketing. The four Ps framework was first proposed by professor Jerome McCarthy in his 1960 textbook Basic Marketing. The extended marketing mix for services adds three further Ps: People, Process, and Physical evidence.",
+    "hallucinations": [
+      {
+        "start": 289,
+        "end": 458,
+        "text": "penetration pricing (setting a high initial price to maximise revenue from early adopters), and price skimming (setting a low initial price to gain market share quickly)",
+        "explanation": "The definitions have been swapped. Penetration pricing means setting a low initial price to build market share quickly, then raising it once customers are retained. Price skimming sets a high initial price to capture revenue from early adopters willing to pay a premium, then gradually reduces the price. Getting these the wrong way round confuses two strategies with directly opposite approaches."
+      }
+    ]
   },
   {
     "id": "business-03",
@@ -715,16 +806,30 @@
     "subject": "Economics",
     "level": "A-Level",
     "title": "Supply and Demand",
-    "passage": "The law of demand states that, all other things being equal (ceteris paribus), as the price of a good increases, the quantity demanded decreases. This inverse relationship is represented by a downward-sloping demand curve. The law of supply states that as price increases, the quantity supplied increases, resulting in an upward-sloping supply curve. Market equilibrium occurs where the demand and supply curves intersect. Price elasticity of demand (PED) measures the responsiveness of quantity demanded to a change in price: PED = % change in quantity demanded ÷ % change in price. Adam Smith's The Wealth of Nations, published in 1776, introduced the concept of the 'invisible hand', arguing that individuals pursuing self-interest unintentionally benefit society as a whole.",
-    "hallucinations": []
+    "passage": "The law of demand states that, all other things being equal (ceteris paribus), as the price of a good increases, the quantity demanded decreases. This inverse relationship is represented by a downward-sloping demand curve. The law of supply states that as price increases, the quantity supplied increases, resulting in an upward-sloping supply curve. Market equilibrium occurs where the demand and supply curves intersect. Price elasticity of demand (PED) measures the responsiveness of quantity demanded to a change in price: PED = % change in quantity demanded ÷ % change in price. Adam Smith's The Theory of Moral Sentiments, published in 1776, introduced the concept of the 'invisible hand', arguing that individuals pursuing self-interest unintentionally benefit society as a whole.",
+    "hallucinations": [
+      {
+        "start": 584,
+        "end": 646,
+        "text": "Adam Smith's The Theory of Moral Sentiments, published in 1776",
+        "explanation": "The 'invisible hand' concept appears in Adam Smith's The Wealth of Nations (published 1776), not The Theory of Moral Sentiments. The Theory of Moral Sentiments was Smith's earlier work, published in 1759, addressing moral philosophy and sympathy. The Wealth of Nations is the foundational text of modern economics in which Smith develops his argument about market mechanisms, self-interest, and the division of labour. Confusing the two titles mixes up Smith's two most important books."
+      }
+    ]
   },
   {
     "id": "economics-02",
     "subject": "Economics",
     "level": "A-Level",
     "title": "Market Failure and Externalities",
-    "passage": "Market failure occurs when the free market fails to allocate resources efficiently, leading to a loss of economic welfare. Externalities are costs or benefits that affect third parties not involved in the transaction. A negative externality (e.g. pollution from a factory) causes the social cost to exceed the private cost, leading to overproduction. A positive externality (e.g. education, vaccination) causes the social benefit to exceed the private benefit, leading to underproduction. Public goods are non-excludable and non-rival (e.g. national defence, street lighting) and tend to be underprovided by the private sector due to the free rider problem. The concept of externalities was developed by the British economist Arthur Pigou in his 1920 work The Economics of Welfare, which also proposed the 'Pigouvian tax' as a corrective measure.",
-    "hallucinations": []
+    "passage": "Market failure occurs when the free market fails to allocate resources efficiently, leading to a loss of economic welfare. Externalities are costs or benefits that affect third parties not involved in the transaction. A negative externality (e.g. pollution from a factory) causes the social cost to exceed the private cost, leading to underproduction. A positive externality (e.g. education, vaccination) causes the social benefit to exceed the private benefit, leading to overproduction. Public goods are non-excludable and non-rival (e.g. national defence, street lighting) and tend to be underprovided by the private sector due to the free rider problem. The concept of externalities was developed by the British economist Arthur Pigou in his 1920 work The Economics of Welfare, which also proposed the 'Pigouvian tax' as a corrective measure.",
+    "hallucinations": [
+      {
+        "start": 218,
+        "end": 487,
+        "text": "A negative externality (e.g. pollution from a factory) causes the social cost to exceed the private cost, leading to underproduction. A positive externality (e.g. education, vaccination) causes the social benefit to exceed the private benefit, leading to overproduction",
+        "explanation": "The outcomes have been swapped. A negative externality leads to overproduction — because the producer does not pay the full social cost, the good is priced below its true cost, demand is artificially high, and too much is produced. A positive externality leads to underproduction — because private actors capture less than the full social benefit, they invest too little. Getting these the wrong way round is a fundamental error in welfare economics."
+      }
+    ]
   },
   {
     "id": "economics-03",
@@ -754,8 +859,15 @@
     "subject": "Psychology",
     "level": "A-Level",
     "title": "Social Influence: Conformity",
-    "passage": "Conformity is the tendency to adjust one's behaviour or beliefs to match those of a group. Solomon Asch conducted a classic series of conformity experiments in the early 1950s, in which participants were asked to judge the length of lines in the presence of confederates who deliberately gave wrong answers. Asch found that approximately 75% of participants conformed at least once. He identified several factors that affect conformity, including group size, unanimity, and task difficulty. Normative social influence involves conforming to be liked or accepted; informational social influence involves conforming because we believe others have more accurate information. Muzafer Sherif's autokinetic effect studies (1935) demonstrated informational social influence.",
-    "hallucinations": []
+    "passage": "Conformity is the tendency to adjust one's behaviour or beliefs to match those of a group. Solomon Asch conducted a classic series of conformity experiments in the early 1950s, in which participants were asked to judge the length of lines in the presence of confederates who deliberately gave wrong answers. Asch found that approximately 75% of participants conformed at least once. He identified several factors that affect conformity, including group size, unanimity, and task difficulty. Normative social influence involves conforming because we believe others have more accurate information; informational social influence involves conforming to be liked or accepted. Muzafer Sherif's autokinetic effect studies (1935) demonstrated informational social influence.",
+    "hallucinations": [
+      {
+        "start": 491,
+        "end": 670,
+        "text": "Normative social influence involves conforming because we believe others have more accurate information; informational social influence involves conforming to be liked or accepted",
+        "explanation": "The definitions have been swapped. Normative social influence involves conforming to fit in, be liked, or avoid social rejection — it is driven by the desire for social approval, not a belief in others' accuracy. Informational social influence occurs when we are uncertain and look to others because we genuinely believe they have better information. The distinction is important: normative influence is public compliance without private acceptance, while informational influence can change our actual beliefs."
+      }
+    ]
   },
   {
     "id": "psychology-03",
@@ -770,16 +882,30 @@
     "subject": "Sociology",
     "level": "A-Level",
     "title": "Sociological Theory: Functionalism",
-    "passage": "Functionalism is a macro-level sociological perspective that views society as a system of interconnected parts, each contributing to the overall stability and functioning of the whole — analogous to the organs of a body. Émile Durkheim, one of the founding figures of sociology, argued that social cohesion is maintained through shared norms and values (a 'collective conscience'). Talcott Parsons developed structural functionalism, identifying the AGIL schema — Adaptation, Goal attainment, Integration, and Latency — as four functional prerequisites of any society. Robert Merton distinguished between manifest functions (intended and recognised) and latent functions (unintended and unrecognised). Durkheim's study of suicide (1897) used statistical data to argue that suicide rates reflected social integration.",
-    "hallucinations": []
+    "passage": "Functionalism is a macro-level sociological perspective that views society as a system of interconnected parts, each contributing to the overall stability and functioning of the whole — analogous to the organs of a body. Émile Durkheim, one of the founding figures of sociology, argued that social cohesion is maintained through shared norms and values (a 'collective conscience'). Talcott Parsons developed structural functionalism, identifying the AGIL schema — Adaptation, Growth, Integration, and Latency — as four functional prerequisites of any society. Robert Merton distinguished between manifest functions (intended and recognised) and latent functions (unintended and unrecognised). Durkheim's study of suicide (1897) used statistical data to argue that suicide rates reflected social integration.",
+    "hallucinations": [
+      {
+        "start": 464,
+        "end": 508,
+        "text": "Adaptation, Growth, Integration, and Latency",
+        "explanation": "Parsons's AGIL schema stands for Adaptation, Goal attainment, Integration, and Latency (pattern maintenance) — not 'Growth'. The G stands for Goal attainment: the need for any social system to define and achieve its collective goals. 'Growth' is not one of the four functional prerequisites. Changing 'Goal attainment' to 'Growth' alters both the content and the acronym."
+      }
+    ]
   },
   {
     "id": "sociology-02",
     "subject": "Sociology",
     "level": "A-Level",
     "title": "Education: Sociological Perspectives",
-    "passage": "Sociologists have examined education from multiple perspectives. Functionalists such as Parsons argue that education serves to socialise children into shared values and to allocate individuals to appropriate roles through meritocracy. Marxists, by contrast, argue that education reproduces class inequality. Bowles and Gintis (1976) proposed the 'correspondence principle', arguing that the social relations of schooling mirror those of the workplace. Paul Willis's ethnographic study Learning to Labour (1977) examined how working-class boys actively resisted school culture, yet ultimately reproduced their class position by entering manual labour. Feminist perspectives highlight gender inequalities in education; notably, girls now consistently outperform boys at GCSE and A-Level in the UK.",
-    "hallucinations": []
+    "passage": "Sociologists have examined education from multiple perspectives. Functionalists such as Parsons argue that education serves to socialise children into shared values and to allocate individuals to appropriate roles through meritocracy. Marxists, by contrast, argue that education reproduces class inequality. Bowles and Gintis (1976) proposed the 'correspondence principle', arguing that the social relations of schooling mirror those of the workplace. Paul Willis's ethnographic study Learning to Labour (1977) examined how working-class boys actively resisted school culture, yet ultimately reproduced their class position by entering manual labour. Feminist perspectives highlight gender inequalities in education; notably, boys now consistently outperform girls at GCSE and A-Level in the UK.",
+    "hallucinations": [
+      {
+        "start": 726,
+        "end": 794,
+        "text": "boys now consistently outperform girls at GCSE and A-Level in the UK",
+        "explanation": "In contemporary UK education, girls consistently outperform boys at GCSE and A-Level — the opposite of what this sentence claims. This gender gap in attainment, with girls ahead, has been a well-documented trend since the late 1980s and is one of the central observations that prompted a shift in feminist educational research from focusing solely on girls' disadvantage to also examining boys' relative underperformance."
+      }
+    ]
   },
   {
     "id": "sociology-03",
@@ -817,16 +943,30 @@
     "subject": "Law",
     "level": "A-Level",
     "title": "The English Legal System: Sources of Law",
-    "passage": "English law derives from four main sources: legislation (Acts of Parliament), delegated legislation, case law (judicial precedent), and European Union law (to the extent it was retained after Brexit). The doctrine of judicial precedent (stare decisis) requires courts to follow decisions of higher courts on the same legal point. The court hierarchy in England and Wales places the Supreme Court at the apex, followed by the Court of Appeal, the High Court, and the Crown Court and County Courts below. The Supreme Court replaced the House of Lords as the UK's highest court in October 2009, following the Constitutional Reform Act 2005. The Human Rights Act 1998 incorporated the European Convention on Human Rights into domestic law.",
-    "hallucinations": []
+    "passage": "English law derives from four main sources: legislation (Acts of Parliament), delegated legislation, case law (judicial precedent), and European Union law (to the extent it was retained after Brexit). The doctrine of judicial precedent (stare decisis) requires courts to follow decisions of higher courts on the same legal point. The court hierarchy in England and Wales places the Supreme Court at the apex, followed by the Court of Appeal, the High Court, and the Crown Court and County Courts below. The Supreme Court replaced the House of Lords as the UK's highest court in October 2009, following the Constitutional Reform Act 2005. The Human Rights Act 1998 incorporated the Universal Declaration of Human Rights into domestic law.",
+    "hallucinations": [
+      {
+        "start": 638,
+        "end": 736,
+        "text": "The Human Rights Act 1998 incorporated the Universal Declaration of Human Rights into domestic law",
+        "explanation": "The Human Rights Act 1998 incorporated the European Convention on Human Rights (ECHR) into UK domestic law — not the Universal Declaration of Human Rights (UDHR). The UDHR (1948) is a UN declaration that is not directly legally enforceable; the ECHR is a treaty of the Council of Europe that can be enforced through the European Court of Human Rights in Strasbourg. The two documents are commonly confused, but only the ECHR was given domestic legal effect by the 1998 Act."
+      }
+    ]
   },
   {
     "id": "media-01",
     "subject": "Media Studies",
     "level": "A-Level",
     "title": "Media Theories: Representation",
-    "passage": "Representation in media refers to the way people, places, events, and ideas are presented through media texts. Stuart Hall's encoding/decoding theory (1980) argues that media producers encode messages into texts, which audiences decode — and this decoding may be dominant (accepting the preferred reading), negotiated (partly accepting), or oppositional (rejecting the preferred reading). Hall was a Jamaican-born cultural theorist who worked at the Birmingham Centre for Contemporary Cultural Studies (CCCS) and later at the Open University. Laura Mulvey's concept of the 'male gaze', introduced in her 1975 essay 'Visual Pleasure and Narrative Cinema', argues that mainstream cinema is structured from a heterosexual male perspective, positioning women as objects of visual pleasure.",
-    "hallucinations": []
+    "passage": "Representation in media refers to the way people, places, events, and ideas are presented through media texts. Stuart Hall's encoding/decoding theory (1980) argues that media producers encode messages into texts, which audiences decode — and this decoding may be dominant (accepting the preferred reading), negotiated (partly accepting), or oppositional (rejecting the preferred reading). Hall was a Jamaican-born cultural theorist who worked at the Birmingham Centre for Contemporary Cultural Studies (CCCS) and later at the Open University. Laura Mulvey's concept of the 'male gaze', introduced in her 1975 book The Second Sex, argues that mainstream cinema is structured from a heterosexual male perspective, positioning women as objects of visual pleasure.",
+    "hallucinations": [
+      {
+        "start": 586,
+        "end": 628,
+        "text": "introduced in her 1975 book The Second Sex",
+        "explanation": "Laura Mulvey's 'male gaze' concept was introduced in her 1975 essay 'Visual Pleasure and Narrative Cinema', not in a book called The Second Sex. The Second Sex is a foundational feminist text written by Simone de Beauvoir, published in French in 1949. Attributing de Beauvoir's title to Mulvey conflates two different feminist thinkers from different generations and countries."
+      }
+    ]
   },
   {
     "id": "media-02",
@@ -856,16 +996,30 @@
     "subject": "Health & Social Care",
     "level": "A-Level",
     "title": "Human Development: Life Stages",
-    "passage": "Human development is typically divided into life stages: infancy (0–2 years), early childhood (3–8 years), adolescence (9–18 years), early adulthood (19–45 years), middle adulthood (46–65 years), and later adulthood (65+ years). Each stage involves physical, intellectual, emotional, and social (PIES) development. Adolescence is marked by puberty — the physical maturation of the reproductive system. Erik Erikson proposed a model of psychosocial development consisting of eight stages, each characterised by a central conflict; for example, adolescence involves the conflict of 'identity vs role confusion'. Jean Piaget's theory of cognitive development describes four stages: sensorimotor, pre-operational, concrete operational, and formal operational.",
-    "hallucinations": []
+    "passage": "Human development is typically divided into life stages: infancy (0–2 years), early childhood (3–8 years), adolescence (9–18 years), early adulthood (19–45 years), middle adulthood (46–65 years), and later adulthood (65+ years). Each stage involves physical, intellectual, emotional, and social (PIES) development. Adolescence is marked by puberty — the physical maturation of the reproductive system. Erik Erikson proposed a model of psychosocial development consisting of eight stages, each characterised by a central conflict; for example, adolescence involves the conflict of 'industry vs inferiority'. Jean Piaget's theory of cognitive development describes four stages: sensorimotor, pre-operational, concrete operational, and formal operational.",
+    "hallucinations": [
+      {
+        "start": 580,
+        "end": 605,
+        "text": "'industry vs inferiority'",
+        "explanation": "Erikson's stage for adolescence (approximately ages 12–18) is 'identity vs role confusion', not 'industry vs inferiority'. 'Industry vs inferiority' is Erikson's fourth stage, associated with school-age children (approximately ages 6–11), when children learn to competently use tools and skills. The fifth stage — adolescence — centres on developing a coherent sense of personal identity."
+      }
+    ]
   },
   {
     "id": "hsc-02",
     "subject": "Health & Social Care",
     "level": "A-Level",
     "title": "The NHS and Health Policy",
-    "passage": "The National Health Service (NHS) was established on 5 July 1948 by Health Secretary Aneurin Bevan, based on the recommendations of the 1942 Beveridge Report. The NHS operates on the principle of universal healthcare: free at the point of delivery, funded through general taxation. The Beveridge Report identified five 'Giant Evils' threatening post-war British society: Want, Disease, Ignorance, Squalor, and Idleness. The Health and Social Care Act 2012 introduced significant structural changes to the NHS in England, including the creation of Clinical Commissioning Groups (CCGs) to control local health budgets. The COVID-19 pandemic, declared by the World Health Organization on 11 March 2020, placed unprecedented pressure on NHS services and led to the rapid development of vaccines.",
-    "hallucinations": []
+    "passage": "The National Health Service (NHS) was established on 5 July 1948 by Health Secretary Aneurin Bevan, based on the recommendations of the 1942 Beveridge Report. The NHS operates on the principle of universal healthcare: free at the point of delivery, funded through general taxation. The Beveridge Report identified five 'Giant Evils' threatening post-war British society: Want, Disease, Illiteracy, Squalor, and Idleness. The Health and Social Care Act 2012 introduced significant structural changes to the NHS in England, including the creation of Clinical Commissioning Groups (CCGs) to control local health budgets. The COVID-19 pandemic, declared by the World Health Organization on 11 March 2020, placed unprecedented pressure on NHS services and led to the rapid development of vaccines.",
+    "hallucinations": [
+      {
+        "start": 371,
+        "end": 419,
+        "text": "Want, Disease, Illiteracy, Squalor, and Idleness",
+        "explanation": "The Beveridge Report named the five Giant Evils as Want, Disease, Ignorance, Squalor, and Idleness — not Illiteracy. 'Ignorance' was Beveridge's word for inadequate education and lack of opportunity, a broader concept than literacy. Substituting 'Illiteracy' narrows the meaning significantly and is not what Beveridge wrote. This is a common-looking substitution that changes the meaning of the original."
+      }
+    ]
   },
   {
     "id": "hsc-03",
@@ -880,16 +1034,30 @@
     "subject": "Politics",
     "level": "A-Level",
     "title": "The UK Constitution",
-    "passage": "The United Kingdom has an uncodified (unwritten) constitution, meaning its constitutional rules are not contained in a single authoritative document but are drawn from multiple sources: statute law, common law, conventions, works of authority, and European Union law (prior to Brexit). Key constitutional statutes include the Magna Carta (1215), the Bill of Rights (1689), the Parliament Acts (1911 and 1949), the Human Rights Act 1998, and the Fixed-term Parliaments Act 2011 (repealed in 2022). Parliamentary sovereignty — the principle that Parliament is the supreme legal authority in the UK — is central to the British constitution. A.V. Dicey, who articulated this doctrine in his 1885 work Introduction to the Study of the Law of the Constitution, also identified the rule of law as a second pillar of the constitution.",
-    "hallucinations": []
+    "passage": "The United Kingdom has an uncodified (unwritten) constitution, meaning its constitutional rules are not contained in a single authoritative document but are drawn from multiple sources: statute law, common law, conventions, works of authority, and European Union law (prior to Brexit). Key constitutional statutes include the Magna Carta (1215), the Bill of Rights (1689), the Parliament Acts (1911 and 1949), the Human Rights Act 1998, and the Fixed-term Parliaments Act 2011 (repealed in 2022). Parliamentary sovereignty — the principle that the judiciary is the supreme legal authority in the UK — is central to the British constitution. A.V. Dicey, who articulated this doctrine in his 1885 work Introduction to the Study of the Law of the Constitution, also identified the rule of law as a second pillar of the constitution.",
+    "hallucinations": [
+      {
+        "start": 525,
+        "end": 598,
+        "text": "the principle that the judiciary is the supreme legal authority in the UK",
+        "explanation": "Parliamentary sovereignty means that Parliament — not the judiciary — is the supreme legal authority. Under this doctrine, courts cannot strike down Acts of Parliament (unlike in the USA, where the Supreme Court can declare laws unconstitutional). The judiciary interprets and applies the law but cannot override Parliament. This is a fundamental constitutional distinction, and the error replaces a core principle of the British constitution with its opposite."
+      }
+    ]
   },
   {
     "id": "politics-02",
     "subject": "Politics",
     "level": "A-Level",
     "title": "Political Parties and Ideologies",
-    "passage": "The UK has a multi-party political system dominated by two main parties: the Conservative Party and the Labour Party. The Conservative Party, traditionally associated with tradition, property rights, and limited state intervention, was founded in the 1830s from the older Tory party. The Labour Party was founded in 1900 as the Labour Representation Committee, changing its name to the Labour Party in 1906. Liberalism emphasises individual freedom, limited government, and the rule of law; classical liberals favour minimal state intervention, while social liberals accept greater state intervention to address social inequalities. The Liberal Democrats were formed in 1988 from a merger of the Liberal Party and the Social Democratic Party (SDP).",
-    "hallucinations": []
+    "passage": "The UK has a multi-party political system dominated by two main parties: the Conservative Party and the Labour Party. The Conservative Party, traditionally associated with tradition, property rights, and limited state intervention, was founded in the 1830s from the older Tory party. The Labour Party was founded in 1900 as the Labour Representation Committee, changing its name to the Labour Party in 1906. Liberalism emphasises individual freedom, limited government, and the rule of law; classical liberals favour greater state intervention to address market failures, while social liberals favour minimal state intervention and maximum individual freedom. The Liberal Democrats were formed in 1988 from a merger of the Liberal Party and the Social Democratic Party (SDP).",
+    "hallucinations": [
+      {
+        "start": 491,
+        "end": 658,
+        "text": "classical liberals favour greater state intervention to address market failures, while social liberals favour minimal state intervention and maximum individual freedom",
+        "explanation": "These definitions are the wrong way round. Classical liberals favour minimal state intervention and maximum individual freedom — associated with thinkers like Adam Smith and early Mill, opposing government interference in economy and personal life. Social liberals accept a larger role for the state in addressing social inequalities and market failures — accepting that government action is sometimes needed to ensure fair outcomes. Classical liberalism historically preceded social liberalism, which emerged as a response to industrial poverty."
+      }
+    ]
   },
   {
     "id": "politics-03",
@@ -904,16 +1072,30 @@
     "subject": "Philosophy",
     "level": "A-Level",
     "title": "Theory of Knowledge: Epistemology",
-    "passage": "Epistemology is the branch of philosophy concerned with the nature, sources, and limits of knowledge. The traditional definition of knowledge as 'justified true belief' (JTB) dates back to Plato's Meno and Theaetetus. Edmund Gettier challenged this definition in a landmark 1963 paper — just three pages long — titled 'Is Justified True Belief Knowledge?', presenting counterexamples in which a belief is justified and true but does not constitute knowledge. René Descartes, in his Meditations on First Philosophy (1641), used systematic doubt to arrive at the cogito: 'cogito ergo sum' ('I think, therefore I am'), as the one indubitable truth. John Locke's empiricism held that the mind begins as a blank slate (tabula rasa) upon which experience writes.",
-    "hallucinations": []
+    "passage": "Epistemology is the branch of philosophy concerned with the nature, sources, and limits of knowledge. The traditional definition of knowledge as 'justified true belief' (JTB) dates back to Plato's Meno and Theaetetus. Edmund Gettier challenged this definition in a landmark 1963 paper — just three pages long — titled 'Is Justified True Belief Knowledge?', presenting counterexamples in which a belief is justified and true but does not constitute knowledge. René Descartes, in his Meditations on First Philosophy (1641), used systematic doubt to arrive at the cogito: 'cogito ergo sum' ('I think, therefore I am'), as the one indubitable truth. David Hume's empiricism held that the mind begins as a blank slate (tabula rasa) upon which experience writes.",
+    "hallucinations": [
+      {
+        "start": 646,
+        "end": 755,
+        "text": "David Hume's empiricism held that the mind begins as a blank slate (tabula rasa) upon which experience writes",
+        "explanation": "The concept of the mind as a 'tabula rasa' (blank slate) belongs to John Locke, not David Hume. Locke argued in his Essay Concerning Human Understanding (1689) that the mind is empty at birth and all knowledge comes from sensory experience. Hume was also a British empiricist and built on Locke's work, but the tabula rasa is specifically Locke's formulation. Substituting Hume for Locke misattributes one of the most famous concepts in early modern epistemology."
+      }
+    ]
   },
   {
     "id": "philosophy-02",
     "subject": "Philosophy",
     "level": "A-Level",
     "title": "Ethics: Utilitarianism",
-    "passage": "Utilitarianism is a consequentialist ethical theory holding that the morally right action is the one that produces the greatest good for the greatest number of people. Jeremy Bentham, the founder of utilitarianism, developed the hedonic calculus — a method of measuring pleasure and pain — and argued that the goal of legislation should be to maximise overall happiness. John Stuart Mill refined Bentham's utilitarian theory, distinguishing between higher pleasures (intellectual, moral) and lower pleasures (bodily), and arguing that it is 'better to be Socrates dissatisfied than a fool satisfied'. Mill published Utilitarianism in 1863. Peter Singer is a prominent contemporary utilitarian whose work on animal liberation and effective altruism has been highly influential.",
-    "hallucinations": []
+    "passage": "Utilitarianism is a consequentialist ethical theory holding that the morally right action is the one that produces the greatest good for the greatest number of people. Jeremy Bentham, the founder of utilitarianism, developed the hedonic calculus — a method of measuring pleasure and pain — and distinguished between higher pleasures (intellectual, moral) and lower pleasures (bodily), arguing that it is 'better to be Socrates dissatisfied than a fool satisfied'. John Stuart Mill built on Bentham's ideas, arguing that the goal of legislation should be to maximise overall happiness. Mill published Utilitarianism in 1863. Peter Singer is a prominent contemporary utilitarian whose work on animal liberation and effective altruism has been highly influential.",
+    "hallucinations": [
+      {
+        "start": 294,
+        "end": 462,
+        "text": "distinguished between higher pleasures (intellectual, moral) and lower pleasures (bodily), arguing that it is 'better to be Socrates dissatisfied than a fool satisfied'",
+        "explanation": "Both contributions described here belong to John Stuart Mill, not Jeremy Bentham. Bentham treated all pleasures as qualitatively equal — only quantity and intensity mattered in his hedonic calculus. It was Mill who introduced the famous quality distinction between 'higher' intellectual pleasures and 'lower' bodily ones, and who wrote 'better to be Socrates dissatisfied than a fool satisfied'. Attributing Mill's innovations to Bentham misrepresents one of the most important developments in utilitarian philosophy."
+      }
+    ]
   },
   {
     "id": "philosophy-03",
@@ -928,8 +1110,15 @@
     "subject": "Further Mathematics",
     "level": "A-Level",
     "title": "Complex Numbers",
-    "passage": "Complex numbers extend the real number system by introducing the imaginary unit i, defined as √(−1), so that i² = −1. A complex number is written in the form z = a + bi, where a is the real part and b is the imaginary part. The modulus of z is |z| = √(a² + b²), representing the distance from the origin in the Argand diagram. The argument of z is the angle θ = arctan(b/a) measured from the positive real axis. Euler's formula, e^(iθ) = cos θ + i sin θ, connects complex exponentials to trigonometric functions. A special case gives Euler's identity: e^(iπ) + 1 = 0, often described as the most beautiful equation in mathematics.",
-    "hallucinations": []
+    "passage": "Complex numbers extend the real number system by introducing the imaginary unit i, defined as √(−1), so that i² = −1. A complex number is written in the form z = a + bi, where a is the real part and b is the imaginary part. The modulus of z is |z| = √(a² + b²), representing the distance from the origin in the Argand diagram. The argument of z is the angle θ = arctan(b/a) measured from the positive real axis. Euler's formula, e^(iθ) = cos θ + i sin θ, connects complex exponentials to trigonometric functions. A special case gives Euler's identity: e^(iπ) − 1 = 0, often described as the most beautiful equation in mathematics.",
+    "hallucinations": [
+      {
+        "start": 552,
+        "end": 566,
+        "text": "e^(iπ) − 1 = 0",
+        "explanation": "Euler's identity is e^(iπ) + 1 = 0, not e^(iπ) − 1 = 0. Since e^(iπ) = cos π + i sin π = −1, adding 1 gives 0. The identity with a minus sign would instead give e^(iπ) = 1, which is incorrect — e^(iπ) equals −1, not 1. The sign matters: the beauty of Euler's identity lies in connecting e, i, π, 1, and 0 through addition to zero, not subtraction."
+      }
+    ]
   },
   {
     "id": "further-maths-02",
@@ -959,8 +1148,15 @@
     "subject": "Environmental Science",
     "level": "A-Level",
     "title": "Ecosystems and Biodiversity",
-    "passage": "Biodiversity refers to the variety of life on Earth at three levels: genetic diversity, species diversity, and ecosystem diversity. The current period of species extinction is often described as the sixth mass extinction event, driven primarily by human activities including habitat destruction, pollution, invasive species, overexploitation, and climate change. The IUCN Red List classifies species according to their extinction risk, with categories including Least Concern, Near Threatened, Vulnerable, Endangered, Critically Endangered, and Extinct in the Wild. Keystone species have a disproportionately large effect on their ecosystem relative to their biomass; the concept was introduced by the ecologist Robert Paine in 1969 following his research on sea stars in the Pacific Northwest. The Convention on Biological Diversity (CBD), established at the 1992 Rio Earth Summit, has been ratified by 196 nations.",
-    "hallucinations": []
+    "passage": "Biodiversity refers to the variety of life on Earth at three levels: genetic diversity, species diversity, and ecosystem diversity. The current period of species extinction is often described as the sixth mass extinction event, driven primarily by human activities including habitat destruction, pollution, invasive species, overexploitation, and climate change. The IUCN Red List classifies species according to their extinction risk, with categories including Least Concern, Near Threatened, Vulnerable, Endangered, Critically Endangered, and Extinct in the Wild. Keystone species have a disproportionately large effect on their ecosystem relative to their biomass; the concept was introduced by the ecologist Robert Paine in 1969 following his research on sea stars in the Pacific Northwest. The Convention on Biological Diversity (CBD), established at the 1988 Montreal Protocol, has been ratified by 196 nations.",
+    "hallucinations": [
+      {
+        "start": 841,
+        "end": 882,
+        "text": "established at the 1988 Montreal Protocol",
+        "explanation": "The Convention on Biological Diversity was established at the 1992 United Nations Conference on Environment and Development (the 'Rio Earth Summit') — not at the 1988 Montreal Protocol. The Montreal Protocol (1987) was a separate international agreement addressing the phase-out of ozone-depleting substances. These are two distinct environmental agreements: one targets ozone depletion, the other biodiversity loss."
+      }
+    ]
   },
   {
     "id": "env-science-02",
@@ -990,8 +1186,15 @@
     "subject": "Film Studies",
     "level": "A-Level",
     "title": "Film Form: Narrative and Genre",
-    "passage": "Film narrative describes how stories are structured and told through the medium of film. Tzvetan Todorov's narrative theory proposes a three-part structure: equilibrium (normality), disruption, and restoration of a new equilibrium. Vladimir Propp's analysis of folk tales identified 31 narrative functions and 8 character types (hero, villain, dispatcher, helper, princess, father, false hero, and donor). Genre refers to the classification of films by shared conventions of narrative, iconography, and style. Rick Altman argues that genre is not fixed but involves a negotiation between industry, audience, and critics. The Auteur theory, developed by the critics of the French journal Cahiers du Cinéma in the 1950s, argues that the film director is the primary creative force in filmmaking. François Truffaut's 1954 essay 'A Certain Tendency of the French Cinema' is often cited as a foundational auteur text.",
-    "hallucinations": []
+    "passage": "Film narrative describes how stories are structured and told through the medium of film. Tzvetan Todorov's narrative theory proposes a three-part structure: equilibrium (normality), disruption, and restoration of a new equilibrium. Vladimir Propp's analysis of folk tales identified 37 narrative functions and 8 character types (hero, villain, dispatcher, helper, princess, father, false hero, and donor). Genre refers to the classification of films by shared conventions of narrative, iconography, and style. Rick Altman argues that genre is not fixed but involves a negotiation between industry, audience, and critics. The Auteur theory, developed by the critics of the French journal Cahiers du Cinéma in the 1950s, argues that the film director is the primary creative force in filmmaking. François Truffaut's 1954 essay 'A Certain Tendency of the French Cinema' is often cited as a foundational auteur text.",
+    "hallucinations": [
+      {
+        "start": 232,
+        "end": 305,
+        "text": "Vladimir Propp's analysis of folk tales identified 37 narrative functions",
+        "explanation": "Propp identified 31 narrative functions, not 37. His analysis of Russian folk tales, published in Morphology of the Folktale (1928), identified exactly 31 sequential narrative functions that characters perform across stories. The number 31 is one of the most specific and testable details in narrative theory — changing it to 37 is a clear factual error."
+      }
+    ]
   },
   {
     "id": "film-02",
@@ -1096,8 +1299,15 @@
     "subject": "Biology",
     "level": "GCSE",
     "title": "Photosynthesis",
-    "passage": "Plants make their own food through a process called photosynthesis. This happens mainly in the leaves, inside structures called chloroplasts, which contain a green pigment called chlorophyll. Chlorophyll absorbs light energy from the Sun. The plant uses this energy to convert carbon dioxide — taken in through tiny pores called stomata — and water, absorbed through the roots, into glucose and oxygen. The glucose is used for energy or stored as starch. Oxygen is released as a waste product through the stomata. The overall word equation is: carbon dioxide + water → glucose + oxygen. Photosynthesis is the foundation of almost all food chains on Earth, because it is how energy from the Sun enters living systems.",
-    "hallucinations": []
+    "passage": "Plants make their own food through a process called photosynthesis. This happens mainly in the leaves, inside structures called chloroplasts, which contain a green pigment called chlorophyll. Chlorophyll absorbs light energy from the Sun. The plant uses this energy to convert carbon dioxide — taken in through tiny pores called stomata — and water, absorbed through the roots, into glucose and oxygen. The glucose is used for energy or stored as starch. Oxygen is released as a waste product through the stomata. The overall word equation is: carbon dioxide + sunlight → glucose + oxygen. Photosynthesis is the foundation of almost all food chains on Earth, because it is how energy from the Sun enters living systems.",
+    "hallucinations": [
+      {
+        "start": 544,
+        "end": 588,
+        "text": "carbon dioxide + sunlight → glucose + oxygen",
+        "explanation": "Water is a key reactant in photosynthesis — the correct equation is carbon dioxide + water → glucose + oxygen (with light energy required). Replacing water with 'sunlight' on the reactants side is wrong: light energy drives the reaction but is not consumed as a reactant in the same way that carbon dioxide and water are. The oxygen released by photosynthesis comes from splitting water molecules, so removing water from the equation misrepresents the underlying chemistry."
+      }
+    ]
   },
   {
     "id": "draft-v3-bio-02",
@@ -1223,9 +1433,16 @@
     "id": "draft-v3-hist-03",
     "subject": "History",
     "level": "GCSE",
-    "title": "The Cold War",
-    "passage": "The Cold War was a period of political tension between the United States and the Soviet Union that lasted from the end of the Second World War until 1991. It was called a 'cold' war because the two superpowers never directly fought each other — instead they competed through proxy wars, an arms race, a space race, and political influence. The Truman Doctrine, announced in 1947, committed the USA to containing the spread of communism. The Berlin Wall was built in 1961 to prevent East Germans from fleeing to West Berlin. The Cuban Missile Crisis of 1962 brought the world close to nuclear war when American spy planes discovered Soviet nuclear missiles being installed in Cuba. President Kennedy responded by ordering a naval blockade of Cuba. The crisis was resolved when the Soviet Union agreed to remove the missiles in exchange for a secret American promise to remove US missiles from Turkey and a public pledge not to invade Cuba.",
-    "hallucinations": []
+    "title": "The Industrial Revolution",
+    "passage": "The Industrial Revolution transformed Britain between roughly 1760 and 1840, making it the first industrialised nation in the world. Key developments included the mechanisation of textile production, the development of steam power, and the growth of iron and steel industries. James Watt improved the steam engine in the 1760s and 1770s, making it efficient enough to power factories and, later, locomotives. The first passenger steam railway, the Stockton and Darlington Railway, opened in 1825. The factory system replaced cottage industries, drawing workers from the countryside into rapidly growing towns. Child labour was widespread in early factories and mines; Factory Acts from 1833 onwards gradually restricted the hours children could work. Living conditions in industrial towns were often poor, contributing to outbreaks of cholera. The Great Reform Act of 1832 was passed in response to demands from the new industrial middle class, and for the first time extended voting rights to factory and mine workers across Britain.",
+    "hallucinations": [
+      {
+        "start": 968,
+        "end": 1033,
+        "text": "extended voting rights to factory and mine workers across Britain",
+        "explanation": "The Great Reform Act 1832 extended the vote to the new industrial middle class — wealthy property owners in the new industrial towns — not to factory or mine workers. Working-class men had to wait considerably longer: the 1867 Reform Act enfranchised urban working-class men, and the 1884 Act extended this to rural workers. The 1832 Act was explicitly a middle-class reform that redistributed political power within the propertied classes."
+      }
+    ]
   },
   {
     "id": "draft-v3-geo-01",
