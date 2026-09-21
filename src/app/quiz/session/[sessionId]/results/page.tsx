@@ -161,7 +161,7 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
                       correctRanges={correctRanges}
                       missedRanges={missedRanges}
                     />
-                    {q.hallucinations.length > 0 && (
+                    {q.hallucinations.length > 0 ? (
                       <div className="mt-4 space-y-2">
                         {q.hallucinations.map((h, hi) => (
                           <div key={hi} className="bg-gray-50 rounded-lg p-3">
@@ -169,6 +169,11 @@ export default function SessionResultsPage({ params }: { params: Promise<{ sessi
                             <p className="text-xs text-gray-500">{h.explanation}</p>
                           </div>
                         ))}
+                      </div>
+                    ) : (
+                      <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-3">
+                        <p className="text-xs font-semibold text-green-800 mb-0.5">This was a clean passage — no hallucinations</p>
+                        <p className="text-xs text-green-700">Everything in this passage was accurate. The correct response was to leave it unhighlighted. This type of question tests whether you flag text unnecessarily (false positives).</p>
                       </div>
                     )}
                   </div>

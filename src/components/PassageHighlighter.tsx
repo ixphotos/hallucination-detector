@@ -34,7 +34,8 @@ function buildSpans(
         const overlapStart = Math.max(h.start, r.start);
         const overlapEnd = Math.min(h.end, r.end);
         if (overlapEnd <= overlapStart) return false;
-        return (overlapEnd - overlapStart) / (r.end - r.start) >= OVERLAP;
+        const minLen = Math.min(h.end - h.start, r.end - r.start);
+        return (overlapEnd - overlapStart) / minLen >= OVERLAP;
       });
       events.push({ pos: h.start, kind: 'start', type: isTP ? 'correct' : 'false-positive' });
       events.push({ pos: h.end, kind: 'end', type: isTP ? 'correct' : 'false-positive' });
