@@ -2,7 +2,9 @@ import type { Highlight, Hallucination, ScoreResult } from '@/types';
 
 // A hallucination counts as caught when at least this fraction of its
 // characters is covered by the user's highlights (combined).
-export const COVERAGE_THRESHOLD = 0.5;
+// 0.3 is intentionally forgiving: selecting roughly the right clause or
+// phrase — even if not the exact hallucinated span — still registers as found.
+export const COVERAGE_THRESHOLD = 0.3;
 
 // A highlight counts as a false positive when less than this fraction of its
 // characters falls inside hallucinated text.
