@@ -7,8 +7,10 @@ function overlapRatio(a: { start: number; end: number }, b: { start: number; end
   const overlapEnd = Math.min(a.end, b.end);
   if (overlapEnd <= overlapStart) return 0;
   const overlapLen = overlapEnd - overlapStart;
-  const hallucinationLen = b.end - b.start;
-  return overlapLen / hallucinationLen;
+  // Use the shorter span as denominator: a highlight counts as matching a hallucination
+  // if it covers ≥50% of the hallucination OR is ≥50% contained within it.
+  const minLen = Math.min(a.end - a.start, b.end - b.start);
+  return overlapLen / minLen;
 }
 
 export function scoreAttempt(
