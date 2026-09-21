@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { getAllAttempts } from '@/lib/firestore';
 import NavBar from '@/components/NavBar';
@@ -12,6 +13,7 @@ export default function AdminPage() {
   const router = useRouter();
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [fetching, setFetching] = useState(true);
+  const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
     if (!loading) {
@@ -19,7 +21,13 @@ export default function AdminPage() {
       if (profile && profile.role !== 'admin') { router.replace('/dashboard'); return; }
     }
     if (user && profile?.role === 'admin') {
-      getAllAttempts().then((a) => { setAttempts(a); setFetching(false); });
+      getAllAttempts()
+        .then((a) => setAttempts(a))
+        .catch((err) => {
+          console.error(err);
+          setLoadError('Failed to load attempts. Please refresh the page to try again.');
+        })
+        .finally(() => setFetching(false));
     }
   }, [user, profile, loading, router]);
 
@@ -76,7 +84,7 @@ export default function AdminPage() {
             <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
             <p className="text-gray-500 mt-1">Aggregate results across all staff.</p>
           </div>
-          <a
+          <Link
             href="/admin/questions"
             className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors self-start"
           >
@@ -84,8 +92,14 @@ export default function AdminPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
             Manage questions
-          </a>
+          </Link>
         </div>
+
+        {loadError && (
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-6">
+            {loadError}
+          </p>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl border border-gray-200 p-5">

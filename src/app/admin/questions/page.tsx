@@ -15,6 +15,7 @@ export default function AdminQuestionsPage() {
   const [fetching, setFetching] = useState(true);
   const [filter, setFilter] = useState('');
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (!loading) {
@@ -24,6 +25,10 @@ export default function AdminQuestionsPage() {
     if (user && profile?.role === 'admin') {
       getAllQuestions()
         .then((qs) => setQuestions(qs.sort((a, b) => a.subject.localeCompare(b.subject) || a.title.localeCompare(b.title))))
+        .catch((err) => {
+          console.error(err);
+          setError('Failed to load questions. Please refresh the page to try again.');
+        })
         .finally(() => setFetching(false));
     }
   }, [user, profile, loading, router]);
@@ -31,9 +36,16 @@ export default function AdminQuestionsPage() {
   async function handleDelete(id: string, title: string) {
     if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
     setDeleting(id);
-    await deleteQuestion(id);
-    setQuestions((prev) => prev.filter((q) => q.id !== id));
-    setDeleting(null);
+    setError('');
+    try {
+      await deleteQuestion(id);
+      setQuestions((prev) => prev.filter((q) => q.id !== id));
+    } catch (err) {
+      console.error(err);
+      setError(`Failed to delete "${title}". Please try again.`);
+    } finally {
+      setDeleting(null);
+    }
   }
 
   if (loading || fetching || !profile) {
@@ -82,6 +94,12 @@ export default function AdminQuestionsPage() {
             Add question
           </Link>
         </div>
+
+        {error && (
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-5">
+            {error}
+          </p>
+        )}
 
         <div className="mb-5">
           <input

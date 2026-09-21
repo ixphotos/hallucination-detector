@@ -91,15 +91,21 @@ export default function AdminQuestionEditPage({ params }: { params: Promise<{ id
 
   useEffect(() => {
     if (isNew || !user) return;
-    getQuestion(id).then((q) => {
-      if (!q) { router.replace('/admin/questions'); return; }
-      setSubject(q.subject);
-      setLevel(q.level);
-      setTitle(q.title);
-      setPassage(q.passage);
-      setHallucinations(q.hallucinations);
-      setFetching(false);
-    });
+    getQuestion(id)
+      .then((q) => {
+        if (!q) { router.replace('/admin/questions'); return; }
+        setSubject(q.subject);
+        setLevel(q.level);
+        setTitle(q.title);
+        setPassage(q.passage);
+        setHallucinations(q.hallucinations);
+        setFetching(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setSaveError('Failed to load the question. Please refresh the page to try again.');
+        setFetching(false);
+      });
   }, [id, isNew, user, router]);
 
   function addHallucination() {
@@ -124,8 +130,17 @@ export default function AdminQuestionEditPage({ params }: { params: Promise<{ id
         setSaveError('All hallucinations must have text.');
         return;
       }
-      if (!passage.includes(h.text)) {
+      const first = passage.indexOf(h.text);
+      if (first === -1) {
         setSaveError(`Hallucination text not found in passage: "${h.text.slice(0, 60)}…"`);
+        return;
+      }
+      // Offsets are derived from the first occurrence, so the text must be
+      // unambiguous within the passage.
+      if (passage.indexOf(h.text, first + 1) !== -1) {
+        setSaveError(
+          `Hallucination text appears more than once in the passage — extend it so it is unique: "${h.text.slice(0, 60)}…"`
+        );
         return;
       }
     }

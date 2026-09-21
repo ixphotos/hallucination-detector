@@ -24,6 +24,7 @@ export interface Attempt {
   id?: string;
   teacherId: string;
   teacherName: string;
+  sessionId?: string;
   questionId: string;
   subject: string;
   highlights: Highlight[];
@@ -131,4 +132,40 @@ export interface ImageAttempt {
   correct?: boolean;
   pointsEarned: number;
   timeSpentSeconds: number;
+}
+
+// ── API payloads ─────────────────────────────────────────────────────────────
+
+/** Question as served to quiz takers — answers stripped. */
+export type QuizQuestion = Omit<Question, 'hallucinations'>;
+
+export interface SubjectCount {
+  subject: string;
+  count: number;
+}
+
+export interface SessionMeta {
+  id: string;
+  subject: string;
+  questionIds: string[];
+  attemptedQuestionIds: string[];
+  completed: boolean;
+}
+
+export interface SubmitAttemptResult {
+  attemptId: string;
+  score: number;
+  tp: number;
+  fp: number;
+  fn: number;
+  sessionComplete: boolean;
+  totalScore: number | null;
+}
+
+export interface SessionResultsPayload {
+  session: { id: string; subject: string; questionIds: string[]; totalScore: number | null };
+  attempts: Array<
+    Pick<Attempt, 'id' | 'questionId' | 'highlights' | 'score' | 'tp' | 'fp' | 'fn' | 'timeTaken'>
+  >;
+  questions: Question[];
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -28,17 +28,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Name supplied at registration, consumed by the auth listener when it
+  // creates the profile. Profile creation lives in exactly one place (the
+  // listener) so a registration and the listener's auto-create can never race
+  // and overwrite the user's real name with a fallback.
+  const pendingNameRef = useRef<string | null>(null);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth(), async (u) => {
       setUser(u);
       if (u) {
-        let p = await getProfile(u.uid);
-        // Auto-create profile if it was never saved (e.g. blocked by Firestore rules at registration)
-        if (!p) {
-          await createProfile(u.uid, u.displayName ?? u.email?.split('@')[0] ?? 'Teacher', u.email ?? '');
-          p = await getProfile(u.uid);
+        try {
+          let p = await getProfile(u.uid);
+          // Auto-create the profile if it was never saved.
+          if (!p) {
+            const name =
+              pendingNameRef.current ?? u.displayName ?? u.email?.split('@')[0] ?? 'Teacher';
+            await createProfile(u.uid, name, u.email ?? '');
+            p = await getProfile(u.uid);
+          }
+          setProfile(p);
+        } catch (err) {
+          console.error('Failed to load profile:', err);
+          setProfile(null);
+        } finally {
+          pendingNameRef.current = null;
         }
-        setProfile(p);
       } else {
         setProfile(null);
       }
@@ -48,16 +63,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   async function signIn(email: string, password: string) {
-    const cred = await signInWithEmailAndPassword(auth(), email, password);
-    const p = await getProfile(cred.user.uid);
-    setProfile(p);
+    // The profile is loaded by the onAuthStateChanged listener.
+    await signInWithEmailAndPassword(auth(), email, password);
   }
 
   async function register(name: string, email: string, password: string) {
-    const cred = await createUserWithEmailAndPassword(auth(), email, password);
-    await createProfile(cred.user.uid, name, email);
-    const p = await getProfile(cred.user.uid);
-    setProfile(p);
+    pendingNameRef.current = name;
+    try {
+      await createUserWithEmailAndPassword(auth(), email, password);
+    } catch (err) {
+      pendingNameRef.current = null;
+      throw err;
+    }
   }
 
   async function logOut() {

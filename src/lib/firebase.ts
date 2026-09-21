@@ -21,6 +21,15 @@ let _storage: FirebaseStorage;
 
 function getFirebaseApp(): FirebaseApp {
   if (!_app) {
+    const missing = Object.entries(firebaseConfig)
+      .filter(([, value]) => !value)
+      .map(([key]) => `NEXT_PUBLIC_FIREBASE_${key.replace(/([A-Z])/g, '_$1').toUpperCase()}`);
+    if (missing.length > 0) {
+      throw new Error(
+        `Missing Firebase environment variables: ${missing.join(', ')}. ` +
+          'Copy .env.local.example to .env.local and fill in your Firebase project config.'
+      );
+    }
     _app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
   }
   return _app;
