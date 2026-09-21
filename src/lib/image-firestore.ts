@@ -20,7 +20,7 @@ export async function getAllImageQuestions(): Promise<ImageQuestion[]> {
   return snap.docs.map((d) => ({ id: d.id, ...d.data() })) as ImageQuestion[];
 }
 
-export async function getActiveImageQuestions(mode?: ImageQuestion['mode'], subject?: string): Promise<ImageQuestion[]> {
+export async function getActiveImageQuestions(mode?: ImageQuestion['mode'] | 'mixed', subject?: string): Promise<ImageQuestion[]> {
   let q = query(
     collection(db(), 'imageQuestions'),
     where('active', '==', true),
